@@ -26,4 +26,8 @@ class Account extends Model implements AuthenticatableContract
  */
     protected $hidden = [];
 
+    public function accountDeal() {
+        return $this->hasOne('App\Deal');
+    }
+
 }

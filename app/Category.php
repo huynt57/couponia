@@ -75,5 +75,9 @@ class Category extends Model
     {
         return $this->hasMany(Post::class)->where('status', true)->orderBy('updated_at', 'desc');
     }
+
+    public function accountCategory() {
+        return $this->hasOne('App\Deal');
+    }
   
 }
