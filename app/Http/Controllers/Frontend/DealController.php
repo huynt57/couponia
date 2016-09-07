@@ -22,4 +22,6 @@ class DealController extends Controller
 
 
 
+
+
 }
