@@ -14,7 +14,7 @@ class DealsTableSeeder extends Seeder
         //
         $faker = Faker\Factory::create();
 
-        $limit = 10000;
+        $limit = 200;
 
         for ($i = 0; $i < $limit; $i++) {
             DB::table('accounts')->insert([
