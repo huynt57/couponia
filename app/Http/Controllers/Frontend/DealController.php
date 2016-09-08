@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Deal\Functions;
 
 class DealController extends Controller
 {
@@ -74,6 +75,12 @@ class DealController extends Controller
         return view('frontend.deal', [
             'deals' => $deal
         ]);
+    }
+
+
+    public function crawl()
+    {
+        dd(Functions::crawl());
     }
 
 
