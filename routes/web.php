@@ -28,3 +28,7 @@ Route::get('login', 'Frontend\AuthController@redirectToAuthServer');
 Route::get('logout', 'Frontend\AuthController@logout');
 Route::get('callback', 'Frontend\AuthController@callback');
 
+Route::get('deals/{id}', 'Frontend\DealController@getDealsById');
+Route::get('deals-category/{id}', 'Frontend\DealController@getDealsByCategory');
+Route::get('deals-source/{source}', 'Frontend\DealController@getDealsBySource');
+

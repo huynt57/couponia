@@ -14,7 +14,15 @@ class DealsTableSeeder extends Seeder
         //
         $faker = Faker\Factory::create();
 
-        $limit = 200;
+        $limit = 2000;
+        for ($i = 0; $i < 11; $i++) {
+            DB::table('categories')->insert([
+                'name' => $faker->unique()->name,
+                'desc' => $faker->text,
+                'created_at' => $faker->dateTime,
+                'updated_at' => $faker->dateTime,
+            ]);
+        }
 
         for ($i = 0; $i < $limit; $i++) {
             DB::table('accounts')->insert([
@@ -27,12 +35,7 @@ class DealsTableSeeder extends Seeder
                 'updated_at' => $faker->dateTime,
             ]);
 
-            DB::table('categories')->insert([
-                'name' => $faker->unique()->name,
-                'desc' => $faker->text,
-                'created_at' => $faker->dateTime,
-                'updated_at' => $faker->dateTime,
-            ]);
+
 
             $accounts = \App\Account::all()->pluck('id')->toArray();
             $categories = \App\Category::all()->pluck('id')->toArray();
@@ -56,6 +59,7 @@ class DealsTableSeeder extends Seeder
                 'category_id' =>$faker->randomElement($categories),
                 'created_at' => $faker->dateTime,
                 'updated_at' => $faker->dateTime,
+                'source' => $faker->randomElement(['lazada', 'adayroi', 'tiki', 'zalora'])
             ]);
         }
     }
