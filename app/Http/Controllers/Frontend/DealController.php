@@ -81,10 +81,4 @@ class DealController extends Controller
     {
         dd(Functions::crawl());
     }
-
-
-
-
-
-
 }

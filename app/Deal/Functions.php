@@ -9,7 +9,9 @@ namespace App\Deal;
 use App\Account;
 use App\Category;
 
+use App\Product;
 use Goutte;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Functions
 {
@@ -37,7 +39,28 @@ class Functions
         $url = $crawler->filter('h1')->each(function($node) {
             echo $node->text(). '<br>';
         });
-      //  dd($url);
+        dd($url);
 
+    }
+
+    public static function importDataFeedProductCSV($file)
+    {
+        Excel::load($file, function($reader) {
+            $results = $reader->all()->toArray();
+
+            foreach($results as $key => $value)
+            {
+                Product::create([
+                    'name' => isset($value['ProductName']) ? $value['ProductName'] : '',
+                    'price' => isset($value['Price']) ? $value['Price'] : '',
+                    'source' => isset($value['OfferId']) ? $value['OfferId'] : '',
+                    'image_preview' => isset($value['name']) ? $value['name'] : '',
+                    'status' => 1,
+                    'product_url' => isset($value['ProductUrl']) ? $value['ProductUrl'] : '',
+                    'aff_link' => isset($value['AffiliateLink']) ? $value['AffiliateLink'] : '',
+                    'product_version' => isset($value['ProductVersion']) ? $value['ProductVersion'] : '',
+                ]);
+            }
+        });
     }
 }
