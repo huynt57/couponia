@@ -39,8 +39,6 @@ class ImportDataProductFeed extends Command
     public function handle()
     {
         //
-        $file = \File::get('storage/app/mo_datafeed_adayroi_20160912.csv');
-
-        Functions::importDataFeedProductCSV($file);
+        Functions::importDataFeedProductCSV('storage/app/test.csv');
     }
 }

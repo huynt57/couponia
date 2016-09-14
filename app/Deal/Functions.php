@@ -11,7 +11,7 @@ use App\Category;
 
 use App\Product;
 use Goutte;
-use Maatwebsite\Excel\Facades\Excel;
+use Excel;
 
 class Functions
 {
@@ -48,17 +48,18 @@ class Functions
         Excel::load($file, function($reader) {
             $results = $reader->all()->toArray();
 
-            foreach($results as $key => $value)
+            foreach($results as  $value)
             {
                 Product::create([
-                    'name' => isset($value['ProductName']) ? $value['ProductName'] : '',
-                    'price' => isset($value['Price']) ? $value['Price'] : '',
-                    'source' => isset($value['OfferId']) ? $value['OfferId'] : '',
-                    'image_preview' => isset($value['name']) ? $value['name'] : '',
+                    'name' => !empty($value['productname']) ? $value['productname'] : '',
+                    'price' =>!empty($value['price']) ? $value['price'] : 0,
+                    'source' => !empty($value['offerid']) ? $value['offerid'] : '',
+                    'image_preview' => !empty($value['thumbnail']) ? $value['thumbnail'] : '',
+                    'account_id' => 0,
                     'status' => 1,
-                    'product_url' => isset($value['ProductUrl']) ? $value['ProductUrl'] : '',
-                    'aff_link' => isset($value['AffiliateLink']) ? $value['AffiliateLink'] : '',
-                    'product_version' => isset($value['ProductVersion']) ? $value['ProductVersion'] : '',
+                    'product_url' => !empty($value['producturl']) ? $value['producturl'] : '',
+                    'aff_link' => !empty($value['affiliatelink']) ? $value['affiliatelink'] : '',
+                    'product_version' => !empty($value['productversion']) ? $value['productversion'] : '',
                 ]);
             }
         });

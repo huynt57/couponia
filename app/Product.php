@@ -17,6 +17,8 @@ class Product extends Model
 
         'image_preview',
         'status',
+        'product_version',
+        'product_url'
     ];
 
     public function account() {
