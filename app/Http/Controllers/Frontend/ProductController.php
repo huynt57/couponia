@@ -55,6 +55,32 @@ class ProductController extends Controller
         $minPrice = $request->input('min_price');
         $maxPrice = $request->input('max_price');
         $category = $request->input('category');
+        $provider = $request->input('provider');
+
+
+        $products = DB::table('products');
+
+        if(!empty($minPrice) && !empty($maxPrice))
+        {
+            $products =  $products->whereBetween('price', [$minPrice, $maxPrice]);
+        }
+
+        if(!empty($category))
+        {
+            $products = $products->where('category', $category);
+        }
+
+        if(!empty($provider))
+        {
+            $products = $products->where('provider', $provider);
+        }
+
+
+        return view('frontend.products', [
+            'products' => $products
+        ]);
+
+
 
 
     }
@@ -85,10 +111,10 @@ class ProductController extends Controller
             return 'Khuyến mãi không tồn tại';
         }
 
-        $product = Deal::find($id);
+        $product = Product::find($id);
 
         return view('frontend.products', [
-            'products' => $products
+            'product' => $product
         ]);
     }
 }

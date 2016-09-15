@@ -19,6 +19,7 @@ class DealsTableSeeder extends Seeder
             DB::table('categories')->insert([
                 'name' => $faker->unique()->name,
                 'desc' => $faker->text,
+                'provider' => 1,
                 'created_at' => $faker->dateTime,
                 'updated_at' => $faker->dateTime,
             ]);
