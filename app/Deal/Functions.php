@@ -26,6 +26,17 @@ class Functions
         return cache()->get('categories');
     }
 
+    public static function getCategoryByProvider($provider)
+    {
+        if(!cache()->has('categories-provider'))
+        {
+            $categories = Category::where('provider', $provider);
+            cache()->set('categories', $categories);
+            return $categories;
+        }
+        return cache()->get('categories-provider');
+    }
+
     public static function crawl()
     {
         $crawler = Goutte::request('GET', 'http://www.tinkhuyenmaihot.com/dscp_LAZADA/ma-giam-gia-lazada.html');

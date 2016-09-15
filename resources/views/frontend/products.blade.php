@@ -45,7 +45,7 @@
 
                                     <div class="product-meta">
                                         <ul class="product-price-list">
-                                            <li><span class="product-price">{{number_format($product->price, 0, '.', '.')}}</span>
+                                            <li><span class="product-price">{{number_format($product->price, 0, '.', '.')}} VNĐ</span>
                                             </li>
 
 
