@@ -99,7 +99,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="product-shop-sidebar.html">Sản phẩm</a>
+                            <li><a href="product-shop-sidebar.html">Sản phẩm giảm giá</a>
                                 <ul>
                                     <li><a href="product-shop-sidebar.html">Shop</a>
 

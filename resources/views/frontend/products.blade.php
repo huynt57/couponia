@@ -37,7 +37,7 @@
                         <a class="col-md-4" href="{{ $product->aff_link }}">
                             <div class="product-thumb" style="height: 420px">
                                 <header class="product-header">
-                                    <img src="{{$product->image_preview}}" alt="{{$product->name}}" title="{{$product->name}}" />
+                                    <img src="{{$product->image_preview}}" alt="{{$product->name}}" title="{{$product->name}}" style="max-height: 293px" />
                                 </header>
                                 <div class="product-inner">
                                     <h5 class="product-title">{{$product->name}}</h5>

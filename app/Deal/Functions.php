@@ -13,6 +13,8 @@ use App\Provider;
 use App\Product;
 use Goutte;
 use Excel;
+use Symfony\Component\DomCrawler\Crawler;
+use GuzzleHttp\Client;
 
 class Functions
 {
@@ -51,18 +53,17 @@ class Functions
 
     public static function crawl()
     {
-        $crawler = Goutte::request('GET', 'http://www.tinkhuyenmaihot.com/dscp_LAZADA/ma-giam-gia-lazada.html');
+        $url = 'https://pub.masoffer.com/sign-in';
 
+        $client = new Client();
 
+        $client = $client->request('GET', $url);
 
-        $crawler->filter('.read_more_link > a')->each(function($node) {
-            echo $node->attr('href') . '<br>';
-        });
+        $crawler = new Crawler($client->getBody()->getContents());
 
-        $url = $crawler->filter('h1')->each(function($node) {
-            echo $node->text(). '<br>';
-        });
-        dd($url);
+        $crawler->selectImage("Đăng nhập")->image();
+
+        dd($crawler);
 
     }
 

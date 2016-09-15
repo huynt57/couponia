@@ -14,7 +14,131 @@ class DealsTableSeeder extends Seeder
         //
         $faker = Faker\Factory::create();
 
-        $limit = 2000;
+
+        DB::table('providers')->insert([
+            'name' => 'Lazada',
+            'alias' => 'lazada',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+
+        DB::table('providers')->insert([
+            'name' => 'FPT Shop',
+            'alias' => 'fptshop',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+
+        DB::table('providers')->insert([
+            'name' => 'Adayroi.com',
+            'alias' => 'adayroi',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+
+        DB::table('providers')->insert([
+            'name' => 'Tiki.vn',
+            'alias' => 'tiki',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+
+        DB::table('providers')->insert([
+            'name' => 'Atadi.vn',
+            'alias' => 'atadi',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+
+        DB::table('providers')->insert([
+            'name' => 'Lazada Mobile App',
+            'alias' => 'lazada-mobile',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+
+        DB::table('providers')->insert([
+            'name' => 'Lazada Mobile App',
+            'alias' => 'lazada-mobile',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+
+
+        DB::table('providers')->insert([
+            'name' => 'Lazada Mobile App',
+            'alias' => 'lazada-mobile',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+
+        DB::table('providers')->insert([
+            'name' => 'NguyenKim.com',
+            'alias' => 'nguyenkim',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+
+        DB::table('providers')->insert([
+            'name' => 'cfyc.com.vn',
+            'alias' => 'cfyc',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+
+        DB::table('providers')->insert([
+            'name' => 'Kay.vn',
+            'alias' => 'kayvn',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+
+        DB::table('providers')->insert([
+            'name' => 'Fado.vn',
+            'alias' => 'fado',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+
+        DB::table('providers')->insert([
+            'name' => 'VnTrip.vn',
+            'alias' => 'vntrip',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+
+        DB::table('providers')->insert([
+            'name' => 'BigMua.com',
+            'alias' => 'bigmua',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+
+        DB::table('providers')->insert([
+            'name' => 'Fado.vn',
+            'alias' => 'fado',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+
+
+
+        $limit = 200;
         for ($i = 0; $i < 11; $i++) {
             DB::table('categories')->insert([
                 'name' => $faker->unique()->name,

@@ -39,6 +39,6 @@ class ImportDataProductFeed extends Command
     public function handle()
     {
         //
-        Functions::importDataFeedProductCSV('storage/app/mo_datafeed_adayroi_20160912.csv');
+        Functions::importDataFeedProductCSV('storage/app/mo_datafeed_tiki_20160915.csv');
     }
 }
