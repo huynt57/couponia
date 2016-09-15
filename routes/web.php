@@ -11,6 +11,7 @@
 |
 */
 
+
 #Admin Routes
 Route::get('admin/login', 'Backend\AuthController@redirectToGoogle');
 Route::get('admin/logout', 'Backend\AuthController@logout');
@@ -34,6 +35,8 @@ Route::get('deals-source/{source}', 'Frontend\DealController@getDealsBySource');
 
 
 Route::get('products', 'Frontend\ProductController@getAllProducts');
+
+
 
 
 Route::get('crawl', 'Frontend\DealController@crawl');

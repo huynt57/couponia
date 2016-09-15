@@ -12,9 +12,16 @@ use App\Deal\Functions;
 class ProductController extends Controller
 {
     //
-    public function getAllProducts()
+    public function getAllProducts(Request $request)
     {
         $products = \DB::table('products')->paginate(config('constants.PAGINATE_NUMBER'));
+
+        if($request->input('viewType') == 'horizontal')
+        {
+            return view('frontend.products-horizontal', [
+                'products' => $products
+            ]);
+        }
 
         return view('frontend.products', [
             'products' => $products
@@ -40,6 +47,16 @@ class ProductController extends Controller
         return view('frontend.products', [
             'products' => $products
         ]);
+
+    }
+
+    public function getProductByAttributes(Request $request)
+    {
+        $minPrice = $request->input('min_price');
+        $maxPrice = $request->input('max_prrice');
+        $category = $request->input('category');
+
+
 
     }
 
