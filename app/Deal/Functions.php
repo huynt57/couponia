@@ -11,10 +11,9 @@ use App\Category;
 use App\Provider;
 
 use App\Product;
-use Goutte;
+use Goutte\Client;
 use Excel;
-use Symfony\Component\DomCrawler\Crawler;
-use GuzzleHttp\Client;
+
 
 class Functions
 {
@@ -59,11 +58,28 @@ class Functions
 
         $client = $client->request('GET', $url);
 
-        $crawler = new Crawler($client->getBody()->getContents());
+        $form = $client->filter('form')->form();
 
-        $crawler->selectImage("Đăng nhập")->image();
+        $token = $form->getValues()['_token'];
 
-        dd($crawler);
+        $data = [
+            'username' => 'huyjuku',
+            'password' => 'minhhieu123',
+            '_token' => $token
+        ];
+
+        $client2 = new Client();
+
+        $response = $client2->submit($form, $data);
+
+        $url2 = 'https://pub.masoffer.com/promotion';
+
+        $client3 = new Client();
+
+        $client3 = $client3->request('GET', $url2);
+
+        dd($client3);
+
 
     }
 

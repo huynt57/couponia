@@ -127,14 +127,7 @@ class DealsTableSeeder extends Seeder
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
         ]);
-
-        DB::table('providers')->insert([
-            'name' => 'Fado.vn',
-            'alias' => 'fado',
-            'status' => 1,
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-        ]);
+        
 
 
 
