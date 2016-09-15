@@ -131,7 +131,7 @@
     <div class="top-main-area text-center">
         <div class="container">
             <a href="index.html" class="logo mt5">
-                <img src="img/logo-small-dark.png" alt="Image Alternative text" title="Image Title" />
+                <img src="{{url('coupon/img/logo-small-dark.png') }}" alt="Image Alternative text" title="Image Title" />
             </a>
         </div>
     </div>
@@ -143,7 +143,10 @@
                     <div class="flexnav-menu-button" id="flexnav-menu-button">Menu</div>
                     <nav>
                         <ul class="nav nav-pills flexnav" id="flexnav" data-breakpoint="800">
-                            <li><a href="index.html">Home</a>
+                            <li><a href="index.html">Trang chủ</a>
+
+
+
                                 <ul>
                                     <li><a href="index-shop-layout-1.html">Shop Layout</a>
 
@@ -155,7 +158,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="active"><a href="category-page-shop.html">Category</a>
+                            <li class="active"><a href="category-page-shop.html">Khuyến mại</a>
                                 <ul>
                                     <li><a href="category-page-shop.html">Shop</a>
                                     </li>
@@ -165,7 +168,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="product-shop-sidebar.html">Product </a>
+                            <li><a href="product-shop-sidebar.html">Sản phẩm</a>
                                 <ul>
                                     <li><a href="product-shop-sidebar.html">Shop</a>
 
@@ -174,26 +177,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="features-typography.html">Features</a>
-                                <ul>
-                                    <li><a href="features-typography.html">Typography</a>
-                                    </li>
-                                    <li><a href="features-elements.html">Elements</a>
-                                    </li>
-                                    <li><a href="features-grid.html">Grid</a>
-                                    </li>
-                                    <li><a href="features-icons.html">Icons</a>
-                                    </li>
-                                    <li><a href="features-image-hover.html">Image Hovers</a>
-                                    </li>
-                                    <li><a href="features-sliders.html">Sliders</a>
-                                    </li>
-                                    <li><a href="features-media.html">Media</a>
-                                    </li>
-                                    <li><a href="features-lightbox.html">Lightbox</a>
-                                    </li>
-                                </ul>
-                            </li>
+
                             <li><a href="blog-sidebar-right.html">Blog</a>
                                 <ul>
                                     <li><a href="blog-sidebar-right.html">Sidebar Right</a>
@@ -203,36 +187,6 @@
                                     <li><a href="blog-full-width.html">Full Width</a>
                                     </li>
                                     <li><a href="post-sidebar-right.html">Post</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="page-full-width.html">Pages</a>
-                                <ul>
-                                    <li><a href="page-my-account-settings.html">My Account</a>
-
-                                    </li>
-                                    <li><a href="page-full-width.html">Full Width</a>
-                                    </li>
-                                    <li><a href="page-sidebar-right.html">Sidebar Right</a>
-                                    </li>
-                                    <li><a href="page-sidebar-left.html">Sidebar Left</a>
-                                    </li>
-                                    <li><a href="page-faq.html">Faq</a>
-                                    </li>
-                                    <li><a href="page-about-us.html">About us</a>
-                                    </li>
-                                    <li><a href="page-team.html">Team</a>
-                                    </li>
-                                    <li><a href="page-cart.html">Shopping Cart</a>
-                                    </li>
-                                    <li><a href="page-checkout.html">Checkout</a>
-                                    </li>
-                                    <li><a href="page-404.html">404</a>
-                                    </li>
-                                    <li><a href="page-search.html">Search</a>
-
-                                    </li>
-                                    <li><a href="page-contact.html">Contact</a>
                                     </li>
                                 </ul>
                             </li>
@@ -397,7 +351,7 @@
                 <div class="row row-wrap">
                     <div class="col-md-3">
                         <a href="index.html">
-                            <img src="img/logo.png" alt="logo" title="logo" class="logo">
+                            <img src="{{url('coupon/img/logo.png') }}" alt="logo" title="logo" class="logo">
                         </a>
                         <ul class="list list-social">
                             <li>
@@ -442,7 +396,7 @@
                         <ul class="thumb-list">
                             <li>
                                 <a href="#">
-                                    <img src="img/urbex_esch_lux_with_laney_and_laaaaag_70x70.jpg" alt="Image Alternative text" title="Urbex Esch/Lux with Laney and Laaaaag" />
+                                    <img src="{{url('coupon/img/urbex_esch_lux_with_laney_and_laaaaag_70x70.jpg') }}" alt="Image Alternative text" title="Urbex Esch/Lux with Laney and Laaaaag" />
                                 </a>
                                 <div class="thumb-list-item-caption">
                                     <p class="thumb-list-item-meta">Jul 18, 2014</p>
@@ -452,7 +406,7 @@
                             </li>
                             <li>
                                 <a href="#">
-                                    <img src="img/amaze_70x70.jpg" alt="Image Alternative text" title="AMaze" />
+                                    <img src="{{url('coupon/img/amaze_70x70.jpg') }}" alt="Image Alternative text" title="AMaze" />
                                 </a>
                                 <div class="thumb-list-item-caption">
                                     <p class="thumb-list-item-meta">Jul 18, 2014</p>
@@ -462,7 +416,7 @@
                             </li>
                             <li>
                                 <a href="#">
-                                    <img src="img/the_hidden_power_of_the_heart_70x70.jpg" alt="Image Alternative text" title="The Hidden Power of the Heart" />
+                                    <img src="{{url('coupon/img/the_hidden_power_of_the_heart_70x70.jpg') }}" alt="Image Alternative text" title="The Hidden Power of the Heart" />
                                 </a>
                                 <div class="thumb-list-item-caption">
                                     <p class="thumb-list-item-meta">Jul 18, 2014</p>
@@ -485,25 +439,25 @@
                         <div class="pull-right">
                             <ul class="list-inline list-payment">
                                 <li>
-                                    <img src="img/payment/american-express-curved-32px.png" alt="Image Alternative text" title="Image Title" />
+                                    <img src="{{url('coupon/img/payment/american-express-curved-32px.png') }}" alt="Image Alternative text" title="Image Title" />
                                 </li>
                                 <li>
-                                    <img src="img/payment/cirrus-curved-32px.png" alt="Image Alternative text" title="Image Title" />
+                                    <img src="{{url('coupon/img/payment/cirrus-curved-32px.png')}}" alt="Image Alternative text" title="Image Title" />
                                 </li>
                                 <li>
-                                    <img src="img/payment/discover-curved-32px.png" alt="Image Alternative text" title="Image Title" />
+                                    <img src="{{url('coupon/img/payment/discover-curved-32px.png')}}" alt="Image Alternative text" title="Image Title" />
                                 </li>
                                 <li>
-                                    <img src="img/payment/ebay-curved-32px.png" alt="Image Alternative text" title="Image Title" />
+                                    <img src="{{url('coupon/img/payment/ebay-curved-32px.png')}}" alt="Image Alternative text" title="Image Title" />
                                 </li>
                                 <li>
-                                    <img src="img/payment/maestro-curved-32px.png" alt="Image Alternative text" title="Image Title" />
+                                    <img src="{{url('coupon/img/payment/maestro-curved-32px.png')}}" alt="Image Alternative text" title="Image Title" />
                                 </li>
                                 <li>
-                                    <img src="img/payment/mastercard-curved-32px.png" alt="Image Alternative text" title="Image Title" />
+                                    <img src="{{url('coupon/img/payment/mastercard-curved-32px.png')}}" alt="Image Alternative text" title="Image Title" />
                                 </li>
                                 <li>
-                                    <img src="img/payment/visa-curved-32px.png" alt="Image Alternative text" title="Image Title" />
+                                    <img src="{{url('coupon/img/payment/visa-curved-32px.png')}}" alt="Image Alternative text" title="Image Title" />
                                 </li>
                             </ul>
                         </div>

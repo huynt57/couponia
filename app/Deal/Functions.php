@@ -8,6 +8,7 @@ namespace App\Deal;
 
 use App\Account;
 use App\Category;
+use App\Provider;
 
 use App\Product;
 use Goutte;
@@ -35,6 +36,17 @@ class Functions
             return $categories;
         }
         return cache()->get('categories-provider');
+    }
+
+    public static function getProviders()
+    {
+        if(!cache()->has('providers'))
+        {
+            $providers = Provider::all();
+            cache()->set('providers', $providers);
+            return $providers;
+        }
+        return cache()->get('providers');
     }
 
     public static function crawl()

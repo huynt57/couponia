@@ -53,9 +53,8 @@ class ProductController extends Controller
     public function getProductByAttributes(Request $request)
     {
         $minPrice = $request->input('min_price');
-        $maxPrice = $request->input('max_prrice');
+        $maxPrice = $request->input('max_price');
         $category = $request->input('category');
-
 
 
     }

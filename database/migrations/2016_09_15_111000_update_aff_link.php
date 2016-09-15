@@ -16,6 +16,11 @@ class UpdateAffLink extends Migration
         //
         Schema::table('products', function (Blueprint $table) {
             $table->dropColumn('aff_link');
+
+        });
+
+        Schema::table('products', function (Blueprint $table) {
+
             $table->text('aff_link');
         });
     }

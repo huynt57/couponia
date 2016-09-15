@@ -12,17 +12,16 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="product-sort">
-                            <span class="product-sort-selected">sort by <b>Price</b></span>
+                            <span class="product-sort-selected">sắp xếp theo <b>Giá</b></span>
                             <a href="#" class="product-sort-order fa fa-angle-down"></a>
                             <ul>
-                                <li><a href="#">sort by Name</a>
+                                <li><a href="#">sắp xếp theo <b>Tên</b></a>
                                 </li>
-                                <li><a href="#">sort by Ended Soon</a>
+                                <li><a href="#">sắp xếp theo <b>Hết hạn sớm nhất</b></a>
                                 </li>
-                                <li><a href="#">sort by Popularity</a>
+                                <li><a href="#">sắp xếp theo <b>Độ phổ biến</b></a>
                                 </li>
-                                <li><a href="#">sort by Location</a>
-                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -36,7 +35,7 @@
                 <div class="row row-wrap">
                     @foreach ($products as $product)
                         <a class="col-md-4" href="{{$product->aff_link}}">
-                            <div class="product-thumb" style="height: 440px">
+                            <div class="product-thumb" style="height: 420px">
                                 <header class="product-header">
                                     <img src="{{$product->image_preview}}" alt="{{$product->name}}" title="{{$product->name}}" />
                                 </header>
@@ -50,6 +49,7 @@
 
 
                                         </ul>
+                                        
                                     </div>
                                     <p class="product-location"><i class="fa fa-map-marker"></i> Boston</p>
                                 </div>
