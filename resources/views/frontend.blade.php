@@ -50,6 +50,21 @@
     <!-- END Demo Examples -->
 
 </head>
+<div id="fb-root"></div>
+<script>
+
+
+</script>
+
+<script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id))
+            return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.4&appId=1428478800723370";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
 <body>
 
@@ -87,11 +102,13 @@
                                     @endforeach
                                 </ul>
                             </li>
-                            <li><a href="product-shop-sidebar.html">Sản phẩm giảm giá</a>
+                            <li><a href="product-shop-sidebar.html">Sản phẩm khuyến mãi</a>
                                 <ul>
 
                                     @foreach($providers as $provider)
-                                        <li><a href="product-shop-sidebar.html">{{$provider->name}}</a>
+                                        <li>
+
+                                        <li><a href="{{url('san-pham/nha-phan-phoi', ['id'=>$provider->id])}}">{{$provider->name}}</a>
 
                                         </li>
                                     @endforeach

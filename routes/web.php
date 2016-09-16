@@ -29,7 +29,7 @@ Route::get('login', 'Frontend\AuthController@redirectToAuthServer');
 Route::get('logout', 'Frontend\AuthController@logout');
 Route::get('callback', 'Frontend\AuthController@callback');
 
-Route::get('khuyen-mai/{id}', 'Frontend\DealController@getDealsById');
+Route::get('khuyen-mai/{id}', 'Frontend\DealController@getDealById');
 Route::get('khuyen-mai/danh-muc/{id}', 'Frontend\DealController@getDealsByCategory');
 Route::get('khuyen-mai/nha-phan-phoi/{source}', 'Frontend\DealController@getDealsBySource');
 

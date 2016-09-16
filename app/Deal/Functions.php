@@ -9,6 +9,7 @@ namespace App\Deal;
 use App\Account;
 use App\Category;
 use App\Provider;
+use App\Deal;
 
 use App\Product;
 use Goutte\Client;
@@ -37,6 +38,17 @@ class Functions
             return $categories;
         }
         return cache()->get('categories-provider');
+    }
+
+    public static function getRandomDeals()
+    {
+        $deals = Deal::inRandomOrder()->limit(2)->get();
+        return $deals;
+    }
+
+    public static function getRandomProducts()
+    {
+
     }
 
     public static function getProviders()

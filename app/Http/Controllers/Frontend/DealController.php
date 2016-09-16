@@ -85,7 +85,7 @@ class DealController extends Controller
     }
 
 
-    public function getDealsById($id)
+    public function getDealById($id)
     {
         if(!is_numeric($id))
         {
@@ -102,7 +102,7 @@ class DealController extends Controller
         $deal = Deal::find($id);
 
         return view('frontend.deal', [
-            'deals' => $deal
+            'deal' => $deal
         ]);
     }
 
