@@ -44,6 +44,35 @@ class DealController extends Controller
 
     }
 
+    public function getDealByAttributes(Request $request)
+    {
+        $category = $request->input('category');
+        $provider = $request->input('provider');
+
+
+        $deals = DB::table('deals');
+
+
+        if(!empty($category))
+        {
+            $deals = $deals->where('category', $category);
+        }
+
+        if(!empty($provider))
+        {
+            $deals = $deals->where('provider', $provider);
+        }
+
+
+        return view('frontend.deals', [
+            'deals' => $deals
+        ]);
+
+
+
+
+    }
+
 
     public function getDealsBySource($source)
     {

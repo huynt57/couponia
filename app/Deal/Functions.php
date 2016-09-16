@@ -33,7 +33,7 @@ class Functions
         if(!cache()->has('categories-provider'))
         {
             $categories = Category::where('provider', $provider);
-            cache()->set('categories', $categories);
+            cache()->put('categories', $categories);
             return $categories;
         }
         return cache()->get('categories-provider');
@@ -44,7 +44,7 @@ class Functions
         if(!cache()->has('providers'))
         {
             $providers = Provider::all();
-            cache()->set('providers', $providers);
+            cache()->put('providers', $providers);
             return $providers;
         }
         return cache()->get('providers');

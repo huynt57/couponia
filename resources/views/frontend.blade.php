@@ -76,50 +76,33 @@
                         <ul class="nav nav-pills flexnav" id="flexnav" data-breakpoint="800">
                             <li><a href="index.html">Trang chủ</a>
 
-
-
-                                <ul>
-                                    <li><a href="index-shop-layout-1.html">Shop Layout</a>
-
-                                    </li>
-                                    <li><a href="index-coupon-layout-1.html">Coupon Layout</a>
-
-                                    </li>
-                                    <li><a href="index-header-layout-1.html">Headers</a>
-                                    </li>
-                                </ul>
                             </li>
                             <li class="active"><a href="category-page-shop.html">Khuyến mại</a>
                                 <ul>
-                                    <li><a href="category-page-shop.html">Shop</a>
-                                    </li>
-                                    <li class="active"><a href="category-page-coupon.html">Coupon</a>
-                                    </li>
-                                    <li><a href="category-page-thumbnails-shop-layout-1.html">Thumbnails</a>
-                                    </li>
+                                    <?php $providers = \App\Deal\Functions::getProviders();?>
+                                    @foreach($providers as $provider)
+                                        <li><a href="{{url('khuyen-mai/nha-phan-phoi', ['id'=>$provider->id])}}">{{$provider->name}}</a>
+
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </li>
                             <li><a href="product-shop-sidebar.html">Sản phẩm giảm giá</a>
                                 <ul>
-                                    <li><a href="product-shop-sidebar.html">Shop</a>
 
-                                    </li>
-                                    <li><a href="product-coupon-default.html">Coupon</a>
-                                    </li>
+                                    @foreach($providers as $provider)
+                                        <li><a href="product-shop-sidebar.html">{{$provider->name}}</a>
+
+                                        </li>
+                                    @endforeach
+
+
+
+
                                 </ul>
                             </li>
 
                             <li><a href="blog-sidebar-right.html">Blog</a>
-                                <ul>
-                                    <li><a href="blog-sidebar-right.html">Sidebar Right</a>
-                                    </li>
-                                    <li><a href="blog-sidebar-left.html">Sidebar Left</a>
-                                    </li>
-                                    <li><a href="blog-full-width.html">Full Width</a>
-                                    </li>
-                                    <li><a href="post-sidebar-right.html">Post</a>
-                                    </li>
-                                </ul>
                             </li>
                         </ul>
                     </nav>

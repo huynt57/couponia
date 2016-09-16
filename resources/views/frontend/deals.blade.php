@@ -143,21 +143,21 @@
             </div>
             <div class="row row-wrap">
                 @foreach ($deals as $deal)
-                <a class="col-md-4" href="#">
-                    <div class="product-thumb">
+                <a class="col-md-6" href="#">
+                    <div class="product-thumb" style="height: 350px;">
                         <header class="product-header">
                             <img src="{{$deal->image_preview}}" alt="Image Alternative text" title="Hot mixer" />
                         </header>
                         <div class="product-inner">
                             <h5 class="product-title">{{$deal->name}}</h5>
                             <p class="product-desciption">{!! \Illuminate\Support\Str::limit($deal->description, 80, ' ...') !!}</p>
-                            <div class="product-meta"><span class="product-time"><i class="fa fa-clock-o"></i> 10 days 23 h remaining</span>
+                            <div class="product-meta"><span class="product-time"><i class="fa fa-clock-o"></i> còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays()}} ngày</span>
                                 <ul class="product-price-list">
-                                    <li><span class="product-price">{{$deal->new_price}}</span>
+                                    <li><span class="product-price">{{number_format($deal->new_price, 0, '.', '.')}} VNĐ</span>
                                     </li>
-                                    <li><span class="product-old-price">{{$deal->original_price}}</span>
+                                    <li><span class="product-old-price">{{number_format($deal->original_price, 0, '.', '.')}} VNĐ</span>
                                     </li>
-                                    <li><span class="product-save">Save 63%</span>
+                                    <li><span class="product-save">Tiết kiệm {{round(100 - $deal->new_price / $deal->original_price *100) }}%</span>
                                     </li>
                                 </ul>
                             </div>

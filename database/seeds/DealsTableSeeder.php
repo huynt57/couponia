@@ -21,6 +21,7 @@ class DealsTableSeeder extends Seeder
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'image_preview' => ''
         ]);
 
         DB::table('providers')->insert([
@@ -29,6 +30,7 @@ class DealsTableSeeder extends Seeder
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'image_preview' => ''
         ]);
 
         DB::table('providers')->insert([
@@ -37,6 +39,7 @@ class DealsTableSeeder extends Seeder
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'image_preview' => ''
         ]);
 
         DB::table('providers')->insert([
@@ -44,7 +47,7 @@ class DealsTableSeeder extends Seeder
             'alias' => 'tiki',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
         ]);
 
         DB::table('providers')->insert([
@@ -52,7 +55,7 @@ class DealsTableSeeder extends Seeder
             'alias' => 'atadi',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
         ]);
 
         DB::table('providers')->insert([
@@ -60,32 +63,16 @@ class DealsTableSeeder extends Seeder
             'alias' => 'lazada-mobile',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
         ]);
 
-        DB::table('providers')->insert([
-            'name' => 'Lazada Mobile App',
-            'alias' => 'lazada-mobile',
-            'status' => 1,
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-        ]);
-
-
-        DB::table('providers')->insert([
-            'name' => 'Lazada Mobile App',
-            'alias' => 'lazada-mobile',
-            'status' => 1,
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-        ]);
 
         DB::table('providers')->insert([
             'name' => 'NguyenKim.com',
             'alias' => 'nguyenkim',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
         ]);
 
         DB::table('providers')->insert([
@@ -93,7 +80,7 @@ class DealsTableSeeder extends Seeder
             'alias' => 'cfyc',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
         ]);
 
         DB::table('providers')->insert([
@@ -101,7 +88,7 @@ class DealsTableSeeder extends Seeder
             'alias' => 'kayvn',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
         ]);
 
         DB::table('providers')->insert([
@@ -109,7 +96,7 @@ class DealsTableSeeder extends Seeder
             'alias' => 'fado',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
         ]);
 
         DB::table('providers')->insert([
@@ -117,7 +104,7 @@ class DealsTableSeeder extends Seeder
             'alias' => 'vntrip',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
         ]);
 
         DB::table('providers')->insert([
@@ -125,13 +112,13 @@ class DealsTableSeeder extends Seeder
             'alias' => 'bigmua',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
         ]);
 
 
 
 
-        $limit = 200;
+        $limit = 150;
         for ($i = 0; $i < 11; $i++) {
             DB::table('categories')->insert([
                 'name' => $faker->unique()->name,
@@ -172,7 +159,11 @@ class DealsTableSeeder extends Seeder
                 'is_hot' => $faker->numberBetween(0, 1),
                 'code' => str_random(5),
                 'online_url' => $faker->url,
-                'image_preview' => $faker->imageUrl(800, 600),
+                'image_preview' => $faker->randomElement(['https://masoffer.r.worldssl.net/stg/images/2016/09/16/laptop_gia_re6cVra.jpg',
+                    'https://masoffer.r.worldssl.net/stg/images/2016/09/16/non_bao_hiem_chat_luongBnOrk.jpg',
+                    'https://masoffer.r.worldssl.net/stg/images/2016/09/16/san_vali_gia_repdFZl.jpg',
+                    ]),
+
                 'status' => $faker->numberBetween(0, 1),
                 'category_id' =>$faker->randomElement($categories),
                 'created_at' => $faker->dateTime,
