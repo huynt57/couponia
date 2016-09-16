@@ -40,17 +40,16 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="product-sort">
-                        <span class="product-sort-selected">sort by <b>Price</b></span>
+                        <span class="product-sort-selected">sắp xếp theo <b>Giá</b></span>
                         <a href="#" class="product-sort-order fa fa-angle-down"></a>
                         <ul>
-                            <li><a href="#">sort by Name</a>
+                            <li><a href="#">sắp xếp theo <b>Tên</b></a>
                             </li>
-                            <li><a href="#">sort by Ended Soon</a>
+                            <li><a href="#">sắp xếp theo <b>Hết hạn sớm nhất</b></a>
                             </li>
-                            <li><a href="#">sort by Popularity</a>
+                            <li><a href="#">sắp xếp theo <b>Độ phổ biến</b></a>
                             </li>
-                            <li><a href="#">sort by Location</a>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
