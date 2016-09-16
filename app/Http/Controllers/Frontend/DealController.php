@@ -9,13 +9,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Deal\Functions;
+use DB;
 
 class DealController extends Controller
 {
     //
     public function getAllDeals()
     {
-        $deals = Deal::all()->paginate(config('constants.PAGINATE_NUMBER'));
+        $deals = DB::table('deals')->paginate(config('constants.PAGINATE_NUMBER'));
 
         return view('frontend.deals', [
             'deals' => $deals

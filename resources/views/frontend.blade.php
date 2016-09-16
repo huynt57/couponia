@@ -92,7 +92,7 @@
                             <li><a href="index.html">Trang chủ</a>
 
                             </li>
-                            <li class="active"><a href="category-page-shop.html">Khuyến mại</a>
+                            <li class="active"><a href="{{url('khuyen-mai')}}">Khuyến mại</a>
                                 <ul>
                                     <?php $providers = \App\Deal\Functions::getProviders();?>
                                     @foreach($providers as $provider)
@@ -102,7 +102,7 @@
                                     @endforeach
                                 </ul>
                             </li>
-                            <li><a href="product-shop-sidebar.html">Sản phẩm khuyến mãi</a>
+                            <li><a href="{{url('san-pham')}}">Sản phẩm khuyến mãi</a>
                                 <ul>
 
                                     @foreach($providers as $provider)
@@ -274,7 +274,7 @@
         <div class="footer-top-area">
             <div class="container">
                 <div class="row row-wrap">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <a href="index.html">
                             <img src="{{url('coupon/img/logo.png') }}" alt="logo" title="logo" class="logo">
                         </a>
@@ -297,8 +297,8 @@
                         </ul>
                         <p>Fringilla semper nam nibh magna dui vehicula mattis lorem penatibus bibendum venenatis ac mauris lectus amet facilisis nisl vivamus habitant</p>
                     </div>
-                    <div class="col-md-3">
-                        <h4>Sign Up to the Newsletter</h4>
+                    <div class="col-md-4">
+                        <h4>Đăng ký nhận tin</h4>
                         <div class="box">
                             <form>
                                 <div class="form-group mb10">
@@ -306,51 +306,17 @@
                                     <input type="text" class="form-control" />
                                 </div>
                                 <p class="mb10">Arcu magna placerat tempus ornare blandit nec</p>
-                                <input type="submit" class="btn btn-primary" value="Sign Up" />
+                                <input type="submit" class="btn btn-primary" value="Đăng ký" />
                             </form>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <h4>Couponia on Twitter</h4>
                         <!-- START TWITTER -->
-                        <div class="twitter-ticker" id="twitter-ticker"></div>
+                        <div class="fb-page" data-href="https://www.facebook.com/hotrohoctapUET/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-height="400px"><blockquote cite="https://www.facebook.com/hotrohoctapUET/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/hotrohoctapUET/">Bluebee-uet.com - Hỗ trợ học tập UET</a></blockquote></div>
                         <!-- END TWITTER -->
                     </div>
-                    <div class="col-md-3">
-                        <h4>Recent News</h4>
-                        <ul class="thumb-list">
-                            <li>
-                                <a href="#">
-                                    <img src="{{url('coupon/img/urbex_esch_lux_with_laney_and_laaaaag_70x70.jpg') }}" alt="Image Alternative text" title="Urbex Esch/Lux with Laney and Laaaaag" />
-                                </a>
-                                <div class="thumb-list-item-caption">
-                                    <p class="thumb-list-item-meta">Jul 18, 2014</p>
-                                    <h5 class="thumb-list-item-title"><a href="#">Rhoncus dolor</a></h5>
-                                    <p class="thumb-list-item-desciption">Curabitur semper sagittis fames sagittis</p>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="{{url('coupon/img/amaze_70x70.jpg') }}" alt="Image Alternative text" title="AMaze" />
-                                </a>
-                                <div class="thumb-list-item-caption">
-                                    <p class="thumb-list-item-meta">Jul 18, 2014</p>
-                                    <h5 class="thumb-list-item-title"><a href="#">Cursus duis</a></h5>
-                                    <p class="thumb-list-item-desciption">Luctus tellus placerat ad faucibus</p>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="{{url('coupon/img/the_hidden_power_of_the_heart_70x70.jpg') }}" alt="Image Alternative text" title="The Hidden Power of the Heart" />
-                                </a>
-                                <div class="thumb-list-item-caption">
-                                    <p class="thumb-list-item-meta">Jul 18, 2014</p>
-                                    <h5 class="thumb-list-item-title"><a href="#">Convallis primis</a></h5>
-                                    <p class="thumb-list-item-desciption">Pellentesque tristique ridiculus cubilia consectetur</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+
                 </div>
             </div>
         </div>

@@ -29,7 +29,7 @@ class MainController extends Controller
         echo "welcome, ".auth('frontend')->user()->username;
     }
 
-    public function register(Request $request)
+    public function registerNewsEmail(Request $request)
     {
         $email =  $request->input('email');
 

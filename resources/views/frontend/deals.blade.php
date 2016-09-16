@@ -29,10 +29,6 @@
                     <li><a href="#"><i class="fa fa-plane"></i>Travel<span>49</span></a>
                     </li>
                 </ul>
-
-
-
-
             </aside>
 
         </div>
