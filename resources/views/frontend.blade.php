@@ -311,7 +311,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <h4>Couponia on Twitter</h4>
+                        <h4>Couponia trên Facebook</h4>
                         <!-- START TWITTER -->
                         <div class="fb-page" data-href="https://www.facebook.com/hotrohoctapUET/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-height="400px"><blockquote cite="https://www.facebook.com/hotrohoctapUET/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/hotrohoctapUET/">Bluebee-uet.com - Hỗ trợ học tập UET</a></blockquote></div>
                         <!-- END TWITTER -->
