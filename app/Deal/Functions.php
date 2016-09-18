@@ -12,6 +12,7 @@ use App\Provider;
 use App\Deal;
 
 use App\Product;
+use Carbon\Carbon;
 use Goutte\Client;
 use Excel;
 
@@ -62,38 +63,6 @@ class Functions
         return cache()->get('providers');
     }
 
-    public static function crawl()
-    {
-        $url = 'https://pub.masoffer.com/sign-in';
-
-        $client = new Client();
-
-        $client = $client->request('GET', $url);
-
-        $form = $client->filter('form')->form();
-
-        $token = $form->getValues()['_token'];
-
-        $data = [
-            'username' => 'huyjuku',
-            'password' => 'minhhieu123',
-            '_token' => $token
-        ];
-
-        $client2 = new Client();
-
-        $response = $client2->submit($form, $data);
-
-        $url2 = 'https://pub.masoffer.com/promotion';
-
-        $client3 = new Client();
-
-        $client3 = $client3->request('GET', $url2);
-
-        dd($client3);
-
-
-    }
 
     public static function importDataFeedProductCSV($file)
     {
@@ -102,17 +71,61 @@ class Functions
 
             foreach($results as  $value)
             {
-                Product::create([
-                    'name' => !empty($value['productname']) ? $value['productname'] : '',
-                    'price' =>!empty($value['price']) ? $value['price'] : 0,
-                    'source' => !empty($value['offerid']) ? $value['offerid'] : '',
-                    'image_preview' => !empty($value['thumbnail']) ? $value['thumbnail'] : '',
-                    'account_id' => 0,
-                    'status' => 1,
-                    'product_url' => !empty($value['producturl']) ? $value['producturl'] : '',
-                    'aff_link' => !empty($value['affiliatelink']) ? $value['affiliatelink'] : '',
-                    'product_version' => !empty($value['productversion']) ? $value['productversion'] : '',
-                ]);
+                try {
+                    Product::create([
+                        'name' => !empty($value['productname']) ? $value['productname'] : '',
+                        'price' => !empty($value['price']) ? $value['price'] : 0,
+                        'source' => !empty($value['offerid']) ? Provider::where('alias',$value['offerid'])->first()->id : '',
+                        'image_preview' => !empty($value['thumbnail']) ? $value['thumbnail'] : '',
+                        'account_id' => 0,
+                        'status' => 1,
+                        'product_url' => !empty($value['producturl']) ? $value['producturl'] : '',
+                        'aff_link' => !empty($value['affiliatelink']) ? $value['affiliatelink'] : '',
+                        'product_version' => !empty($value['productversion']) ? $value['productversion'] : '',
+
+                    ]);
+                } catch (Exception $ex)
+                {
+                    dd($ex->getMessage());
+                }
+            }
+        });
+    }
+
+
+    public static function importDealCSV($file)
+    {
+        Excel::load($file, function($reader) {
+            $results = $reader->all()->toArray();
+
+            foreach($results as  $value)
+            {
+                try {
+                    Deal::create([
+                        'name' => !empty($value['campaign']) ? $value['campaign'] : '',
+                        'account_id' => 1,
+                        'description' => !empty($value['mo_ta']) ? $value['mo_ta'] : '',
+                        'valid_from' => !empty($value['start']) ? Carbon::createFromFormat('d/m/Y', $value['start'])->toDateTimeString() : Carbon::now()->toDateTimeString(),
+                        'valid_to' => !empty($value['end']) ? Carbon::createFromFormat('d/m/Y', $value['end'])->toDateTimeString() : Carbon::now()->toDateTimeString(),
+                        'original_price'=>'',
+                        'new_price'=>'',
+                        'lat' => '',
+                        'lng' => '',
+                        'location' => '',
+                        'is_hot' => 1,
+                        'code' => !empty($value['ma_giam_gia']) ? $value['ma_giam_gia'] : '',
+                        'online_url' => !empty($value['link_goc']) ? $value['link_goc'] : '',
+                        'image_preview' => !empty($value['banner']) ? $value['banner'] : '',
+                        'status' => 1,
+                        'category_id' => 1,
+                        'source' => !empty($value['offerid']) ? Provider::where('alias',$value['offerid'])->first()->id : 0,
+                        'condition' => !empty($value['dieu_kien_ap_dung']) ? $value['dieu_kien_ap_dung'] : '',
+                        'category_name' => !empty($value['nganh_hang']) ? $value['nganh_hang'] : ''
+                    ]);
+                } catch (Exception $ex)
+                {
+                    dd($ex->getMessage());
+                }
             }
         });
     }

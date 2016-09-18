@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Console\Commands\AddAdmin;
 use App\Console\Commands\ImportDataProductFeed;
+use App\Console\Commands\ImportDeal;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -16,7 +17,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         AddAdmin::class,
-        ImportDataProductFeed::class
+        ImportDataProductFeed::class,
+        ImportDeal::class
     ];
 
     /**

@@ -129,9 +129,9 @@
                     <!-- LOGIN REGISTER LINKS -->
                     <ul class="login-register">
 
-                        <li><a class="popup-text" href="#login-dialog" data-effect="mfp-move-from-top"><i class="fa fa-sign-in"></i>Sign in</a>
+                        <li><a class="popup-text" href="#login-dialog" data-effect="mfp-move-from-top"><i class="fa fa-sign-in"></i>Đăng nhập</a>
                         </li>
-                        <li><a class="popup-text" href="#register-dialog" data-effect="mfp-move-from-top"><i class="fa fa-edit"></i>Sign up</a>
+                        <li><a class="popup-text" href="#register-dialog" data-effect="mfp-move-from-top"><i class="fa fa-edit"></i>Đăng ký</a>
                         </li>
                     </ul>
                 </div>
@@ -150,20 +150,20 @@
                 <input type="text" placeholder="email@domain.com" class="form-control">
             </div>
             <div class="form-group">
-                <label>Password</label>
+                <label>Mật khẩu</label>
                 <input type="password" placeholder="My secret password" class="form-control">
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox">Remember me
+                    <input type="checkbox">Lưu đăng nhập
                 </label>
             </div>
             <input type="submit" value="Sign in" class="btn btn-primary">
         </form>
         <ul class="dialog-alt-links">
-            <li><a class="popup-text" href="#register-dialog" data-effect="mfp-zoom-out">Not member yet</a>
+            <li><a class="popup-text" href="#register-dialog" data-effect="mfp-zoom-out">Chưa là thành viên</a>
             </li>
-            <li><a class="popup-text" href="#password-recover-dialog" data-effect="mfp-zoom-out">Forgot password</a>
+            <li><a class="popup-text" href="#password-recover-dialog" data-effect="mfp-zoom-out">Quên mật khẩu</a>
             </li>
         </ul>
     </div>
@@ -171,8 +171,8 @@
 
     <div id="register-dialog" class="mfp-with-anim mfp-hide mfp-dialog clearfix">
         <i class="fa fa-edit dialog-icon"></i>
-        <h3>Member Register</h3>
-        <h5>Ready to get best offers? Let's get started!</h5>
+        <h3>Đăng ký thành viên</h3>
+        <h5>Sẵn sàng để nhận những ưu đãi hot nhất ? Cùng bắt đầu nào!</h5>
         <form class="dialog-form">
             <div class="form-group">
                 <label>E-mail</label>
@@ -186,29 +186,15 @@
                 <label>Repeat Password</label>
                 <input type="password" placeholder="Type your password again" class="form-control">
             </div>
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="form-group">
-                        <label>Your Area</label>
-                        <input type="password" placeholder="Boston" class="form-control">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Postal/Zip</label>
-                        <input type="password" placeholder="12345" class="form-control">
-                    </div>
-                </div>
-            </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox">Get hot offers via e-mail
+                    <input type="checkbox">Nhận khuyến mãi qua email
                 </label>
             </div>
             <input type="submit" value="Sign up" class="btn btn-primary">
         </form>
         <ul class="dialog-alt-links">
-            <li><a class="popup-text" href="#login-dialog" data-effect="mfp-zoom-out">Already member</a>
+            <li><a class="popup-text" href="#login-dialog" data-effect="mfp-zoom-out">Đã là thành viên</a>
             </li>
         </ul>
     </div>
@@ -216,8 +202,8 @@
 
     <div id="password-recover-dialog" class="mfp-with-anim mfp-hide mfp-dialog clearfix">
         <i class="icon-retweet dialog-icon"></i>
-        <h3>Password Recovery</h3>
-        <h5>Fortgot your password? Don't worry we can deal with it</h5>
+        <h3>Khôi phục mật khẩu</h3>
+        <h5>Quên mật khẩu của bạn? Đừng lo lắng, chúng tôi có thể hỗ trợ bạn</h5>
         <form class="dialog-form">
             <label>E-mail</label>
             <input type="text" placeholder="email@domain.com" class="span12">

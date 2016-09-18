@@ -29,6 +29,32 @@
                     <li><a href="#"><i class="fa fa-plane"></i>Travel<span>49</span></a>
                     </li>
                 </ul>
+
+                <div class="sidebar-box">
+                    <h5>Phân loại theo thời gian</h5>
+                    <ul class="checkbox-list">
+                        <li class="checkbox">
+                            <label>
+                                <input type="checkbox" class="i-check">Mới <small>(50)</small>
+                            </label>
+                        </li>
+                        <li class="checkbox">
+                            <label>
+                                <input type="checkbox" class="i-check">Sắp hết hạn <small>(70)</small>
+                            </label>
+                        </li>
+                        <li class="checkbox">
+                            <label>
+                                <input type="checkbox" class="i-check">Phổ biến <small>(32)</small>
+                            </label>
+                        </li>
+                        <li class="checkbox">
+                            <label>
+                                <input type="checkbox" class="i-check">Nổi bật<small>(27)</small>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
             </aside>
 
         </div>
@@ -56,32 +82,37 @@
                     </div>
                 </div>
             </div>
-            <div class="row row-wrap">
+
                 @foreach ($deals as $deal)
-                <a class="col-md-6" href="{{url('khuyen-mai', ['id'=>$deal->id])}}">
-                    <div class="product-thumb" style="height: 350px;">
-                        <header class="product-header">
-                            <img src="{{$deal->image_preview}}" alt="Image Alternative text" title="Hot mixer" />
+
+                    <a class="product-thumb product-thumb-horizontal" href="{{url('khuyen-mai', ['id'=>$deal->id])}}">
+                        <header class="product-header" style="width: 50%">
+                            <img src="{{$deal->image_preview}}" alt="{{$deal->name}}" title="{{$deal->name}}" />
                         </header>
-                        <div class="product-inner">
+                        <div class="product-inner" style="width: 50%">
                             <h5 class="product-title">{{$deal->name}}</h5>
-                            <p class="product-desciption">{!! \Illuminate\Support\Str::limit($deal->description, 80, ' ...') !!}</p>
-                            <div class="product-meta"><span class="product-time"><i class="fa fa-clock-o"></i> còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays()}} ngày</span>
+                            <div class="product-desciption">{!! \Illuminate\Support\Str::limit($deal->description, 80, ' ...') !!}</div>
+                            <div class="product-meta" style="width: 30%"><span class="product-time"><i class="fa fa-clock-o"></i> còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays()}} ngày</span>
                                 <ul class="product-price-list">
-                                    <li><span class="product-price">{{number_format($deal->new_price, 0, '.', '.')}} VNĐ</span>
-                                    </li>
-                                    <li><span class="product-old-price">{{number_format($deal->original_price, 0, '.', '.')}} VNĐ</span>
-                                    </li>
-                                    <li><span class="product-save">Tiết kiệm {{round(100 - $deal->new_price / $deal->original_price *100) }}%</span>
-                                    </li>
+                                    @if(!empty($deal->new_price))
+                                        <li><span class="product-price">{{number_format($deal->new_price, 0, '.', '.')}} VNĐ</span>
+                                        </li>
+                                    @endif
+                                    @if(!empty($deal->original_price))
+                                        <li><span class="product-old-price">{{number_format($deal->original_price, 0, '.', '.')}} VNĐ</span>
+                                        </li>
+                                    @endif
+                                    @if(!empty($deal->new_price) && !empty($deal->original_price))
+                                        <li><span class="product-save">Tiết kiệm {{round(100 - $deal->new_price / $deal->original_price *100) }}%</span>
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
                             <p class="product-location"><i class="fa fa-map-marker"></i> Boston</p>
                         </div>
-                    </div>
-                </a>
+                    </a>
                 @endforeach
-                </div>
+
             {!! $deals->render() !!}
 
             <div class="gap"></div>

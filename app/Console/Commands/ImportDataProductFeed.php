@@ -39,6 +39,8 @@ class ImportDataProductFeed extends Command
     public function handle()
     {
         //
-        Functions::importDataFeedProductCSV('storage/app/mo_datafeed_tiki_20160915.csv');
+        $this->line('Started');
+        Functions::importDataFeedProductCSV('data/mo_datafeed_tiki_20160918.csv');
+        $this->line('Done');
     }
 }

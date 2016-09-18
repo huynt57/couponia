@@ -116,6 +116,39 @@ class DealsTableSeeder extends Seeder
         ]);
 
 
+        DB::table('providers')->insert([
+            'name' => 'VienthongA',
+            'alias' => 'vienthonga',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
+        ]);
+
+        DB::table('providers')->insert([
+            'name' => 'Trung tâm điện máy HC',
+            'alias' => 'hccenter',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
+        ]);
+
+        DB::table('providers')->insert([
+            'name' => 'Dealtoday.vn',
+            'alias' => 'dealtoday',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
+        ]);
+
+        DB::table('providers')->insert([
+            'name' => 'Juno.vn',
+            'alias' => 'juno',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
+        ]);
+
+
 
 
         $limit = 150;
@@ -141,35 +174,6 @@ class DealsTableSeeder extends Seeder
             ]);
 
 
-
-            $accounts = \App\Account::all()->pluck('id')->toArray();
-            $categories = \App\Category::all()->pluck('id')->toArray();
-
-            DB::table('deals')->insert([
-                'name' => $faker->unique()->name,
-                'account_id' => $faker->randomElement($accounts),
-                'description' => $faker->text,
-                'valid_from' => $faker->dateTimeBetween('-2 months', 'now'),
-                'valid_to' => $faker->dateTimeBetween('now', '+2 months'),
-                'original_price'=>$faker->numberBetween(100000, 200000),
-                'new_price'=>$faker->numberBetween(10000, 100000),
-                'lat' => $faker->latitude,
-                'lng' => $faker->longitude,
-                'location' => $faker->locale,
-                'is_hot' => $faker->numberBetween(0, 1),
-                'code' => str_random(5),
-                'online_url' => $faker->url,
-                'image_preview' => $faker->randomElement(['https://masoffer.r.worldssl.net/stg/images/2016/09/16/laptop_gia_re6cVra.jpg',
-                    'https://masoffer.r.worldssl.net/stg/images/2016/09/16/non_bao_hiem_chat_luongBnOrk.jpg',
-                    'https://masoffer.r.worldssl.net/stg/images/2016/09/16/san_vali_gia_repdFZl.jpg',
-                    ]),
-
-                'status' => $faker->numberBetween(0, 1),
-                'category_id' =>$faker->randomElement($categories),
-                'created_at' => $faker->dateTime,
-                'updated_at' => $faker->dateTime,
-                'source' => $faker->randomElement(['lazada', 'adayroi', 'tiki', 'zalora'])
-            ]);
         }
     }
 }

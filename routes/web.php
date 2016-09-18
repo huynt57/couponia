@@ -38,6 +38,7 @@ Route::get('khuyen-mai/nha-phan-phoi/{source}', 'Frontend\DealController@getDeal
 
 
 Route::get('san-pham', 'Frontend\ProductController@getAllProducts');
+Route::get('san-pham/nha-phan-phoi/{source}', 'Frontend\ProductController@getProductsBySource');
 
 
 

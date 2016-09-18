@@ -92,12 +92,18 @@
                                 <p class="product-desciption">{!! \Illuminate\Support\Str::limit($deal->description, 80, ' ...') !!}</p>
                                 <div class="product-meta"><span class="product-time"><i class="fa fa-clock-o"></i> còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays()}} ngày</span>
                                     <ul class="product-price-list">
-                                        <li><span class="product-price">{{number_format($deal->new_price, 0, '.', '.')}} VNĐ</span>
-                                        </li>
-                                        <li><span class="product-old-price">{{number_format($deal->original_price, 0, '.', '.')}} VNĐ</span>
-                                        </li>
-                                        <li><span class="product-save">Tiết kiệm {{round(100 - $deal->new_price / $deal->original_price *100) }}%</span>
-                                        </li>
+                                        @if(!empty($deal->new_price))
+                                            <li><span class="product-price">{{number_format($deal->new_price, 0, '.', '.')}} VNĐ</span>
+                                            </li>
+                                        @endif
+                                        @if(!empty($deal->original_price))
+                                            <li><span class="product-old-price">{{number_format($deal->original_price, 0, '.', '.')}} VNĐ</span>
+                                            </li>
+                                        @endif
+                                        @if(!empty($deal->new_price) && !empty($deal->original_price))
+                                            <li><span class="product-save">Tiết kiệm {{round(100 - $deal->new_price / $deal->original_price *100) }}%</span>
+                                            </li>
+                                        @endif
                                     </ul>
                                 </div>
                                 <p class="product-location"><i class="fa fa-map-marker"></i> Boston</p>

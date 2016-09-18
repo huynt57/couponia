@@ -24,7 +24,10 @@ class Deal extends Model
         'online_url',
         'image_preview',
         'status',
-        'category_id'
+        'category_id',
+        'category_name',
+        'condition',
+        'source',
     ];
 
     public function account() {
