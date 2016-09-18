@@ -39,12 +39,20 @@
                 </form>
             </div>
             <div class="row">
-                <div class="col-md-8">
-                    <div class="fotorama" data-nav="thumbs" data-allowfullscreen="1" data-thumbheight="150" data-thumbwidth="150">
+                <div class="col-md-7">
+                    <div>
                         <img src="{{$deal->image_preview}}" alt="Image Alternative text" title="Gamer Chick" />
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
+                    <div class="product-info box">
+
+                        <h3>{{\App\Provider::find($deal->source)->name }}</h3>
+                        {{--<p class="product-info-price">$150</p>--}}
+                        {{--<p class="text-smaller text-muted">{!! $deal->description !!}</p>--}}
+
+
+                    </div>
                     <div class="product-info box">
 
                         <h3>{{$deal->name}}</h3>
@@ -82,10 +90,10 @@
             <div class="row row-wrap">
                 <?php $dealsRelated = \App\Deal\Functions::getRandomDeals();?>
                 @foreach ($dealsRelated as $deal)
-                    <a class="col-md-6" href="#">
-                        <div class="product-thumb" style="height: 350px;">
+                    <a class="col-md-6" href="{{url('khuyen-mai', ['id'=>$deal->id])}}">
+                        <div class="product-thumb">
                             <header class="product-header">
-                                <img src="{{$deal->image_preview}}" alt="Image Alternative text" title="Hot mixer" />
+                                <img src="{{$deal->image_preview}}" alt="{{$deal->name}}" title="{{$deal->name}}" />
                             </header>
                             <div class="product-inner">
                                 <h5 class="product-title">{{$deal->name}}</h5>
@@ -106,7 +114,7 @@
                                         @endif
                                     </ul>
                                 </div>
-                                <p class="product-location"><i class="fa fa-map-marker"></i> Boston</p>
+                                <p class="product-location"><i class="fa fa-map-marker"></i> {{\App\Provider::find($deal->source)->name }}</p>
                             </div>
                         </div>
                     </a>

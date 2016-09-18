@@ -126,7 +126,7 @@ class DealsTableSeeder extends Seeder
 
         DB::table('providers')->insert([
             'name' => 'Trung tâm điện máy HC',
-            'alias' => 'hccenter',
+            'alias' => 'hcenter',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''

@@ -85,6 +85,8 @@
 
                 @foreach ($deals as $deal)
 
+
+
                     <a class="product-thumb product-thumb-horizontal" href="{{url('khuyen-mai', ['id'=>$deal->id])}}">
                         <header class="product-header" style="width: 50%">
                             <img src="{{$deal->image_preview}}" alt="{{$deal->name}}" title="{{$deal->name}}" />
@@ -108,7 +110,7 @@
                                     @endif
                                 </ul>
                             </div>
-                            <p class="product-location"><i class="fa fa-map-marker"></i> Boston</p>
+                            <p class="product-location"><i class="fa fa-map-marker"></i> {{\App\Provider::find($deal->source)->name }}</p>
                         </div>
                     </a>
                 @endforeach

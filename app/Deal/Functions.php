@@ -118,7 +118,7 @@ class Functions
                         'image_preview' => !empty($value['banner']) ? $value['banner'] : '',
                         'status' => 1,
                         'category_id' => 1,
-                        'source' => !empty($value['offerid']) ? Provider::where('alias',$value['offerid'])->first()->id : 0,
+                        'source' => !empty($value['offer_id']) ? Provider::where('alias',$value['offer_id'])->first()->id : 0,
                         'condition' => !empty($value['dieu_kien_ap_dung']) ? $value['dieu_kien_ap_dung'] : '',
                         'category_name' => !empty($value['nganh_hang']) ? $value['nganh_hang'] : ''
                     ]);
