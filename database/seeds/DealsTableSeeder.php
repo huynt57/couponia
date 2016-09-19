@@ -21,7 +21,7 @@ class DealsTableSeeder extends Seeder
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'image_preview' => ''
+            'image_preview' => 'https://pub.masoffer.com/assets/image/partner/lazada_icon.jpg'
         ]);
 
         DB::table('providers')->insert([
@@ -30,7 +30,7 @@ class DealsTableSeeder extends Seeder
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'image_preview' => ''
+            'image_preview' => 'https://masoffer.r.worldssl.net/stg/images/2016/09/14/Untitled-1eux2G.jpg'
         ]);
 
         DB::table('providers')->insert([
@@ -39,7 +39,7 @@ class DealsTableSeeder extends Seeder
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'image_preview' => ''
+            'image_preview' => 'https://pub.masoffer.com/images/offer/adayroi.jpg'
         ]);
 
         DB::table('providers')->insert([
@@ -47,7 +47,8 @@ class DealsTableSeeder extends Seeder
             'alias' => 'tiki',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'image_preview' => 'https://pub.masoffer.com/images/offer/tiki.png'
         ]);
 
         DB::table('providers')->insert([
@@ -55,7 +56,8 @@ class DealsTableSeeder extends Seeder
             'alias' => 'atadi',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'image_preview' => 'https://masoffer.r.worldssl.net/stg/images/2016/07/28/atadiRqBL.jpg'
         ]);
 
         DB::table('providers')->insert([
@@ -63,7 +65,8 @@ class DealsTableSeeder extends Seeder
             'alias' => 'lazada-mobile',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'image_preview' => 'https://pub.masoffer.com/assets/image/partner/lazada_icon.jpg'
         ]);
 
 
@@ -72,7 +75,8 @@ class DealsTableSeeder extends Seeder
             'alias' => 'nguyenkim',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'image_preview' => 'https://pub.masoffer.com/images/offer/nguyenkim.png'
         ]);
 
         DB::table('providers')->insert([
@@ -80,7 +84,8 @@ class DealsTableSeeder extends Seeder
             'alias' => 'cfyc',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'image_preview' => 'https://masoffer.r.worldssl.net/stg/images/2016/08/23/logofinesseQgIc.png'
         ]);
 
         DB::table('providers')->insert([
@@ -88,7 +93,8 @@ class DealsTableSeeder extends Seeder
             'alias' => 'kayvn',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'image_preview' => 'https://masoffer.r.worldssl.net/stg/images/2016/05/25/kayvn7VXYR.jpg'
         ]);
 
         DB::table('providers')->insert([
@@ -96,7 +102,8 @@ class DealsTableSeeder extends Seeder
             'alias' => 'fado',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'image_preview' => 'https://masoffer.r.worldssl.net/stg/images/2016/06/20/fado5ywH9.png'
         ]);
 
         DB::table('providers')->insert([
@@ -104,7 +111,8 @@ class DealsTableSeeder extends Seeder
             'alias' => 'vntrip',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'image_preview' => 'https://masoffer.r.worldssl.net/stg/images/2016/05/25/vntrip2PxN.jpg'
         ]);
 
         DB::table('providers')->insert([
@@ -112,7 +120,8 @@ class DealsTableSeeder extends Seeder
             'alias' => 'bigmua',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'image_preview' => 'https://masoffer.r.worldssl.net/stg/images/2016/07/11/logo-bigmuaBJMSH.png'
         ]);
 
 
@@ -121,7 +130,8 @@ class DealsTableSeeder extends Seeder
             'alias' => 'vienthonga',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'image_preview' => 'https://masoffer.r.worldssl.net/stg/images/2016/04/07/vienthongazO0mJ.png'
         ]);
 
         DB::table('providers')->insert([
@@ -129,7 +139,8 @@ class DealsTableSeeder extends Seeder
             'alias' => 'hcenter',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'image_preview' => 'https://masoffer.r.worldssl.net/stg/images/2016/05/16/lg-hc-200x200yR9wj.png'
         ]);
 
         DB::table('providers')->insert([
@@ -137,7 +148,7 @@ class DealsTableSeeder extends Seeder
             'alias' => 'dealtoday',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => 'https://masoffer.r.worldssl.net/stg/images/2016/05/31/dealtodayxVwtB.jpg'
         ]);
 
         DB::table('providers')->insert([
@@ -145,7 +156,16 @@ class DealsTableSeeder extends Seeder
             'alias' => 'juno',
             'status' => 1,
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => ''
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'image_preview' => 'https://pub.masoffer.com/images/offer/juno_icon.png'
+        ]);
+
+        DB::table('providers')->insert([
+            'name' => 'Shop tre tho',
+            'alias' => 'shoptretho',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => 'https://masoffer.r.worldssl.net/stg/images/2016/09/13/Logo-409x3153AMoY.png'
         ]);
 
 

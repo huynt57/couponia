@@ -6,6 +6,7 @@ use App\Email;
 use App\Garena\Functions;
 use App\Http\Controllers\Controller;
 
+
 class MainController extends Controller
 {
 
@@ -54,7 +55,10 @@ class MainController extends Controller
 
     public function homePage()
     {
-        return view('frontend.home');
+        $providers =  \App\Deal\Functions::getProviders();
+        return view('frontend.home', [
+            'providers' => $providers
+        ]);
     }
 
 
