@@ -16,7 +16,7 @@ class MainController extends Controller
     {
         //hard login
         //Functions::hardLogin();
-        $this->middleware('auth.frontend', ['except' => ['index']]);
+       // $this->middleware('auth.frontend', ['except' => ['index']]);
     }
 
     public function index()
@@ -50,6 +50,11 @@ class MainController extends Controller
         }
 
 
+    }
+
+    public function homePage()
+    {
+        return view('frontend.home');
     }
 
 
