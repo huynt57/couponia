@@ -37,15 +37,13 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="product-sort">
-                        <span class="product-sort-selected">sắp xếp theo <b>Giá</b></span>
+                        <span class="product-sort-selected">sắp xếp theo <b>Tên</b></span>
                         <a href="#" class="product-sort-order fa fa-angle-down"></a>
                         <ul>
-                            <li><a href="#">sắp xếp theo <b>Tên</b></a>
-                            </li>
                             <li><a href="#">sắp xếp theo <b>Hết hạn sớm nhất</b></a>
                             </li>
-                            <li><a href="#">sắp xếp theo <b>Độ phổ biến</b></a>
-                            </li>
+
+
 
                         </ul>
                     </div>
@@ -69,7 +67,19 @@
                         <div class="product-inner" style="width: 50%">
                             <h5 class="product-title">{{$deal->name}}</h5>
                             <div class="product-desciption">{!! \Illuminate\Support\Str::limit($deal->description, 80, ' ...') !!}</div>
-                            <div class="product-meta" style="width: 30%"><span class="product-time"><i class="fa fa-clock-o"></i> còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays()}} ngày</span>
+                            <div class="product-meta" style="width: 30%"><span class="product-time"><i class="fa fa-clock-o"></i>
+
+                                    @if(!empty($deal->valid_to))
+
+                                    còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays()}} ngày
+
+                                    @else
+
+                                    không hết hạn
+
+                                        @endif
+
+                                </span>
                                 <ul class="product-price-list">
                                     @if(!empty($deal->new_price))
                                         <li><span class="product-price">{{number_format($deal->new_price, 0, '.', '.')}} VNĐ</span>
