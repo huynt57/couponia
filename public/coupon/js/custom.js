@@ -76,12 +76,20 @@ if ($('body').hasClass('sticky-header')) {
 
 // Price slider
 $("#price-slider").ionRangeSlider({
-    min: 130,
-    max: 575,
+    min: 1000,
+    max: 10000000,
     type: 'double',
-    prefix: "$",
+    prefix: "VNĐ",
     prettify: false,
-    hasGrid: false
+    hasGrid: false,
+
+    onChange: function (data) {
+
+        $('#min_price').val(data.fromNumber);
+        $('#max_price').val(data.toNumber);
+    }
+
+
 });
 
 // Responsive navigation
@@ -348,3 +356,24 @@ $(window).load(function() {
         });
     }
 });
+
+$(document).ready(function() {
+    $('#btn-submit-email').click(function() {
+        var data = $('#form-email-submit').serialize();
+
+        $.ajax({
+            url: baseUrl + 'dang-ky-email',
+            dataType: 'json',
+            data: data,
+            success: function(response)
+            {
+
+            },
+            error: function(response)
+            {
+
+            }
+        });
+    });
+});
+

@@ -48,6 +48,7 @@
                     <div class="product-info box">
 
                         <h3>{{\App\Provider::find($deal->source)->name }}</h3>
+
                         {{--<p class="product-info-price">$150</p>--}}
                         {{--<p class="text-smaller text-muted">{!! $deal->description !!}</p>--}}
 
@@ -59,8 +60,15 @@
                         {{--<p class="product-info-price">$150</p>--}}
                         {{--<p class="text-smaller text-muted">{!! $deal->description !!}</p>--}}
 
+                        @if(!empty($deal->code))
+                            <h3>Nhập mã: {{$deal->code}} để hưởng khuyến mãi</h3>
+                        @endif
+
                         <ul class="list-inline">
                             <li><a href="{{$deal->online_url}}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Xem ngay</a>
+                            </li>
+                            <li>
+                                <button class="btn btn-primary">Copy mã</button>
                             </li>
                             <li><a href="#" class="btn"><i class="fa fa-star"></i> Lưu lại</a>
                             </li>
@@ -99,6 +107,8 @@
                                 <h5 class="product-title">{{$deal->name}}</h5>
                                 <p class="product-desciption">{!! \Illuminate\Support\Str::limit($deal->description, 80, ' ...') !!}</p>
                                 <div class="product-meta"><span class="product-time"><i class="fa fa-clock-o"></i> còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays()}} ngày</span>
+
+
                                     <ul class="product-price-list">
                                         @if(!empty($deal->new_price))
                                             <li><span class="product-price">{{number_format($deal->new_price, 0, '.', '.')}} VNĐ</span>

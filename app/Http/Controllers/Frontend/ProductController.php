@@ -45,7 +45,8 @@ class ProductController extends Controller
         $products = Products::where('category_id', $categoryId)->paginate(config('constants.PAGINATE_NUMBER'));
 
         return view('frontend.products', [
-            'products' => $products
+            'products' => $products,
+
         ]);
 
     }
@@ -92,7 +93,8 @@ class ProductController extends Controller
         $products = Product::where('source', $source)->paginate(config('constants.PAGINATE_NUMBER'));
 
         return view('frontend.products', [
-            'products' => $products
+            'products' => $products,
+            'source' => $source
         ]);
     }
 

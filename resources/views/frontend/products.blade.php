@@ -4,8 +4,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                @include('frontend.side-bar', ['categories'=>2])
 
+                @if(!empty($source))
+
+                @include('frontend.side-bar', ['source' => $source])
+
+                @else
+
+                    @include('frontend.side-bar')
+
+                @endif
 
             </div>
             <div class="col-md-9">
@@ -17,10 +25,7 @@
                             <ul>
                                 <li><a href="#">sắp xếp theo <b>Tên</b></a>
                                 </li>
-                                <li><a href="#">sắp xếp theo <b>Hết hạn sớm nhất</b></a>
-                                </li>
-                                <li><a href="#">sắp xếp theo <b>Độ phổ biến</b></a>
-                                </li>
+
 
                             </ul>
                         </div>

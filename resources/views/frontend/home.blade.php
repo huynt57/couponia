@@ -27,7 +27,7 @@
 
         </div>
 
-    <h1 class="mb20">Khuyến mãi mới <small><a href="#">Xem tất cả</a></small></h1>
+    <h1 class="mb20">Khuyến mãi mới <small><a href="{{url('khuyen-mai')}}">Xem tất cả</a></small></h1>
     <div class="row row-wrap">
 
         @foreach($latestDeals as $deal)
@@ -65,7 +65,7 @@
 
     </div>
     <div class="gap gap-small"></div>
-    <h1 class="mb20">Sản phẩm mới <small><a href="#">Xem tất cả</a></small></h1>
+    <h1 class="mb20">Sản phẩm khuyến mãi mới <small><a href="{{url('san-pham')}}">Xem tất cả</a></small></h1>
     <div class="row row-wrap">
         @foreach($latestProducts as $product)
         <a class="col-md-3" href="{{ $product->aff_link }}">

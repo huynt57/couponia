@@ -14,6 +14,7 @@ class DealsTableSeeder extends Seeder
         //
         $faker = Faker\Factory::create();
 
+//init providers
 
         DB::table('providers')->insert([
             'name' => 'Lazada',
@@ -171,18 +172,7 @@ class DealsTableSeeder extends Seeder
 
 
 
-        $limit = 150;
-        for ($i = 0; $i < 11; $i++) {
-            DB::table('categories')->insert([
-                'name' => $faker->unique()->name,
-                'desc' => $faker->text,
-                'provider' => 1,
-                'created_at' => $faker->dateTime,
-                'updated_at' => $faker->dateTime,
-            ]);
-        }
-
-        for ($i = 0; $i < $limit; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             DB::table('accounts')->insert([
                 'uid' => $faker->unique()->numberBetween(1111111, 9999999),
                 'username' => $faker->unique()->name,
@@ -192,8 +182,6 @@ class DealsTableSeeder extends Seeder
                 'created_at' => $faker->dateTime,
                 'updated_at' => $faker->dateTime,
             ]);
-
-
         }
     }
 }

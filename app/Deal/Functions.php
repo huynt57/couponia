@@ -24,7 +24,7 @@ class Functions
         if(!cache()->has('categories'))
         {
             $categories = Category::all();
-            cache()->set('categories', $categories, 100);
+            cache()->put('categories', $categories, 100);
             return $categories;
         }
         return cache()->get('categories');

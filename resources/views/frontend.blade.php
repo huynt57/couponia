@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 
 
 <!-- Mirrored from remtsoy.com/tf_templates/couponia/demo_v3_3/category-page-coupon.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2016 03:08:52 GMT -->
@@ -89,7 +89,7 @@
                     <div class="flexnav-menu-button" id="flexnav-menu-button">Menu</div>
                     <nav>
                         <ul class="nav nav-pills flexnav" id="flexnav" data-breakpoint="800">
-                            <li><a href="/">Trang chủ</a>
+                            <li><a href="{{url('/')}}">Trang chủ</a>
 
                             </li>
                             <li class="active"><a href="{{url('khuyen-mai')}}">Khuyến mại</a>
@@ -104,7 +104,6 @@
                             </li>
                             <li><a href="{{url('san-pham')}}">Sản phẩm khuyến mãi</a>
                                 <ul>
-
                                     @foreach($providers as $provider)
                                         <li>
 
@@ -281,18 +280,18 @@
                                 <a class="fa fa-tumblr box-icon" href="#" data-toggle="tooltip" title="Tumblr"></a>
                             </li>
                         </ul>
-                        <p>Fringilla semper nam nibh magna dui vehicula mattis lorem penatibus bibendum venenatis ac mauris lectus amet facilisis nisl vivamus habitant</p>
+                        <p>Hãy theo dõi My Deal trên các mạng xã hội, để không bao giờ bỏ lỡ những ưu đãi tốt nhất</p>
                     </div>
                     <div class="col-md-4">
                         <h4>Đăng ký nhận tin</h4>
                         <div class="box">
-                            <form>
+                            <form id="form-email-submit">
                                 <div class="form-group mb10">
                                     <label>E-mail</label>
-                                    <input type="text" class="form-control" />
+                                    <input type="text" class="form-control" name="email" />
                                 </div>
-                                <p class="mb10">Arcu magna placerat tempus ornare blandit nec</p>
-                                <input type="submit" class="btn btn-primary" value="Đăng ký" />
+                                <p class="mb10" id="submit-email-info"></p>
+                                <button type="button" class="btn btn-primary" value="Đăng ký" id="btn-submit-email">Đăng ký</button>
                             </form>
                         </div>
                     </div>
@@ -310,7 +309,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <p>Copyright © 2014, Your Store, All Rights Reserved</p>
+                        <p>Copyright © {{date('Y')}}, My Deal, All Rights Reserved</p>
                     </div>
                     <div class="col-md-6 col-md-offset-2">
                         <div class="pull-right">
@@ -367,9 +366,19 @@
     <script src="{{ url ('coupon/js/masonry.js') }}"></script>
     <script src="{{ url ('coupon/js/nicescroll.js') }}"></script>
 
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: { 'X-CSRF-Token' : $('meta[name=csrf_token]').attr('content') }
+        });
+        var baseUrl = "{{url('/')}}";
+
+    </script>
+
     <!-- Custom scripts -->
     <script src="{{ url ('coupon/js/custom.js') }}"></script>
     <script src="{{ url ('coupon/js/switcher.js') }}"></script>
+
+
 </div>
 </body>
 
