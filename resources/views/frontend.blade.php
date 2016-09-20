@@ -89,7 +89,7 @@
                     <div class="flexnav-menu-button" id="flexnav-menu-button">Menu</div>
                     <nav>
                         <ul class="nav nav-pills flexnav" id="flexnav" data-breakpoint="800">
-                            <li><a href="index.html">Trang chủ</a>
+                            <li><a href="/">Trang chủ</a>
 
                             </li>
                             <li class="active"><a href="{{url('khuyen-mai')}}">Khuyến mại</a>
@@ -119,7 +119,7 @@
                                 </ul>
                             </li>
 
-                            <li><a href="blog-sidebar-right.html">Blog</a>
+                            <li><a href="{{url('blog')}}">Blog</a>
                             </li>
                         </ul>
                     </nav>

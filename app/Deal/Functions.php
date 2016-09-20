@@ -13,8 +13,8 @@ use App\Deal;
 
 use App\Product;
 use Carbon\Carbon;
-use Goutte\Client;
 use Excel;
+use DB;
 
 
 class Functions
@@ -24,7 +24,7 @@ class Functions
         if(!cache()->has('categories'))
         {
             $categories = Category::all();
-            cache()->set('categories', $categories);
+            cache()->set('categories', $categories, 100);
             return $categories;
         }
         return cache()->get('categories');
@@ -35,7 +35,7 @@ class Functions
         if(!cache()->has('categories-provider'))
         {
             $categories = Category::where('provider', $provider);
-            cache()->put('categories', $categories);
+            cache()->put('categories', $categories, 100);
             return $categories;
         }
         return cache()->get('categories-provider');
@@ -57,11 +57,34 @@ class Functions
         if(!cache()->has('providers'))
         {
             $providers = Provider::all();
-            cache()->put('providers', $providers);
+            cache()->put('providers', $providers, 3000);
             return $providers;
         }
         return cache()->get('providers');
     }
+
+    public static function getLatestDeals()
+    {
+        if(!cache()->has('latestDeals'))
+        {
+            $latestDeals = Deal::limit(9)->orderBy('id', 'desc')->get();
+            cache()->put('latestDeals', $latestDeals, 60);
+            return $latestDeals;
+        }
+        return cache()->get('latestDeals');
+    }
+
+    public static function getLatestProducts()
+    {
+        if(!cache()->has('latestProducts'))
+        {
+            $latestProducts = Product::limit(8)->orderBy('id', 'desc')->get();
+            cache()->put('latestProducts', $latestProducts, 100);
+            return $latestProducts;
+        }
+        return cache()->get('latestProducts');
+    }
+
 
 
     public static function importDataFeedProductCSV($file)

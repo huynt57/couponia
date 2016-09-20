@@ -56,8 +56,12 @@ class MainController extends Controller
     public function homePage()
     {
         $providers =  \App\Deal\Functions::getProviders();
+        $latestDeals = \App\Deal\Functions::getLatestDeals();
+        $latestProducts = \App\Deal\Functions::getLatestProducts();
         return view('frontend.home', [
-            'providers' => $providers
+            'providers' => $providers,
+            'latestDeals' => $latestDeals,
+            'latestProducts' => $latestProducts
         ]);
     }
 

@@ -51,7 +51,7 @@
                                         </ul>
                                         
                                     </div>
-                                    <p class="product-location"><i class="fa fa-map-marker"></i> Boston</p>
+                                    <p class="product-location"><i class="fa fa-map-marker"></i> {{\App\Provider::find($product->source)->name }}</p>
                                 </div>
                             </div>
                         </a>
