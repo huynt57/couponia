@@ -119,7 +119,7 @@ class ProductController extends Controller
     }
 
 
-    public function getProductsBySource($source)
+    public function getProductsBySource($slug, $source)
     {
 
         $products = Product::where('source', $source)->paginate(config('constants.PAGINATE_NUMBER'));
