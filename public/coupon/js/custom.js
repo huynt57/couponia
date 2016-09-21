@@ -250,23 +250,23 @@ $('.bg-parallax').each(function() {
 $(document).ready(function() {
 
 
-    $('html').niceScroll({
-        cursorcolor: "#000",
-        cursorborder: "0px solid #fff",
-        railpadding: {
-            top: 0,
-            right: 0,
-            left: 0,
-            bottom: 0
-        },
-        cursorwidth: "5px",
-        cursorborderradius: "0px",
-        cursoropacitymin: 0,
-        cursoropacitymax: 0.7,
-        boxzoom: true,
-        horizrailenabled: false,
-        zindex: 9999
-    });
+    // $('html').niceScroll({
+    //     cursorcolor: "#000",
+    //     cursorborder: "0px solid #fff",
+    //     railpadding: {
+    //         top: 0,
+    //         right: 0,
+    //         left: 0,
+    //         bottom: 0
+    //     },
+    //     cursorwidth: "5px",
+    //     cursorborderradius: "0px",
+    //     cursoropacitymin: 0,
+    //     cursoropacitymax: 0.7,
+    //     boxzoom: true,
+    //     horizrailenabled: false,
+    //     zindex: 9999
+    // });
 
 
     // Owl Carousel
@@ -362,9 +362,10 @@ $(document).ready(function() {
         var data = $('#form-email-submit').serialize();
 
         $.ajax({
-            url: baseUrl + 'dang-ky-email',
+            url: baseUrl + '/dang-ky-email',
             dataType: 'json',
             data: data,
+            type: 'POST',
             success: function(response)
             {
 
@@ -375,5 +376,33 @@ $(document).ready(function() {
             }
         });
     });
+
+
+    var clipboard = new Clipboard('.btn');
+
+    clipboard.on('success', function(e) {
+        alert('Mã đã được sao chép, bạn có thể dán vào khi website nhà cung cấp yêu cầu :D');
+
+        $.toast({
+            heading: 'Xong !',
+            text: 'Mã đã được sao chép, bạn có thể dán vào khi website nhà cung cấp yêu cầu :D',
+            showHideTransition: 'slide',
+            icon: 'success',
+            position : 'top-center'
+        });
+    });
+
+    clipboard.on('error', function(e) {
+        alert('Có lỗi xảy ra, chúng tôi sẽ sửa sớm nhất, bạn đừng lo :D');
+
+        $.toast({
+            heading: 'Lỗi',
+            text: 'Có lỗi xảy ra, chúng tôi sẽ sửa sớm nhất, bạn đừng lo :D',
+            showHideTransition: 'slide',
+            icon: 'error',
+            position : 'top-center'
+        });
+    });
+
 });
 

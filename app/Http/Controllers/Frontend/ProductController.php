@@ -14,7 +14,32 @@ class ProductController extends Controller
     //
     public function getAllProducts(Request $request)
     {
-        $products = \DB::table('products')->paginate(config('constants.PAGINATE_NUMBER'));
+        $products = \DB::table('products');
+
+        $minPrice = $request->input('min_price');
+        $maxPrice = $request->input('max_price');
+        $category = $request->input('category');
+        $provider = $request->input('provider');
+
+
+        if(!empty($minPrice) && !empty($maxPrice))
+        {
+            if(is_numeric($minPrice) || is_numeric($maxPrice))
+            {
+                $products =  $products->whereBetween('price', [$minPrice, $maxPrice]);
+            }
+
+        }
+
+        if(!empty($category))
+        {
+            $products = $products->where('category', $category);
+        }
+
+        if(!empty($provider))
+        {
+            $products = $products->where('provider', $provider);
+        }
 
         if($request->input('viewType') == 'horizontal')
         {
@@ -22,6 +47,8 @@ class ProductController extends Controller
                 'products' => $products
             ]);
         }
+
+        $products = $products->paginate(config('constants.PAGINATE_NUMBER'));
 
         return view('frontend.products', [
             'products' => $products
@@ -59,11 +86,16 @@ class ProductController extends Controller
         $provider = $request->input('provider');
 
 
+
         $products = DB::table('products');
 
         if(!empty($minPrice) && !empty($maxPrice))
         {
-            $products =  $products->whereBetween('price', [$minPrice, $maxPrice]);
+            if(!is_numeric($minPrice) || !is_numeric($maxPrice))
+            {
+                $products =  $products->whereBetween('price', [$minPrice, $maxPrice]);
+            }
+
         }
 
         if(!empty($category))

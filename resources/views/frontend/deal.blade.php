@@ -65,11 +65,13 @@
                         @endif
 
                         <ul class="list-inline">
-                            <li><a href="{{$deal->online_url}}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Xem ngay</a>
+                            <li><a target="_blank" href="{{$deal->online_url}}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Xem ngay</a>
                             </li>
+                            @if(!empty($deal->code))
                             <li>
-                                <button class="btn btn-primary">Copy mã</button>
+                                <button class="btn btn-primary" data-clipboard-text="{{$deal->code}}">Copy mã</button>
                             </li>
+                            @endif
                             <li><a href="#" class="btn"><i class="fa fa-star"></i> Lưu lại</a>
                             </li>
                         </ul>

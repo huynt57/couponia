@@ -1,30 +1,15 @@
 
 
 <aside class="sidebar-left">
+
     <ul class="nav nav-tabs nav-stacked nav-coupon-category nav-coupon-category-left">
-    @if(!empty($source))
 
-        <li class="active"><a href="#"><i class="fa fa-ticket"></i>Tất cả<span>36</span></a>
-        </li>
-
-<?php $categories = \App\Deal\Functions::getCategories($source)?>
-
-        @foreach($categories as $category)
-
-        <li><a href="#"><i class="fa fa-cutlery"></i>{{$category->name}}<span>36</span></a>
-        </li>
-
-            @endforeach
-
-
-    @else
-        <?php $providers = \App\Deal\Functions::getProviders();?>
-
-            @foreach($providers as $provider)
-            <li><a href="#"><i class="fa fa-cutlery"></i>{{$provider->name}}<span>36</span></a>
+        <?php $providers = \App\Deal\Functions::getProvidersByAdmin()?>
+        @foreach($providers as $provider)
+            <li><a href="{{url('san-pham/nha-phan-phoi', ['slug'=> str_slug($provider->name),'id'=>$provider->id]) }}">{{$provider->name}}<span>{{\App\Deal\Functions::countProductByProvider($provider->id)}}</span></a>
             </li>
-            @endforeach
-    @endif
+        @endforeach
+
     </ul>
 
     <div class="sidebar-box">
@@ -50,5 +35,31 @@
             <button type="button" class="btn btn-primary" value="Đăng ký" id="btn-submit-filter-price">Tìm</button>
         </form>
 
+    </div>
+
+    <div class="sidebar-box">
+        <h5>Phân loại theo thời gian</h5>
+        <ul class="checkbox-list">
+            <li class="checkbox">
+                <label>
+                    <input type="checkbox" class="i-check">Mới <small>(50)</small>
+                </label>
+            </li>
+            <li class="checkbox">
+                <label>
+                    <input type="checkbox" class="i-check">Sắp hết hạn <small>(70)</small>
+                </label>
+            </li>
+            <li class="checkbox">
+                <label>
+                    <input type="checkbox" class="i-check">Phổ biến <small>(32)</small>
+                </label>
+            </li>
+            <li class="checkbox">
+                <label>
+                    <input type="checkbox" class="i-check">Nổi bật<small>(27)</small>
+                </label>
+            </li>
+        </ul>
     </div>
 </aside>

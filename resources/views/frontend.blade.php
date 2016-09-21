@@ -47,6 +47,7 @@
     <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/de-york.css') }}" title="de-york" media="all" />
     <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/blaze-orange.css') }}" title="blaze-orange" media="all" />
     <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/hot-pink.css') }}" title="hot-pink" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/toast.css') }}" title="hot-pink" media="all" />
     <!-- END Demo Examples -->
 
 </head>
@@ -92,33 +93,14 @@
                             <li><a href="{{url('/')}}">Trang chủ</a>
 
                             </li>
-                            <li class="active"><a href="{{url('khuyen-mai')}}">Khuyến mại</a>
-                                <ul>
-                                    <?php $providers = \App\Deal\Functions::getProviders();?>
-                                    @foreach($providers as $provider)
-                                        <li><a href="{{url('khuyen-mai/nha-phan-phoi', ['id'=>$provider->id])}}">{{$provider->name}}</a>
+                            <li><a href="{{url('khuyen-mai')}}">Khuyến mại</a>
 
-                                        </li>
-                                    @endforeach
-                                </ul>
                             </li>
                             <li><a href="{{url('san-pham')}}">Sản phẩm khuyến mãi</a>
-                                <ul>
-                                    @foreach($providers as $provider)
-                                        <li>
 
-                                        <li><a href="{{url('san-pham/nha-phan-phoi', ['id'=>$provider->id])}}">{{$provider->name}}</a>
-
-                                        </li>
-                                    @endforeach
-
-
-
-
-                                </ul>
                             </li>
 
-                            <li><a href="{{url('blog')}}">Blog</a>
+                            <li><a href="{{url('tin-tuc')}}">Tin tức</a>
                             </li>
                         </ul>
                     </nav>
@@ -141,8 +123,8 @@
     <!-- LOGIN REGISTER LINKS CONTENT -->
     <div id="login-dialog" class="mfp-with-anim mfp-hide mfp-dialog clearfix">
         <i class="fa fa-sign-in dialog-icon"></i>
-        <h3>Member Login</h3>
-        <h5>Welcome back, friend. Login to get started</h5>
+        <h3>Đăng nhập thành viên</h3>
+        <h5>Chào mừng trở lại, rất vui được gặp bạn !</h5>
         <form class="dialog-form">
             <div class="form-group">
                 <label>E-mail</label>
@@ -355,7 +337,6 @@
     <script src="{{ url ('coupon/js/flexnav.min.js') }}"></script>
     <script src="{{ url ('coupon/js/magnific.js') }}"></script>
     <script src="{{ url ('coupon/js/tweet.min.js') }}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
     <script src="{{ url ('coupon/js/fitvids.min.js') }}"></script>
     <script src="{{ url ('coupon/js/mail.min.js') }}"></script>
     <script src="{{ url ('coupon/js/ionrangeslider.js') }}"></script>
@@ -365,6 +346,8 @@
     <script src="{{ url ('coupon/js/owl-carousel.js') }}"></script>
     <script src="{{ url ('coupon/js/masonry.js') }}"></script>
     <script src="{{ url ('coupon/js/nicescroll.js') }}"></script>
+    <script src="{{ url ('coupon/js/clipboard.js') }}"></script>
+    <script src="{{ url ('coupon/js/toast.js') }}"></script>
 
     <script type="text/javascript">
         $.ajaxSetup({
@@ -372,11 +355,99 @@
         });
         var baseUrl = "{{url('/')}}";
 
+        function getURLParam(key, target) {
+            var values = [];
+            if (!target) {
+                target = location.href;
+            }
+            key = key.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var pattern = key + '=([^&#]+)';
+            var o_reg = new RegExp(pattern, 'ig');
+            while (true) {
+                var matches = o_reg.exec(target);
+                if (matches && matches[1]) {
+                    values.push(matches[1]);
+                }
+                else {
+                    break;
+                }
+            }
+            if (!values.length) {
+                return [];
+            }
+            else {
+                return values;
+            }
+        }
+
+        var currentUrl = '{{ url()->current() }}';
+
+        $(document).ready(function() {
+            var url = window.location.href;
+
+            $('a[href="' + url + '"]').parent().addClass('active');
+
+            url =  url.substring(0, url.length - 1);
+
+            $('a[href="' + url + '"]').parent().addClass('active');
+
+            $('.iCheck-helper').click(function() {
+
+                var dataGo = $(this).siblings().attr('data-go');
+
+
+
+                if(typeof (dataGo) != 'undefined')
+                {
+                    switch(dataGo)
+                    {
+                        case 'latest':
+                            url = currentUrl + '?time=latest';
+                            window.location.href = url;
+                            break;
+                        case 'nearly-end':
+                            url = currentUrl + '?time=nearly-end';
+                            window.location.href = url;
+                            break;
+                    }
+                }
+            });
+
+            var encodedUrl = window.location.href;
+            var decodedUrl = decodeURIComponent(encodedUrl);
+
+            var time = getURLParam('time', decodedUrl);
+
+            $('[data-go=' + time + ']').parent().addClass('checked');
+
+
+            $('#btn-submit-filter-price').click(function() {
+                var minPrice  = $('#min_price').val();
+                var maxPrice = $('#max_price').val();
+
+                if(typeof (minPrice) != 'undefined' && typeof (maxPrice) != 'undefined')
+                {
+                    url = currentUrl + '?min_price='+minPrice+'&max_price='+maxPrice;
+                    window.location.href = url;
+                }
+
+            });
+
+
+
+
+
+
+
+        });
+
     </script>
 
     <!-- Custom scripts -->
     <script src="{{ url ('coupon/js/custom.js') }}"></script>
     <script src="{{ url ('coupon/js/switcher.js') }}"></script>
+
+
 
 
 </div>

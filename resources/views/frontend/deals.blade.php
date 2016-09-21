@@ -5,29 +5,38 @@
     <div class="row">
         <div class="col-md-3">
             <aside class="sidebar-left">
+                <ul class="nav nav-tabs nav-stacked nav-coupon-category nav-coupon-category-left">
+                        <?php $providers = \App\Deal\Functions::getProviders();?>
+
+                        @foreach($providers as $provider)
+                            <li><a href="{{url('khuyen-mai/nha-phan-phoi', ['slug'=> str_slug($provider->name),'id'=>$provider->id]) }}">{{$provider->name}}<span>{{\App\Deal\Functions::countDealByProvider($provider->id)}}</span></a>
+                            </li>
+                        @endforeach
+
+                </ul>
                 <div class="sidebar-box">
                     <h5>Phân loại theo thời gian</h5>
                     <ul class="checkbox-list">
                         <li class="checkbox">
                             <label>
-                                <input type="checkbox" class="i-check">Mới <small>(50)</small>
+                                <input type="checkbox" class="i-check" data-go="latest">Mới
                             </label>
                         </li>
                         <li class="checkbox">
                             <label>
-                                <input type="checkbox" class="i-check">Sắp hết hạn <small>(70)</small>
+                                <input type="checkbox" class="i-check" data-go="nearly-end">Sắp hết hạn
                             </label>
                         </li>
-                        <li class="checkbox">
-                            <label>
-                                <input type="checkbox" class="i-check">Phổ biến <small>(32)</small>
-                            </label>
-                        </li>
-                        <li class="checkbox">
-                            <label>
-                                <input type="checkbox" class="i-check">Nổi bật<small>(27)</small>
-                            </label>
-                        </li>
+                        {{--<li class="checkbox">--}}
+                            {{--<label>--}}
+                                {{--<input type="checkbox" class="i-check">Phổ biến <small>(32)</small>--}}
+                            {{--</label>--}}
+                        {{--</li>--}}
+                        {{--<li class="checkbox">--}}
+                            {{--<label>--}}
+                                {{--<input type="checkbox" class="i-check">Nổi bật<small>(27)</small>--}}
+                            {{--</label>--}}
+                        {{--</li>--}}
                     </ul>
                 </div>
             </aside>

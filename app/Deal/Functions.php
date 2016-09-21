@@ -19,6 +19,21 @@ use DB;
 
 class Functions
 {
+    public static function getProvidersByAdmin()
+    {
+        if(!cache()->has('categories-provider-admin'))
+        {
+            $providers = Provider::whereIn('alias', [
+                'lazada',
+                'tiki',
+                'adayroi'
+            ])->get();
+            cache()->put('categories-provider-admin', $providers, 100);
+            return $providers;
+        }
+        return cache()->get('categories-provider-admin');
+    }
+
     public static function getCategories()
     {
         if(!cache()->has('categories'))
@@ -30,12 +45,34 @@ class Functions
         return cache()->get('categories');
     }
 
+    public static function countDealByProvider($provider)
+    {
+        if(!cache()->has('count-provider-'.$provider))
+        {
+            $cnt = Deal::where('source', $provider)->count();
+            cache()->put('count-provider-'.$provider, $cnt, 20);
+            return $cnt;
+        }
+        return cache()->get('count-provider-'.$provider);
+    }
+
+    public static function countProductByProvider($provider)
+    {
+        if(!cache()->has('count-product-'.$provider))
+        {
+            $cnt = Product::where('source', $provider)->count();
+            cache()->put('count-product-'.$provider, $cnt, 20);
+            return $cnt;
+        }
+        return cache()->get('count-product-'.$provider);
+    }
+
     public static function getCategoryByProvider($provider)
     {
         if(!cache()->has('categories-provider'))
         {
             $categories = Category::where('provider', $provider);
-            cache()->put('categories', $categories, 100);
+            cache()->put('categories-provider', $categories, 100);
             return $categories;
         }
         return cache()->get('categories-provider');
@@ -67,7 +104,7 @@ class Functions
     {
         if(!cache()->has('latestDeals'))
         {
-            $latestDeals = Deal::limit(9)->orderBy('id', 'desc')->get();
+            $latestDeals = Deal::inRandomOrder()->limit(9)->orderBy('id', 'desc')->get();
             cache()->put('latestDeals', $latestDeals, 60);
             return $latestDeals;
         }
@@ -78,7 +115,7 @@ class Functions
     {
         if(!cache()->has('latestProducts'))
         {
-            $latestProducts = Product::limit(8)->orderBy('id', 'desc')->get();
+            $latestProducts = Product::inRandomOrder()->limit(12)->orderBy('id', 'desc')->get();
             cache()->put('latestProducts', $latestProducts, 100);
             return $latestProducts;
         }

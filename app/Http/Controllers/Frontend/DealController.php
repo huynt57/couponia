@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Category;
 use App\Deal;
 use App\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -14,9 +15,26 @@ use DB;
 class DealController extends Controller
 {
     //
-    public function getAllDeals()
+    public function getAllDeals(Request $request)
     {
-        $deals = DB::table('deals')->paginate(config('constants.PAGINATE_NUMBER'));
+        $deals = DB::table('deals');
+
+        $time  = $request->input('time');
+
+        if(!empty($time))
+        {
+            switch ($time)
+            {
+                case 'latest':
+                    $deals = $deals->orderBy('created_at', 'desc');
+                    break;
+                case 'nearly-end':
+                    $deals = $deals->where('valid_to', '<=', Carbon::now()->addDay(3)->toDateTimeString())->orderBy('valid_to', 'desc');
+                    break;
+            }
+        }
+
+        $deals = $deals->paginate(config('constants.PAGINATE_NUMBER'));
 
         return view('frontend.deals', [
             'deals' => $deals
@@ -49,6 +67,10 @@ class DealController extends Controller
     {
         $category = $request->input('category');
         $provider = $request->input('provider');
+        $time  = $request->input('time');
+
+
+
 
 
         $deals = DB::table('deals');
@@ -64,6 +86,21 @@ class DealController extends Controller
             $deals = $deals->where('provider', $provider);
         }
 
+        if(!empty($time))
+        {
+            switch ($time)
+            {
+                case 'latest':
+                    $deals = $deals->orderBy('created_at', 'desc');
+                    break;
+                case 'nearly-end':
+                    $deals = $deals->where('valid_to', '<=', Carbon::now()->addDay(3)->toDateTimeString())->orderBy('valid_to', 'desc');
+                    break;
+            }
+        }
+
+        $deals = $deals->orderBy('created_at', 'desc');
+
 
         return view('frontend.deals', [
             'deals' => $deals
@@ -75,10 +112,27 @@ class DealController extends Controller
     }
 
 
-    public function getDealsBySource($source)
+    public function getDealsBySource($slug, $source, Request $request)
     {
 
-        $deals = Deal::where('source', $source)->paginate(config('constants.PAGINATE_NUMBER'));
+        $deals = Deal::where('source', $source);
+
+        $time  = $request->input('time');
+
+        if(!empty($time))
+        {
+            switch ($time)
+            {
+                case 'latest':
+                    $deals = $deals->orderBy('created_at', 'desc');
+                    break;
+                case 'nearly-end':
+                    $deals = $deals->where('valid_to', '<=', Carbon::now()->addDay(3)->toDateTimeString())->orderBy('valid_to', 'desc');
+                    break;
+            }
+        }
+
+        $deals = $deals->paginate(config('constants.PAGINATE_NUMBER'));
 
         return view('frontend.deals', [
             'deals' => $deals
@@ -108,8 +162,8 @@ class DealController extends Controller
     }
 
 
-    public function crawl()
-    {
-        dd(Functions::crawl());
-    }
+//    public function crawl()
+//    {
+//        dd(Functions::crawl());
+//    }
 }
