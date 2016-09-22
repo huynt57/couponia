@@ -203,7 +203,7 @@
                     <label><i class="fa fa-search"></i><span>Tôi đang tìm kiếm khuyến mãi</span>
                     </label>
                     <div class="search-area-division search-area-division-input">
-                        <input class="form-control" type="text" placeholder="Sách" />
+                        <input class="form-control" type="text" placeholder="Lazada, Tiki, Sách khuyến mại, đồ gia dụng, ..." />
                     </div>
                 </div>
 
