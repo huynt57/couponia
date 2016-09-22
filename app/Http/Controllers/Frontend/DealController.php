@@ -161,6 +161,19 @@ class DealController extends Controller
         ]);
     }
 
+    public function search()
+    {
+       // Product::reindex();
+       // Product::createIndex($shards = null, $replicas = null);
+       // Product::addAllToIndex();
+        //Player::deleteIndex();
+        $deals = Product::search('lazada');
+        foreach($deals as $deal)
+        {
+            dd($deal->name);
+        }
+    }
+
 
 //    public function crawl()
 //    {

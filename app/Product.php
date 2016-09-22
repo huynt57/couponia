@@ -2,11 +2,17 @@
 
 namespace App;
 
+use Elasticquent\ElasticquentTrait;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
     //
+
+    use ElasticquentTrait;
+
+
     protected $fillable = [
         'name',
         'account_id',
@@ -20,6 +26,18 @@ class Product extends Model
         'product_version',
         'product_url'
     ];
+
+    protected $mappingProperties = array(
+        'name' => [
+            'type' => 'string',
+            "analyzer" => "standard",
+        ],
+
+        'description' => [
+            'type' => 'string',
+            "analyzer" => "standard",
+        ],
+    );
 
     public function account() {
         return $this->belongsTo('App\Account');

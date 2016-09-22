@@ -41,6 +41,9 @@ Route::get('san-pham', 'Frontend\ProductController@getAllProducts');
 Route::get('san-pham/nha-phan-phoi/{slug}/{source}', 'Frontend\ProductController@getProductsBySource');
 
 
+Route::get('tim-kiem/khuyen-mai', 'Frontend\DealController@search');
+
+
 
 
 Route::get('crawl', 'Frontend\DealController@crawl');

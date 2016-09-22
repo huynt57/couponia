@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Elasticquent\ElasticquentTrait;
 
 class Deal extends Model
 {
     //
+    use ElasticquentTrait;
 
     protected $fillable = [
         'name',
@@ -29,6 +31,18 @@ class Deal extends Model
         'condition',
         'source',
     ];
+
+    protected $mappingProperties = array(
+        'name' => [
+            'type' => 'string',
+            "analyzer" => "standard",
+        ],
+
+        'description' => [
+            'type' => 'string',
+            "analyzer" => "standard",
+        ],
+    );
 
     public function account() {
         return $this->belongsTo('App\Account');
