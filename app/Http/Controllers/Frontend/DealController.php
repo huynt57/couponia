@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Deal\Functions;
 use DB;
 
+
 class DealController extends Controller
 {
     //
@@ -161,17 +162,43 @@ class DealController extends Controller
         ]);
     }
 
-    public function search()
+    public function search(Request $request)
     {
        // Product::reindex();
        // Product::createIndex($shards = null, $replicas = null);
        // Product::addAllToIndex();
         //Player::deleteIndex();
-        $deals = Product::search('lazada');
-        foreach($deals as $deal)
+
+        $query = $request->input('q');
+
+
+        $time  = $request->input('time');
+
+        try {
+
+            $deals = Deal::search($query);
+
+            if (!empty($time)) {
+                switch ($time) {
+                    case 'latest':
+                        $deals = $deals->orderBy('created_at', 'desc');
+                        break;
+                    case 'nearly-end':
+                        $deals = $deals->where('valid_to', '<=', Carbon::now()->addDay(3)->toDateTimeString())->orderBy('valid_to', 'desc');
+                        break;
+                }
+            }
+
+            $deals = $deals->paginate(config('constants.PAGINATE_NUMBER'));
+
+            return view('frontend.deals', [
+                'deals' => $deals
+            ]);
+        } catch (Exception $e)
         {
-            dd($deal->name);
+
         }
+
     }
 
 

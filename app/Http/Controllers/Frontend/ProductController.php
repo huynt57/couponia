@@ -69,6 +69,8 @@ class ProductController extends Controller
             return 'Category không tồn tại';
         }
 
+
+
         $products = Products::where('category_id', $categoryId)->paginate(config('constants.PAGINATE_NUMBER'));
 
         return view('frontend.products', [
@@ -150,5 +152,50 @@ class ProductController extends Controller
         return view('frontend.products', [
             'product' => $product
         ]);
+    }
+
+    public function search(Request $request)
+    {
+        // Product::reindex();
+        // Product::createIndex($shards = null, $replicas = null);
+        // Product::addAllToIndex();
+        //Player::deleteIndex();
+
+        $minPrice = $request->input('min_price');
+        $maxPrice = $request->input('max_price');
+        $category = $request->input('category');
+        $provider = $request->input('provider');
+
+        $query = $request->input('q');
+
+        $products = Product::search($query);
+
+
+        if(!empty($minPrice) && !empty($maxPrice))
+        {
+            if(!is_numeric($minPrice) || !is_numeric($maxPrice))
+            {
+                $products =  $products->whereBetween('price', [$minPrice, $maxPrice]);
+            }
+
+        }
+
+        if(!empty($category))
+        {
+            $products = $products->where('category', $category);
+        }
+
+        if(!empty($provider))
+        {
+            $products = $products->where('provider', $provider);
+        }
+
+        $products = $products->paginate(config('constants.PAGINATE_NUMBER'));
+
+
+        return view('frontend.products', [
+            'products' => $products
+        ]);
+
     }
 }
