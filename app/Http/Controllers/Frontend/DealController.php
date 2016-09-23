@@ -181,10 +181,10 @@ class DealController extends Controller
             if (!empty($time)) {
                 switch ($time) {
                     case 'latest':
-                        $deals = $deals->orderBy('created_at', 'desc');
+                        $deals = $deals->sortByDesc('created_at');
                         break;
                     case 'nearly-end':
-                        $deals = $deals->where('valid_to', '<=', Carbon::now()->addDay(3)->toDateTimeString())->orderBy('valid_to', 'desc');
+                        $deals = $deals->where('valid_to', '<=', Carbon::now()->addDay(3)->toDateTimeString())->sortByDesc('valid_to');
                         break;
                 }
             }

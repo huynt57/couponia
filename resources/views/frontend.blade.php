@@ -196,14 +196,17 @@
 
 
     <!-- SEARCH AREA -->
-    <form class="search-area form-group">
+    <form class="search-area form-group" method="get" action="{{url('tim-kiem/khuyen-mai')}}">
         <div class="container">
             <div class="row">
                 <div class="col-md-11 clearfix">
                     <label><i class="fa fa-search"></i><span>Tôi đang tìm kiếm khuyến mãi</span>
                     </label>
                     <div class="search-area-division search-area-division-input">
-                        <input class="form-control" type="text" placeholder="Lazada, Tiki, Sách khuyến mại, đồ gia dụng, ..." />
+
+
+                            <input name="q" class="form-control" type="text" placeholder="Lazada, Tiki, Sách khuyến mại, đồ gia dụng, ..." />
+
                     </div>
                 </div>
 
@@ -380,7 +383,13 @@
             }
         }
 
-        var currentUrl = '{{ url()->current() }}';
+
+
+        var currentUrl = '{{ Request::fullUrl() }}';
+
+
+
+        console.log(decodeURI(currentUrl));
 
         $(document).ready(function() {
             var url = window.location.href;
@@ -402,11 +411,23 @@
                     switch(dataGo)
                     {
                         case 'latest':
-                            url = currentUrl + '?time=latest';
+                            currentUrl = currentUrl.replace('%3Ftime%3Dlatest', '');
+                            currentUrl = currentUrl.replace('%3Ftime%3Dnearly-end', '');
+                                if(currentUrl.indexOf('?') != -1) {
+                                    url = currentUrl + '&time=latest';
+                                } else {
+                                    url = currentUrl + '?time=latest';
+                                }
                             window.location.href = url;
                             break;
                         case 'nearly-end':
-                            url = currentUrl + '?time=nearly-end';
+                            currentUrl = currentUrl.replace('%3Ftime%3Dlatest', '');
+                            currentUrl = currentUrl.replace('%3Ftime%3Dnearly-end', '');
+                            if(currentUrl.indexOf('?') != -1) {
+                                url = currentUrl + '&time=nearly-end';
+                            } else {
+                                url = currentUrl + '?time=nearly-end';
+                            }
                             window.location.href = url;
                             break;
                     }
