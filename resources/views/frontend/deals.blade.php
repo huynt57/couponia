@@ -109,7 +109,9 @@
                     </a>
                 @endforeach
 
-            {!! $deals->render() !!}
+
+
+            {!! $deals->appends(\Illuminate\Support\Facades\Input::except('page'))->render() !!}
 
             <div class="gap"></div>
         </div>

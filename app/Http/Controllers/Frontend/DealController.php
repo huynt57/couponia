@@ -11,6 +11,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Deal\Functions;
 use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 
 class DealController extends Controller
@@ -168,6 +169,8 @@ class DealController extends Controller
        // Product::createIndex($shards = null, $replicas = null);
        // Product::addAllToIndex();
         //Player::deleteIndex();
+        $page = $request->input('page', 1);
+
 
         $query = $request->input('q');
 
@@ -177,6 +180,7 @@ class DealController extends Controller
         try {
 
             $deals = Deal::search($query);
+
 
             if (!empty($time)) {
                 switch ($time) {
@@ -189,7 +193,14 @@ class DealController extends Controller
                 }
             }
 
-            $deals = $deals->paginate(config('constants.PAGINATE_NUMBER'));
+
+            $deals = new \Illuminate\Pagination\LengthAwarePaginator($deals->toArray(), $deals->totalHits(), config('constants.PAGINATE_NUMBER'), $page);
+
+            dd($deals->totalHits());
+
+          //  $deals = $deals->paginate(config('constants.PAGINATE_NUMBER'));
+
+
 
             return view('frontend.deals', [
                 'deals' => $deals

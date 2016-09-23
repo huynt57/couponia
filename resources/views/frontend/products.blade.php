@@ -62,7 +62,7 @@
                         </a>
                     @endforeach
                 </div>
-                {!! $products->render() !!}
+                {!! $products->appends(\Illuminate\Support\Facades\Input::except('page'))->render() !!}
 
                 <div class="gap"></div>
             </div>
