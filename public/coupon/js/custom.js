@@ -380,30 +380,16 @@ $(document).ready(function() {
     });
 
 
-    var clipboard = new Clipboard('.btn');
+    var clipboard = new Clipboard('#btn-copy');
 
     clipboard.on('success', function(e) {
-        alert('Mã đã được sao chép, bạn có thể dán vào khi website nhà cung cấp yêu cầu :D');
-
-        $.toast({
-            heading: 'Xong !',
-            text: 'Mã đã được sao chép, bạn có thể dán vào khi website nhà cung cấp yêu cầu :D',
-            showHideTransition: 'slide',
-            icon: 'success',
-            position : 'top-center'
-        });
+       $('#message-copy-success').show();
+        var url = $('#deal-url').attr('href');
+        window.open(url, '_blank');
     });
 
     clipboard.on('error', function(e) {
-        alert('Có lỗi xảy ra, chúng tôi sẽ sửa sớm nhất, bạn đừng lo :D');
-
-        $.toast({
-            heading: 'Lỗi',
-            text: 'Có lỗi xảy ra, chúng tôi sẽ sửa sớm nhất, bạn đừng lo :D',
-            showHideTransition: 'slide',
-            icon: 'error',
-            position : 'top-center'
-        });
+        $('#message-copy-error').show();
     });
 
 });

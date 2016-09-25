@@ -39,9 +39,20 @@
                 </form>
             </div>
             <div class="row">
+                <div class="col-md-12" style="display: none" id="message-copy-success">
+                    <h5>Thành công</h5>
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert">×</button>Mã đã được sao chép, bạn có thể dán vào khi website nhà cung cấp yêu cầu :D. (Website được mở trong tab mới)</div>
+                </div>
+
+                <div class="col-md-12" style="display: none" id="message-copy-error">
+                    <h5>Thành công</h5>
+                    <div class="alert alert-danger alert-error">
+                        <button type="button" class="close" data-dismiss="alert">×</button>Lỗi, chúng tôi đang khác phục, bạn đừng lo lắng quá nhé :D</div>
+                </div>
                 <div class="col-md-7">
                     <div>
-                        <img src="{{$deal->image_preview}}" alt="Image Alternative text" title="Gamer Chick" />
+                        <img src="{{$deal->image_preview}}" alt="{{$deal->name}}" title="{{$deal->name}}" />
                     </div>
                 </div>
                 <div class="col-md-5">
@@ -57,6 +68,7 @@
                     <div class="product-info box">
 
                         <h3>{{$deal->name}}</h3>
+                        <h3><i class="fa fa-clock-o"></i> còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays()}} ngày</h3>
                         {{--<p class="product-info-price">$150</p>--}}
                         {{--<p class="text-smaller text-muted">{!! $deal->description !!}</p>--}}
 
@@ -65,11 +77,11 @@
                         @endif
 
                         <ul class="list-inline">
-                            <li><a target="_blank" href="{{$deal->online_url}}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Xem ngay</a>
+                            <li><a id="deal-url" target="_blank" href="{{$deal->online_url}}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Xem ngay</a>
                             </li>
                             @if(!empty($deal->code))
                             <li>
-                                <button class="btn btn-primary" data-clipboard-text="{{$deal->code}}">Copy mã</button>
+                                <button id="btn-copy" class="btn btn-primary" data-clipboard-text="{{$deal->code}}">Copy mã</button>
                             </li>
                             @endif
                             <li><a href="#" class="btn"><i class="fa fa-star"></i> Lưu lại</a>
@@ -79,14 +91,25 @@
                 </div>
             </div>
             <div class="gap"></div>
+
             <div class="tabbable">
                 <ul class="nav nav-tabs" id="myTab">
-                    <li class="active"><a href="#tab-1" data-toggle="tab"><i class="fa fa-pencil"></i>Miêu tả</a>
+                    <li class="active"><a href="#tab-2" data-toggle="tab"><i class="fa fa-pencil"></i>Điều kiện</a>
                     </li>
+                    <li><a href="#tab-1" data-toggle="tab"><i class="fa fa-pencil"></i>Miêu tả</a>
+                    </li>
+
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="tab-1">
-                       {!! $deal->description !!}
+                       {{ $deal->description }}
+                    </div>
+                    <div class="tab-pane fade in active" id="tab-2">
+                        @if(!empty($deal->condition))
+                        {{$deal->condition}}
+                        @else
+                            Không có điều kiện nào
+                        @endif
                     </div>
 
                 </div>
