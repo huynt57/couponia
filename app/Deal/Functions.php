@@ -142,6 +142,7 @@ class Functions
                         'product_url' => !empty($value['producturl']) ? $value['producturl'] : '',
                         'aff_link' => !empty($value['affiliatelink']) ? $value['affiliatelink'] : '',
                         'product_version' => !empty($value['productversion']) ? $value['productversion'] : '',
+                        'alias' => !empty($value['offerid']) ? $value['offerid'] : 'no_name'
 
                     ]);
                 } catch (Exception $ex)
@@ -160,6 +161,7 @@ class Functions
 
             foreach($results as  $value)
             {
+
                 try {
                     Deal::create([
                         'name' => !empty($value['campaign']) ? $value['campaign'] : '',
@@ -180,7 +182,8 @@ class Functions
                         'category_id' => 1,
                         'source' => !empty($value['offer_id']) ? Provider::where('alias',$value['offer_id'])->first()->id : 0,
                         'condition' => !empty($value['dieu_kien_ap_dung']) ? $value['dieu_kien_ap_dung'] : '',
-                        'category_name' => !empty($value['nganh_hang']) ? $value['nganh_hang'] : ''
+                        'category_name' => !empty($value['nganh_hang']) ? $value['nganh_hang'] : '',
+                        'alias' => !empty($value['offer_id']) ? $value['offer_id'] : 'no_name'
                     ]);
                 } catch (Exception $ex)
                 {

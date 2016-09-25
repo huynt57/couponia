@@ -30,6 +30,7 @@ class Deal extends Model
         'category_name',
         'condition',
         'source',
+        'alias'
     ];
 
     protected $mappingProperties = array(
@@ -39,6 +40,11 @@ class Deal extends Model
         ],
 
         'description' => [
+            'type' => 'string',
+            "analyzer" => "standard",
+        ],
+
+        'alias' => [
             'type' => 'string',
             "analyzer" => "standard",
         ],
