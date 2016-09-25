@@ -110,8 +110,11 @@
                 @endforeach
 
 
-
-            {!! $deals->appends(\Illuminate\Support\Facades\Input::except('page'))->render() !!}
+            @if(isset($dealSearchPagination))
+            {!! $dealSearchPagination->appends(\Illuminate\Support\Facades\Input::except('page'))->render() !!}
+            @else
+                {!! $deals->appends(\Illuminate\Support\Facades\Input::except('page'))->render() !!}
+                @endif
 
             <div class="gap"></div>
         </div>

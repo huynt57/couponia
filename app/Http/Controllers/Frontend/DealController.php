@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Deal\Functions;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 
 class DealController extends Controller
@@ -166,20 +167,35 @@ class DealController extends Controller
     public function search(Request $request)
     {
        // Product::reindex();
-       // Product::createIndex($shards = null, $replicas = null);
-       // Product::addAllToIndex();
-        //Player::deleteIndex();
-        $page = $request->input('page', 1);
+       // Deal::deleteIndex();
+       // Deal::createIndex($shards = null, $replicas = null);
+       // Deal::addAllToIndex();
 
 
         $query = $request->input('q');
-
-
         $time  = $request->input('time');
+        $page = $request->input('page', 1);
+
+
+        $params = [
+            'multi_match' => [
+                'query' => $query,
+                "type" => "cross_fields",
+                'operator' => 'or',
+                'fields' => [
+                    'name',
+                    'description',
+                ]
+
+            ]
+        ];
 
         try {
 
-            $deals = Deal::search($query);
+            $deals = Deal::searchByQuery($params ,null, null,
+                config('constants.PAGINATE_NUMBER'),
+                config('constants.PAGINATE_NUMBER') * ($page-1)+1,
+                ['id' => 'desc']);
 
 
             if (!empty($time)) {
@@ -193,17 +209,15 @@ class DealController extends Controller
                 }
             }
 
-
-            $deals = new \Illuminate\Pagination\LengthAwarePaginator($deals->toArray(), $deals->totalHits(), config('constants.PAGINATE_NUMBER'), $page);
-
-            dd($deals->totalHits());
-
-          //  $deals = $deals->paginate(config('constants.PAGINATE_NUMBER'));
-
-
+            $dealsPaginationSearch = new LengthAwarePaginator($deals->toArray(),
+                $deals->totalHits() - 1,
+                config('constants.PAGINATE_NUMBER'),
+                Paginator::resolveCurrentPage(),
+                ['path' => Paginator::resolveCurrentPath()]);
 
             return view('frontend.deals', [
-                'deals' => $deals
+                'deals' => $deals,
+                'dealSearchPagination' => $dealsPaginationSearch
             ]);
         } catch (Exception $e)
         {
