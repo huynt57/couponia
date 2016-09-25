@@ -21,7 +21,7 @@ class UpdateAffLink extends Migration
 
         Schema::table('products', function (Blueprint $table) {
 
-            $table->text('aff_link');
+            $table->text('aff_link')->nullable();
         });
     }
 

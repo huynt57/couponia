@@ -15,7 +15,7 @@ class AddSourceDealsTable extends Migration
     {
         //
         Schema::table('deals', function (Blueprint $table) {
-            $table->string('source');
+            $table->string('source')->nullable();
         });
     }
 
@@ -28,7 +28,7 @@ class AddSourceDealsTable extends Migration
     {
         //
         Schema::table('deals', function (Blueprint $table) {
-            $table->dropColumn('source');
+            $table->dropColumn('source')->nullable();
         });
     }
 }

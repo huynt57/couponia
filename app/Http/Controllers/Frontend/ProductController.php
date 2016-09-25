@@ -8,13 +8,15 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\Deal\Functions;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProductController extends Controller
 {
     //
     public function getAllProducts(Request $request)
     {
-        $products = \DB::table('products');
+        $products = \DB::table('products')->inRandomOrder();
 
         $minPrice = $request->input('min_price');
         $maxPrice = $request->input('max_price');
@@ -157,9 +159,10 @@ class ProductController extends Controller
     public function search(Request $request)
     {
         // Product::reindex();
+        //Product::deleteIndex();
         // Product::createIndex($shards = null, $replicas = null);
-        // Product::addAllToIndex();
-        //Player::deleteIndex();
+        //Product::addAllToIndex();
+
 
         $minPrice = $request->input('min_price');
         $maxPrice = $request->input('max_price');
@@ -167,8 +170,27 @@ class ProductController extends Controller
         $provider = $request->input('provider');
 
         $query = $request->input('q');
+        $page = $request->input('page', 1);
 
-        $products = Product::search($query);
+
+        $params = [
+            'multi_match' => [
+                'query' => $query,
+                "type" => "cross_fields",
+                'operator' => 'or',
+                'fields' => [
+                    'name',
+                    'description',
+                    'alias'
+                ]
+
+            ]
+        ];
+
+        $products = Product::searchByQuery($params ,null, null,
+            config('constants.PAGINATE_NUMBER'),
+            config('constants.PAGINATE_NUMBER') * ($page-1)+1,
+            ['id' => 'desc']);
 
 
         if(!empty($minPrice) && !empty($maxPrice))
@@ -190,11 +212,17 @@ class ProductController extends Controller
             $products = $products->where('provider', $provider);
         }
 
-        $products = $products->paginate(config('constants.PAGINATE_NUMBER'));
+        $productsPaginationSearch = new LengthAwarePaginator($products->toArray(),
+            $products->totalHits() - 1,
+            config('constants.PAGINATE_NUMBER'),
+            Paginator::resolveCurrentPage(),
+            ['path' => Paginator::resolveCurrentPath()]);
 
 
         return view('frontend.products', [
-            'products' => $products
+            'products' => $products,
+            'productSearchPagination' =>$productsPaginationSearch,
+            'query' => $query
         ]);
 
     }

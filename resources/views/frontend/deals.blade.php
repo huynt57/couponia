@@ -5,6 +5,16 @@
     <div class="row">
         <div class="col-md-3">
             <aside class="sidebar-left">
+
+
+                @if(isset($productSearchPagination) || isset($dealSearchPagination))
+                    <ul class="nav nav-tabs nav-stacked nav-coupon-category nav-coupon-category-left">
+                        <li><a href="{{url('tim-kiem/khuyen-mai?q='.$query)}}">Tìm khuyến mại</a>
+                        </li>
+                        <li><a href="{{url('tim-kiem/san-pham?q='.$query)}}">Tìm sản phẩm</a>
+                        </li>
+                    </ul>
+                @endif
                 <ul class="nav nav-tabs nav-stacked nav-coupon-category nav-coupon-category-left">
                         <?php $providers = \App\Deal\Functions::getProviders();?>
 

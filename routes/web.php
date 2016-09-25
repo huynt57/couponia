@@ -44,6 +44,8 @@ Route::get('san-pham/nha-phan-phoi/{slug}/{source}', 'Frontend\ProductController
 Route::get('tim-kiem/khuyen-mai', 'Frontend\DealController@search');
 Route::get('tim-kiem/san-pham', 'Frontend\ProductController@search');
 
+Route::post('dang-ky-email', 'Frontend\MainController@registerNewsEmail');
+
 
 
 

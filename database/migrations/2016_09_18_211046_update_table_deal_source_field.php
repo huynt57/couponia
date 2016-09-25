@@ -22,7 +22,7 @@ class UpdateTableDealSourceField extends Migration
 
         Schema::table('deals', function (Blueprint $table) {
 
-            $table->integer('source');
+            $table->integer('source')->nullable();
 
         });
     }

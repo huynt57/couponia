@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Email;
 use App\Garena\Functions;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
 
 
 class MainController extends Controller
@@ -41,8 +43,19 @@ class MainController extends Controller
             ]);
         }
 
+        $check = Email::where('email', $email)->count();
+
+
+        if($check > 0)
+        {
+            return response([
+                'status' => 0,
+                'message' => 'Email đã tồn tại',
+            ]);
+        }
+
         if (Email::create([
-           $email => $email
+           'email' => $email
         ])) {
             return response([
                 'status' => 1,

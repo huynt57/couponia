@@ -16,10 +16,10 @@ class CreateProvidersTable extends Migration
         //
         Schema::create('providers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('alias');
-            $table->text('image_preview');
-            $table->integer('status');
+            $table->string('name')->nullable();
+            $table->string('alias')->nullable();
+            $table->text('image_preview')->nullable();
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }

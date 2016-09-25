@@ -38,6 +38,11 @@ class Product extends Model
             'type' => 'string',
             "analyzer" => "standard",
         ],
+
+        'alias' => [
+            'type' => 'string',
+            "analyzer" => "standard",
+        ],
     );
 
     public function account() {

@@ -366,9 +366,11 @@ $(document).ready(function() {
             dataType: 'json',
             data: data,
             type: 'POST',
+
             success: function(response)
             {
-
+                $('#submit-email-info').html(response.message);
+                $('#form-email-submit').clear();
             },
             error: function(response)
             {

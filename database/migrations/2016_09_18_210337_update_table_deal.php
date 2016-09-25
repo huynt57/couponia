@@ -15,8 +15,8 @@ class UpdateTableDeal extends Migration
     {
         //
         Schema::table('deals', function (Blueprint $table) {
-            $table->text('condition');
-            $table->text('category_name');
+            $table->text('condition')->nullable();
+            $table->text('category_name')->nullable();
 
         });
     }

@@ -16,23 +16,23 @@ class CreateDealTable extends Migration
         //
         Schema::create('deals', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('account_id');
-            $table->text('description');
-            $table->dateTime('valid_from');
-            $table->dateTime('valid_to');
-            $table->string('original_price');
-            $table->string('new_price');
-            $table->text('lat');
-            $table->text('lng');
-            $table->text('location');
-            $table->integer('is_hot');
-            $table->string('code');
-            $table->text('online_url');
-            $table->text('image_preview');
-            $table->integer('status');
+            $table->string('name')->nullable();
+            $table->integer('account_id')->nullable();
+            $table->text('description')->nullable();
+            $table->dateTime('valid_from')->nullable();
+            $table->dateTime('valid_to')->nullable();
+            $table->string('original_price')->nullable();
+            $table->string('new_price')->nullable();
+            $table->text('lat')->nullable();
+            $table->text('lng')->nullable();
+            $table->text('location')->nullable();
+            $table->integer('is_hot')->nullable();
+            $table->string('code')->nullable();
+            $table->text('online_url')->nullable();
+            $table->text('image_preview')->nullable();
+            $table->integer('status')->nullable();
             $table->timestamps();
-            $table->integer('category_id');
+            $table->integer('category_id')->nullable();
         });
 
     }

@@ -37,6 +37,8 @@ class DealController extends Controller
             }
         }
 
+
+
         $deals = $deals->paginate(config('constants.PAGINATE_NUMBER'));
 
         return view('frontend.deals', [
@@ -167,14 +169,15 @@ class DealController extends Controller
     public function search(Request $request)
     {
        // Product::reindex();
-//        Deal::deleteIndex();
-//        Deal::createIndex($shards = null, $replicas = null);
-//        Deal::addAllToIndex();
+      //  Deal::deleteIndex();
+       // Deal::createIndex($shards = null, $replicas = null);
+        //Deal::addAllToIndex();
 
 
         $query = $request->input('q');
         $time  = $request->input('time');
         $page = $request->input('page', 1);
+
 
 
         $params = [
@@ -218,7 +221,8 @@ class DealController extends Controller
 
             return view('frontend.deals', [
                 'deals' => $deals,
-                'dealSearchPagination' => $dealsPaginationSearch
+                'dealSearchPagination' => $dealsPaginationSearch,
+                'query' => $query
             ]);
         } catch (Exception $e)
         {

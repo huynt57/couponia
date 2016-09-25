@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="{{ url ('coupon/css/mystyles.css') }}">
 
     <link rel="stylesheet" href="{{ url ('coupon/css/switcher.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Demo Examples -->
     <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/apple.css') }}" title="apple" media="all" />
     <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/pink.css') }}" title="pink" media="all" />
@@ -268,7 +269,7 @@
                         <p>Hãy theo dõi My Deal trên các mạng xã hội, để không bao giờ bỏ lỡ những ưu đãi tốt nhất</p>
                     </div>
                     <div class="col-md-4">
-                        <h4>Đăng ký nhận tin</h4>
+                        <h4>Đăng ký nhận tin để không bỏ lỡ khuyến mại</h4>
                         <div class="box">
                             <form id="form-email-submit">
                                 <div class="form-group mb10">
@@ -354,7 +355,7 @@
 
     <script type="text/javascript">
         $.ajaxSetup({
-            headers: { 'X-CSRF-Token' : $('meta[name=csrf_token]').attr('content') }
+            headers: { 'X-CSRF-Token' : $('meta[name=csrf-token]').attr('content') }
         });
         var baseUrl = "{{url('/')}}";
 
@@ -381,6 +382,20 @@
             else {
                 return values;
             }
+        }
+
+        function removeParamTime(currentUrl)
+        {
+            currentUrl = decodeURI(currentUrl);
+            currentUrl = currentUrl.replace('%3Ftime%3Dlatest', '');
+            currentUrl = currentUrl.replace('%3Ftime%3Dnearly-end', '');
+            currentUrl = currentUrl.replace('%3Ftime%3Dlatest', '');
+            currentUrl = currentUrl.replace('%3Ftime%3Dnearly-end', '');
+            currentUrl = currentUrl.replace('?time=latest', '');
+            currentUrl = currentUrl.replace('?time=nearly-end', '');
+            currentUrl = currentUrl.replace('&amp;time=latest', '');
+            currentUrl = currentUrl.replace('&amp;time=nearly-end', '');
+            return currentUrl;
         }
 
 
@@ -411,8 +426,7 @@
                     switch(dataGo)
                     {
                         case 'latest':
-                            currentUrl = currentUrl.replace('%3Ftime%3Dlatest', '');
-                            currentUrl = currentUrl.replace('%3Ftime%3Dnearly-end', '');
+                           currentUrl = removeParamTime(currentUrl);
                                 if(currentUrl.indexOf('?') != -1) {
                                     url = currentUrl + '&time=latest';
                                 } else {
@@ -421,8 +435,7 @@
                             window.location.href = url;
                             break;
                         case 'nearly-end':
-                            currentUrl = currentUrl.replace('%3Ftime%3Dlatest', '');
-                            currentUrl = currentUrl.replace('%3Ftime%3Dnearly-end', '');
+                            currentUrl = removeParamTime(currentUrl);
                             if(currentUrl.indexOf('?') != -1) {
                                 url = currentUrl + '&time=nearly-end';
                             } else {

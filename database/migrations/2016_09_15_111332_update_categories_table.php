@@ -15,7 +15,7 @@ class UpdateCategoriesTable extends Migration
     {
         //
         Schema::table('categories', function (Blueprint $table) {
-            $table->integer('provider');
+            $table->integer('provider')->nullable();
         });
     }
 
