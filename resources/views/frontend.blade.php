@@ -455,34 +455,34 @@
             $('[data-go=' + time + ']').parent().addClass('checked');
 
 
-            $('#btn-submit-filter-price').click(function() {
-                var minPrice  = $('#min_price').val();
-                var maxPrice = $('#max_price').val();
-
-
-
-
-
-              //  console.log(currentUrl); return;
-
-
-                currentUrl = currentUrl.replace('amp;', '');
-
-
-
-                if(typeof (minPrice) != 'undefined' && typeof (maxPrice) != 'undefined')
-                {
-                    currentUrl = currentUrl.replace('amp;', '');
-                    if(currentUrl.indexOf('?') != -1) {
-                        url = currentUrl + '&min_price[]='+minPrice+'&max_price[]='+maxPrice;
-                    } else {
-                        url = currentUrl + '?min_price[]='+minPrice+'&max_price[]='+maxPrice;
-                    }
-
-                    window.location.href = url;
-                }
-
-            });
+//            $('#btn-submit-filter-price').click(function() {
+//                var minPrice  = $('#min_price').val();
+//                var maxPrice = $('#max_price').val();
+//
+//
+//
+//
+//
+//              //  console.log(currentUrl); return;
+//
+//
+//                currentUrl = currentUrl.replace('amp;', '');
+//
+//
+//
+//                if(typeof (minPrice) != 'undefined' && typeof (maxPrice) != 'undefined')
+//                {
+//                    currentUrl = currentUrl.replace('amp;', '');
+//                    if(currentUrl.indexOf('?') != -1) {
+//                        url = currentUrl + '&min_price[]='+minPrice+'&max_price[]='+maxPrice;
+//                    } else {
+//                        url = currentUrl + '?min_price[]='+minPrice+'&max_price[]='+maxPrice;
+//                    }
+//
+//                    window.location.href = url;
+//                }
+//
+//            });
 
 
 

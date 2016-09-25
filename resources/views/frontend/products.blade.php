@@ -28,7 +28,7 @@
                     <div class="sidebar-box">
                         <h5>Lọc theo giá</h5>
 
-                        <form id="form-filter-price">
+                        <form id="form-filter-price" method="get" action="{{ Request::fullUrl() }}">
 
                             <div class="form-group mb10">
                                 <div class="row">
@@ -45,7 +45,7 @@
 
                             </div>
                             <p class="mb10" id="submit-filter-price"></p>
-                            <button type="button" class="btn btn-primary" value="Đăng ký" id="btn-submit-filter-price">Tìm</button>
+                            <button type="submit" class="btn btn-primary" value="Đăng ký" id="btn-submit-filter-price">Tìm</button>
                         </form>
 
                     </div>

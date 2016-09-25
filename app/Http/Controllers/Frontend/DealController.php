@@ -169,9 +169,9 @@ class DealController extends Controller
     public function search(Request $request)
     {
        // Product::reindex();
-      //  Deal::deleteIndex();
-       // Deal::createIndex($shards = null, $replicas = null);
-        //Deal::addAllToIndex();
+//        Deal::deleteIndex();
+//        Deal::createIndex($shards = null, $replicas = null);
+//        Deal::addAllToIndex();
 
 
         $query = $request->input('q');
