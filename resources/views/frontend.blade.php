@@ -107,16 +107,16 @@
                     </nav>
                     <!-- END MAIN NAVIGATION -->
                 </div>
-                <div class="col-md-6">
-                    <!-- LOGIN REGISTER LINKS -->
-                    <ul class="login-register">
+                {{--<div class="col-md-6">--}}
+                    {{--<!-- LOGIN REGISTER LINKS -->--}}
+                    {{--<ul class="login-register">--}}
 
-                        <li><a class="popup-text" href="#login-dialog" data-effect="mfp-move-from-top"><i class="fa fa-sign-in"></i>Đăng nhập</a>
-                        </li>
-                        <li><a class="popup-text" href="#register-dialog" data-effect="mfp-move-from-top"><i class="fa fa-edit"></i>Đăng ký</a>
-                        </li>
-                    </ul>
-                </div>
+                        {{--<li><a class="popup-text" href="#login-dialog" data-effect="mfp-move-from-top"><i class="fa fa-sign-in"></i>Đăng nhập</a>--}}
+                        {{--</li>--}}
+                        {{--<li><a class="popup-text" href="#register-dialog" data-effect="mfp-move-from-top"><i class="fa fa-edit"></i>Đăng ký</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</div>--}}
             </div>
         </div>
     </header>
@@ -459,9 +459,26 @@
                 var minPrice  = $('#min_price').val();
                 var maxPrice = $('#max_price').val();
 
+
+
+
+
+              //  console.log(currentUrl); return;
+
+
+                currentUrl = currentUrl.replace('amp;', '');
+
+
+
                 if(typeof (minPrice) != 'undefined' && typeof (maxPrice) != 'undefined')
                 {
-                    url = currentUrl + '?min_price='+minPrice+'&max_price='+maxPrice;
+                    currentUrl = currentUrl.replace('amp;', '');
+                    if(currentUrl.indexOf('?') != -1) {
+                        url = currentUrl + '&min_price[]='+minPrice+'&max_price[]='+maxPrice;
+                    } else {
+                        url = currentUrl + '?min_price[]='+minPrice+'&max_price[]='+maxPrice;
+                    }
+
                     window.location.href = url;
                 }
 

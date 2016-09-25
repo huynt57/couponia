@@ -159,9 +159,9 @@ class ProductController extends Controller
     public function search(Request $request)
     {
         // Product::reindex();
-        //Product::deleteIndex();
-        // Product::createIndex($shards = null, $replicas = null);
-        //Product::addAllToIndex();
+//        Product::deleteIndex();
+//         Product::createIndex($shards = null, $replicas = null);
+//        Product::addAllToIndex();
 
 
         $minPrice = $request->input('min_price');

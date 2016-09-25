@@ -84,8 +84,8 @@
                                 <button id="btn-copy" class="btn btn-primary" data-clipboard-text="{{$deal->code}}">Copy mã</button>
                             </li>
                             @endif
-                            <li><a href="#" class="btn"><i class="fa fa-star"></i> Lưu lại</a>
-                            </li>
+                            {{--<li><a href="#" class="btn"><i class="fa fa-star"></i> Lưu lại</a>--}}
+                            {{--</li>--}}
                         </ul>
                     </div>
                 </div>
@@ -115,8 +115,10 @@
                 </div>
             </div>
             <div class="gap"></div>
+            <div class="fb-like" data-href="{{url()->current()}}" data-layout="standard" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
+            <div class="gap"></div>
             <h3>Bình luận</h3>
-            <div class="fb-comments " data-href="http://bluebee-uet.com" data-numposts="5" data-width="100%"></div>
+            <div class="fb-comments " data-href="{{url()->current()}}" data-numposts="5" data-width="100%"></div>
             <div class="gap"></div>
             <h3>Có thể bạn quan tâm</h3>
             <div class="gap gap-mini"></div>

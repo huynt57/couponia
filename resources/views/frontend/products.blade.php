@@ -103,7 +103,7 @@
                 <div class="row row-wrap">
                     @foreach ($products as $product)
                         <a class="col-md-4" href="{{ $product->aff_link }}">
-                            <div class="product-thumb" style="height: 420px">
+                            <div class="product-thumb" style="height: 460px">
                                 <header class="product-header">
                                     <img src="{{$product->image_preview}}" alt="{{$product->name}}" title="{{$product->name}}" style="max-height: 293px" />
                                 </header>

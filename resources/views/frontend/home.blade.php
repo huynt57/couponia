@@ -7,6 +7,7 @@
         <div class="owl-carousel" id="owl-carousel" data-items="6">
             @foreach($providers as $provider)
             <div>
+                <a href="{{url('khuyen-mai/nha-phan-phoi', ['slug'=> str_slug($provider->name),'id'=>$provider->id]) }}">
                 <div class="product-thumb" style="height: 230px">
                     <header class="product-header" style="background-image: {{$provider->image_preview}}">
                         <img src="{{$provider->image_preview}}" alt="{{$provider->name}}" title="{{$provider->name}}"/>
@@ -22,6 +23,7 @@
                         {{--</ul>--}}
                     </div>
                 </div>
+                </a>
             </div>
             @endforeach
 
