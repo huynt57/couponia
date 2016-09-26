@@ -423,6 +423,7 @@
 
                 if(typeof (dataGo) != 'undefined')
                 {
+                    currentUrl = currentUrl.replace('amp;', '');
                     switch(dataGo)
                     {
                         case 'latest':

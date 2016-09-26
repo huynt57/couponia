@@ -35,7 +35,7 @@
         @foreach($latestDeals as $deal)
 
             <a class="col-md-4" href="{{url('khuyen-mai', ['id'=>$deal->id])}}">
-                <div class="product-thumb" style="height: 360px;">
+                <div class="product-thumb" style="height: 400px;">
                     <header class="product-header">
                         <img src="{{$deal->image_preview}}" alt="{{$deal->name}}" title="{{$deal->name}}" />
                     </header>
@@ -71,7 +71,7 @@
     <div class="row row-wrap">
         @foreach($latestProducts as $product)
         <a class="col-md-3" href="{{ $product->aff_link }}">
-            <div class="product-thumb" style="height: 420px">
+            <div class="product-thumb" style="height: 440px">
                 <header class="product-header">
                     <img src="{{$product->image_preview}}" alt="{{$product->name}}" title="{{$product->name}}" style="max-height: 293px" />
                 </header>

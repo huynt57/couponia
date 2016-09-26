@@ -95,7 +95,7 @@ class ProductController extends Controller
 
         if(!empty($minPrice) && !empty($maxPrice))
         {
-            if(!is_numeric($minPrice) || !is_numeric($maxPrice))
+            if(is_numeric($minPrice) && is_numeric($maxPrice))
             {
                 $products =  $products->whereBetween('price', [$minPrice, $maxPrice]);
             }
@@ -123,10 +123,23 @@ class ProductController extends Controller
     }
 
 
-    public function getProductsBySource($slug, $source)
+    public function getProductsBySource($slug, $source, Request $request)
     {
+        $minPrice = $request->input('min_price');
+        $maxPrice = $request->input('max_price');
 
-        $products = Product::where('source', $source)->paginate(config('constants.PAGINATE_NUMBER'));
+        $products = Product::where('source', $source);
+
+        if(!empty($minPrice) && !empty($maxPrice))
+        {
+            if(is_numeric($minPrice) && is_numeric($maxPrice))
+            {
+                $products =  $products->whereBetween('price', [$minPrice, $maxPrice]);
+            }
+
+        }
+
+        $products = $products->paginate(config('constants.PAGINATE_NUMBER'));
 
         return view('frontend.products', [
             'products' => $products,
@@ -195,7 +208,7 @@ class ProductController extends Controller
 
         if(!empty($minPrice) && !empty($maxPrice))
         {
-            if(!is_numeric($minPrice) || !is_numeric($maxPrice))
+            if(is_numeric($minPrice) && is_numeric($maxPrice))
             {
                 $products =  $products->whereBetween('price', [$minPrice, $maxPrice]);
             }
