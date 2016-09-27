@@ -1,7 +1,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
-        <a class="navbar-brand">Admin GPL 2016 Betting</a>
+        <a class="navbar-brand">Admin Coupon</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -50,6 +50,45 @@
                         </li>
                         <li>
                             <a href="{{url('admin/posts/create')}}">Add</a>
+                        <li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a><i class="fa fa-files-o fa-fw"></i>Providers<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+
+                        <li>
+                            <a href="{{url('admin/providers')}}">List</a>
+                        </li>
+                        <li>
+                            <a href="{{url('admin/providers/create')}}">Add</a>
+                        <li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a><i class="fa fa-files-o fa-fw"></i>Deals<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+
+                        <li>
+                            <a href="{{url('admin/deals')}}">List</a>
+                        </li>
+                        <li>
+                            <a href="{{url('admin/deals/create')}}">Add</a>
+                        <li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a><i class="fa fa-files-o fa-fw"></i>Products<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+
+                        <li>
+                            <a href="{{url('admin/products')}}">List</a>
+                        </li>
+                        <li>
+                            <a href="{{url('admin/products/create')}}">Add</a>
                         <li>
                     </ul>
                 </li>

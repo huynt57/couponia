@@ -20,6 +20,7 @@ Route::get('admin/callback', 'Backend\AuthController@handleGoogleCallback');
 
 Route::get('admin', 'Backend\HomeController@index');
 Route::resource('admin/posts', 'Backend\PostsController');
+Route::resource('admin/providers', 'Backend\ProvidersController');
 Route::resource('admin/categories', 'Backend\CategoriesController');
 
 #Frontend Routes

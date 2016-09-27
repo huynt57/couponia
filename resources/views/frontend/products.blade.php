@@ -81,24 +81,24 @@
             </div>
             <div class="col-md-9">
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="product-sort">
-                            <span class="product-sort-selected">sắp xếp theo <b>Giá</b></span>
-                            <a href="#" class="product-sort-order fa fa-angle-down"></a>
-                            <ul>
-                                <li><a href="#">sắp xếp theo <b>Tên</b></a>
-                                </li>
+                    {{--<div class="col-md-3">--}}
+                        {{--<div class="product-sort">--}}
+                            {{--<span class="product-sort-selected">sắp xếp theo <b>Giá</b></span>--}}
+                            {{--<a href="#" class="product-sort-order fa fa-angle-down"></a>--}}
+                            {{--<ul>--}}
+                                {{--<li><a href="#">sắp xếp theo <b>Tên</b></a>--}}
+                                {{--</li>--}}
 
 
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-md-offset-7">
-                        <div class="product-view pull-right">
-                            <a class="fa fa-th-large active" href="#"></a>
-                            <a class="fa fa-list" href="category-page-thumbnails-coupon-horizontal.html"></a>
-                        </div>
-                    </div>
+                            {{--</ul>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-md-2 col-md-offset-7">--}}
+                        {{--<div class="product-view pull-right">--}}
+                            {{--<a class="fa fa-th-large active" href="#"></a>--}}
+                            {{--<a class="fa fa-list" href="category-page-thumbnails-coupon-horizontal.html"></a>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </div>
                 <div class="row row-wrap">
                     @foreach ($products as $product)
