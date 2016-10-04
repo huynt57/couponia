@@ -32,37 +32,48 @@
     <h1 class="mb20">Khuyến mãi mới <small><a href="{{url('khuyen-mai')}}">Xem tất cả</a></small></h1>
     <div class="row row-wrap">
 
-        @foreach($latestDeals as $deal)
+        @foreach ($latestDeals as $deal)
 
-            <a class="col-md-4" href="{{url('khuyen-mai', ['id'=>$deal->id])}}">
-                <div class="product-thumb" style="height: 400px;">
-                    <header class="product-header">
-                        <img src="{{$deal->image_preview}}" alt="{{$deal->name}}" title="{{$deal->name}}" />
-                    </header>
-                    <div class="product-inner">
-                        <h5 class="product-title">{{$deal->name}}</h5>
-                        <p class="product-desciption">{!! \Illuminate\Support\Str::limit($deal->description, 80, ' ...') !!}</p>
-                        <div class="product-meta"><span class="product-time"><i class="fa fa-clock-o"></i> còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays()}} ngày</span>
-                            <ul class="product-price-list">
-                                @if(!empty($deal->new_price))
-                                    <li><span class="product-price">{{number_format($deal->new_price, 0, '.', '.')}} VNĐ</span>
-                                    </li>
-                                @endif
-                                @if(!empty($deal->original_price))
-                                    <li><span class="product-old-price">{{number_format($deal->original_price, 0, '.', '.')}} VNĐ</span>
-                                    </li>
-                                @endif
-                                @if(!empty($deal->new_price) && !empty($deal->original_price))
-                                    <li><span class="product-save">Tiết kiệm {{round(100 - $deal->new_price / $deal->original_price *100) }}%</span>
-                                    </li>
-                                @endif
-                            </ul>
-                        </div>
-                        <p class="product-location"><i class="fa fa-map-marker"></i> {{\App\Provider::find($deal->source)->name }}</p>
+
+
+            <a class="product-thumb product-thumb-horizontal" href="{{url('khuyen-mai', ['id'=>$deal->id])}}">
+                <header class="product-header" style="width: 50%">
+                    <img src="{{$deal->image_preview}}" alt="{{$deal->name}}" title="{{$deal->name}}" />
+                </header>
+                <div class="product-inner" style="width: 50%">
+                    <h5 class="product-title">{{$deal->name}}</h5>
+                    <div class="product-desciption">{!! \Illuminate\Support\Str::limit($deal->description, 80, ' ...') !!}</div>
+                    <div class="product-meta" style="width: 30%"><span class="product-time"><i class="fa fa-clock-o"></i>
+
+                            @if(!empty($deal->valid_to))
+
+                                còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays()}} ngày
+
+                            @else
+
+                                không hết hạn
+
+                            @endif
+
+                                </span>
+                        <ul class="product-price-list">
+                            @if(!empty($deal->new_price))
+                                <li><span class="product-price">{{number_format($deal->new_price, 0, '.', '.')}} VNĐ</span>
+                                </li>
+                            @endif
+                            @if(!empty($deal->original_price))
+                                <li><span class="product-old-price">{{number_format($deal->original_price, 0, '.', '.')}} VNĐ</span>
+                                </li>
+                            @endif
+                            @if(!empty($deal->new_price) && !empty($deal->original_price))
+                                <li><span class="product-save">Tiết kiệm {{round(100 - $deal->new_price / $deal->original_price *100) }}%</span>
+                                </li>
+                            @endif
+                        </ul>
                     </div>
+                    <p class="product-location"><i class="fa fa-map-marker"></i> {{\App\Provider::find($deal->source)->name }}</p>
                 </div>
             </a>
-
         @endforeach
 
     </div>
