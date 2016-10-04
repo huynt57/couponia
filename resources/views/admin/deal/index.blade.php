@@ -11,9 +11,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="input-group custom-search-form">
-                        {!! Form::open(['method' => 'GET', 'route' =>  ['providers.index'] ]) !!}
+                        {!! Form::open(['method' => 'GET', 'route' =>  ['deals.index'] ]) !!}
                         <span class="input-group-btn">
-                            <input type="text" value="{{$searchProvider}}" name="q" class="form-control" placeholder="Search providers..">
+                            <input type="text" value="{{$searchDeal}}" name="q" class="form-control" placeholder="Search deals..">
 
                             <button class="btn btn-default" type="submit">
                                 <i class="fa fa-search"></i>

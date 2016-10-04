@@ -13,7 +13,8 @@ class ProviderRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+       // return false;
+        return true;
     }
 
     /**
@@ -26,7 +27,7 @@ class ProviderRequest extends FormRequest
         return [
             'title' => 'name',
             'alias' => 'required',
-            'image_preview' => 'required',
+            'image' => 'required',
         ];
     }
 }

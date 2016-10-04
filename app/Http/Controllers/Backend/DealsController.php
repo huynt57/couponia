@@ -6,49 +6,55 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProviderRequest;
+use App\Deal;
 use App\Provider;
 use App\Http\Controllers\Backend\AdminController;
 
-class ProvidersController extends AdminController
+class DealsController extends AdminController
 {
+    //
+    public $providers;
 
+    public function __construct()
+    {
+        parent::__construct();
+        $providerIds = [];
+        $providers = Provider::all();
 
-    /**
-     * ProvidersController constructor.
-     */
+        $this->providers = array('' => 'Choose provider') +  Provider::whereIn('id', $providerIds)->pluck('name', 'id')->all();
+    }
 
     public function index(Request $request)
     {
-        $searchProvider = '';
-        $providers = Provider::latest('updated_at');
+        $searchDeal = '';
+        $deals = Deal::latest('updated_at');
         if ($request->input('q')) {
-            $searchProvider = urldecode($request->input('q'));
-            $providers = $providers->where('name', 'LIKE', '%'. $searchProvider. '%');
+            $searchDeal = urldecode($request->input('q'));
+            $deals = $deals->where('name', 'LIKE', '%'. $searchDeal. '%');
         }
 
 
-        $providers = $providers->paginate(env('ITEM_PER_PAGE'));
+        $deals = $deals->paginate(env('ITEM_PER_PAGE'));
 
-        return view('admin.provider.index', compact('providers', 'searchProvider'));
+        return view('admin.deal.index', compact('deals', 'searchDeal'));
     }
 
     public function create()
     {
-        return view('admin.provider.form');
+        return view('admin.deal.form');
     }
 
-    public function store(ProviderRequest $request)
+    public function store(DealRequest $request)
     {
         $data = $request->all();
         $data['image_preview'] =  ($request->file('image') && $request->file('image')->isValid()) ? $this->saveImage($request->file('image')) : '';
         $data['status'] = ($request->input('status') == 'on') ? true : false;
 
         try {
-            Provider::create($data);
+            Deal::create($data);
         } catch(\Exception $ex)
         {
-            return redirect('admin/providers');
+            return redirect('admin/deals');
         }
         flash('Create Provider success!', 'success');
         return redirect('admin/providers');
@@ -56,11 +62,12 @@ class ProvidersController extends AdminController
 
     public function edit($id)
     {
-        $provider = Provider::find($id);
-        return view('admin.provider.form', compact('provider'));
+        $deal = Deal::find($id);
+        $providers = $this->providers;
+        return view('admin.deal.form', compact('providers', 'deal'));
     }
 
-    public function update($id, ProviderRequest $request)
+    public function update($id, DealRequest $request)
     {
         $data = $request->all();
         $provider = Provider::find($id);
@@ -76,12 +83,12 @@ class ProvidersController extends AdminController
 
     public function destroy($id)
     {
-        $provider = Provider::find($id);
-        if (file_exists(public_path('files/' . $provider->image_preview))) {
-            @unlink(public_path('files/' . $provider->image_preview));
+        $deal = Deal::find($id);
+        if (file_exists(public_path('files/' . $deal->image_preview))) {
+            @unlink(public_path('files/' . $deal->image_preview));
         }
-        $provider->delete();
-        flash('Success deleted provider!');
-        return redirect('admin/providers');
+        $deal->delete();
+        flash('Success deleted deal!');
+        return redirect('admin/deals');
     }
 }
