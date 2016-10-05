@@ -2,7 +2,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Providers</h1>
+            <h1 class="page-header">Deals</h1>
         </div>
 
     </div>
@@ -29,25 +29,28 @@
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>#</th>
                                 <th>Name</th>
-                                <th>Alias</th>
+                                <th>Description</th>
+                                <th>Valid from</th>
+                                <th>Valid to</th>
                                 <th>Image</th>
-                                <th>Status</th>
+                                <th>Provider</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($providers as $provider)
+                            @foreach($deals as $deal)
                                 <tr>
-                                    <td>{{$provider->name}}</td>
-                                    <td>{{$provider->alias}}</td>
+                                    <td>{{$deal->name}}</td>
+                                    <td width="15%">{{$deal->description}}</td>
                                     {{--<td><img src="{{url('img/cache/small/' . $provider->image_preview)}}" /></td>--}}
-                                    <td><img src="{{$provider->image_preview}}" /></td>
-                                    <td>{{ ($provider->status) ? 'Yes' : 'No'  }}</td>
+                                    <td>{{$deal->valid_from}}</td>
+                                    <td>{{$deal->valid_to}}</td>
+                                    <td><img src="{{$deal->image_preview}}" style="max-height: 150px" /></td>
+                                    <td>{{$deal->provider->name}}</td>
                                     <td>
-                                        <button id-attr="{{$provider->id}}" class="btn btn-primary btn-sm edit-post" type="button">Edit</button>&nbsp;
-                                        {!! Form::open(['method' => 'DELETE', 'route' => ['providers.destroy', $provider->id]]) !!}
+                                        <button id-attr="{{$deal->id}}" class="btn btn-primary btn-sm edit-post" type="button">Edit</button>&nbsp;
+                                        {!! Form::open(['method' => 'DELETE', 'route' => ['deals.destroy', $deal->id]]) !!}
                                         <button type="submit" class="btn btn-danger btn-mini">Delete</button>
                                         {!! Form::close() !!}
                                     </td>
@@ -59,7 +62,7 @@
                     </div>
                     <div class="row">
 
-                        <div class="col-sm-6">{!!$providers->render()!!}</div>
+                        <div class="col-sm-6">{!!$deals->render()!!}</div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
@@ -80,10 +83,10 @@
     <script>
         $(function(){
             $('.add-post').click(function(){
-                window.location.href = window.baseUrl + '/admin/providers/create';
+                window.location.href = window.baseUrl + '/admin/deals/create';
             });
             $('.edit-post').click(function(){
-                window.location.href = window.baseUrl + '/admin/providers/' + $(this).attr('id-attr') + '/edit';
+                window.location.href = window.baseUrl + '/admin/deals/' + $(this).attr('id-attr') + '/edit';
             });
         });
     </script>

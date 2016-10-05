@@ -2,7 +2,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Providers</h1>
+            <h1 class="page-header">Deals</h1>
         </div>
 
     </div>
@@ -29,7 +29,6 @@
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>#</th>
                                 <th>Name</th>
                                 <th>Alias</th>
                                 <th>Image</th>

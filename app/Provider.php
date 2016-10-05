@@ -22,4 +22,8 @@ class Provider extends Model
     public function dealProvider() {
         return $this->hasOne('App\Deal', 'source', 'id');
     }
+
+    public function productProvider() {
+        return $this->hasOne('App\Product', 'source', 'id');
+    }
 }

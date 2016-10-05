@@ -53,5 +53,9 @@ class Product extends Model
         return $this->belongsTo('App\Category');
     }
 
+    public function provider() {
+        return $this->belongsTo('App\Provider', 'source', 'id');
+    }
+
     protected $dates = ['created_at', 'updated_at'];
 }

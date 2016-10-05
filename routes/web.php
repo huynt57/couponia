@@ -23,6 +23,7 @@ Route::resource('admin/posts', 'Backend\PostsController');
 Route::resource('admin/providers', 'Backend\ProvidersController');
 Route::resource('admin/deals', 'Backend\DealsController');
 Route::resource('admin/categories', 'Backend\CategoriesController');
+Route::resource('admin/products', 'Backend\ProductsController');
 
 #Frontend Routes
 Route::get('/', 'Frontend\MainController@homePage');

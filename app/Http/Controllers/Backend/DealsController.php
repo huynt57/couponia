@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Deal;
 use App\Provider;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Requests\DealRequest;
 
 class DealsController extends AdminController
 {
@@ -20,7 +21,9 @@ class DealsController extends AdminController
         parent::__construct();
         $providerIds = [];
         $providers = Provider::all();
-
+        foreach ($providers as $provider) {
+            $providerIds[] = $provider->id;
+        }
         $this->providers = array('' => 'Choose provider') +  Provider::whereIn('id', $providerIds)->pluck('name', 'id')->all();
     }
 
@@ -41,7 +44,8 @@ class DealsController extends AdminController
 
     public function create()
     {
-        return view('admin.deal.form');
+        $providers = $this->providers;
+        return view('admin.deal.form', compact('providers'));
     }
 
     public function store(DealRequest $request)
@@ -77,8 +81,8 @@ class DealsController extends AdminController
 
         $data['status'] = ($request->input('status') == 'on') ? true : false;
         $provider->update($data);
-        flash('Update Provider success!', 'success');
-        return redirect('admin/providers');
+        flash('Update Deal success!', 'success');
+        return redirect('admin/deals');
     }
 
     public function destroy($id)
