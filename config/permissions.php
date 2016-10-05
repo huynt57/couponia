@@ -20,6 +20,27 @@ return [
             'PostsController@update',
             'PostsController@store',
 
+            'DealsController@index',
+            'DealsController@create',
+            'DealsController@edit',
+            'DealsController@destroy',
+            'DealsController@update',
+            'DealsController@store',
+
+            'ProvidersController@index',
+            'ProvidersController@create',
+            'ProvidersController@edit',
+            'ProvidersController@destroy',
+            'ProvidersController@update',
+            'ProvidersController@store',
+
+            'ProductsController@index',
+            'ProductsController@create',
+            'ProductsController@edit',
+            'ProductsController@destroy',
+            'ProductsController@update',
+            'ProductsController@store',
+
         ]
     ],
 
