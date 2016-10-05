@@ -1,5 +1,13 @@
 @extends('frontend')
-
+@section('title')
+    Canhgiamgia.com | Sản phẩm khuyến mại từ Lazada, Tiki, Adayroi, ...
+@endsection
+@section('facebook_meta')
+    <meta property="og:url" content="http://canhgiamgia.com/san-pham">
+    <meta property="og:title" content="Canhgiamgia.com | Sản phẩm khuyến mại từ Lazada, Tiki, Adayroi, ...">
+    <meta property="og:image" content="{{public_path('coupon/logo.png')}}">
+    <meta property="og:description" content="Canhgiamgia.com | Sản phẩm khuyến mại từ Lazada, Tiki, Adayroi, ...">
+@endsection
 @section('content')
     <div class="container">
         <div class="row">

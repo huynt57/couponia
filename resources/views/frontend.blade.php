@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/html">
 
 
-<!-- Mirrored from remtsoy.com/tf_templates/couponia/demo_v3_3/category-page-coupon.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2016 03:08:52 GMT -->
+<!-- Mirrored from remtsoy.com/tf_templates/canhgiamgia.com/demo_v3_3/category-page-coupon.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2016 03:08:52 GMT -->
 <head>
-    <title>Couponia - Category page coupon</title>
+    <title>@yield('title')</title>
     <!-- meta info -->
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <meta name="keywords" content="Koupon HTML5 Template" />
@@ -51,6 +51,8 @@
     <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/toast.css') }}" title="hot-pink" media="all" />
     <!-- END Demo Examples -->
 
+    @yield('facebook_meta')
+
 </head>
 <div id="fb-root"></div>
 <script>
@@ -79,7 +81,7 @@
     <div class="top-main-area text-center">
         <div class="container">
             <a href="index.html" class="logo mt5">
-                <img src="{{url('coupon/img/logo-small-dark.png') }}" alt="Image Alternative text" title="Image Title" />
+                <img src="{{url('coupon/logo.png') }}" alt="Canhgiamgia.com" title="Canhgiamgia.com" style="height: 150px;" />
             </a>
         </div>
     </div>
@@ -101,8 +103,8 @@
 
                             </li>
 
-                            <li><a href="{{url('tin-tuc')}}">Tin tức</a>
-                            </li>
+                            {{--<li><a href="{{url('tin-tuc')}}">Tin tức</a>--}}
+                            {{--</li>--}}
                         </ul>
                     </nav>
                     <!-- END MAIN NAVIGATION -->
@@ -247,11 +249,11 @@
                 <div class="row row-wrap">
                     <div class="col-md-4">
                         <a href="index.html">
-                            <img src="{{url('coupon/img/logo.png') }}" alt="logo" title="logo" class="logo">
+                            <img src="{{url('coupon/logo.png') }}" alt="logo" title="logo" class="logo">
                         </a>
                         <ul class="list list-social">
                             <li>
-                                <a class="fa fa-facebook box-icon" href="#" data-toggle="tooltip" title="Facebook"></a>
+                                <a class="fa fa-facebook box-icon" href="https://www.facebook.com/canhgiamgia/" data-toggle="tooltip" title="Facebook"></a>
                             </li>
                             <li>
                                 <a class="fa fa-twitter box-icon" href="#" data-toggle="tooltip" title="Twitter"></a>
@@ -266,7 +268,7 @@
                                 <a class="fa fa-tumblr box-icon" href="#" data-toggle="tooltip" title="Tumblr"></a>
                             </li>
                         </ul>
-                        <p>Hãy theo dõi My Deal trên các mạng xã hội, để không bao giờ bỏ lỡ những ưu đãi tốt nhất</p>
+                        <p>Hãy theo dõi Canhgiamgia.com trên các mạng xã hội, để không bao giờ bỏ lỡ những ưu đãi tốt nhất</p>
                     </div>
                     <div class="col-md-4">
                         <h4>Đăng ký nhận tin để không bỏ lỡ khuyến mại</h4>
@@ -282,9 +284,9 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <h4>Couponia trên Facebook</h4>
+                        <h4>canhgiamgia.com trên Facebook</h4>
                         <!-- START TWITTER -->
-                        <div class="fb-page" data-href="https://www.facebook.com/hotrohoctapUET/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-height="400px"><blockquote cite="https://www.facebook.com/hotrohoctapUET/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/hotrohoctapUET/">Bluebee-uet.com - Hỗ trợ học tập UET</a></blockquote></div>
+                        <div class="fb-page" data-href="https://www.facebook.com/canhgiamgia/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-height="400px"><blockquote cite="https://www.facebook.com/hotrohoctapUET/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/hotrohoctapUET/">Bluebee-uet.com - Hỗ trợ học tập UET</a></blockquote></div>
                         <!-- END TWITTER -->
                     </div>
 
@@ -295,7 +297,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <p>Copyright © {{date('Y')}}, My Deal, All Rights Reserved</p>
+                        <p>Copyright © {{date('Y')}}, Canhgiamgia.com, All Rights Reserved</p>
                     </div>
                     <div class="col-md-6 col-md-offset-2">
                         <div class="pull-right">
@@ -506,6 +508,6 @@
 </body>
 
 
-<!-- Mirrored from remtsoy.com/tf_templates/couponia/demo_v3_3/category-page-coupon.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2016 03:08:52 GMT -->
+<!-- Mirrored from remtsoy.com/tf_templates/canhgiamgia.com/demo_v3_3/category-page-coupon.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2016 03:08:52 GMT -->
 </html>
 

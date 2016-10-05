@@ -1129,7 +1129,7 @@ label {
 }
 .product-thumb-horizontal .product-header {
   float: left;
-  width: 30%;
+  width: 50%;
   -webkit-border-radius: 0 5px 0 5px;
   border-radius: 0 5px 0 5px;
 }
@@ -1141,7 +1141,7 @@ label {
   float: left;
   padding-left: 30px;
   display: block;
-  width: 70%;
+  width: 50%;
   padding-right: 15%;
 }
 .product-thumb-horizontal .product-meta {

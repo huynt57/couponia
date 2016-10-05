@@ -1,5 +1,14 @@
 
 @extends('frontend')
+@section('title')
+Canhgiamgia.com | {{$deal->name}}
+@endsection
+@section('facebook_meta')
+    <meta property="og:url" content="{{$deal->name}}">
+    <meta property="og:image" content="{{$deal->image_preview}}">
+    <meta property="og:description" content="{{$deal->description}}">
+    <meta property="og:title" content="{{$deal->name}}">
+@endsection
 
 @section('content')
     <div class="container">

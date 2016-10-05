@@ -1,5 +1,11 @@
 @extends('frontend')
-
+@section('title')
+    Canhgiamgia.com | Khuyến mại hot nhất từ lazada, tiki, adayroi, ...
+@endsection
+@section('facebook_meta')
+    <meta property="og:url" content="http://canhgiamgia.com">
+    <meta property="og:image" content="{{public_path('coupon/logo.png')}}">
+    <meta property="og:title" content="Canhgiamgia.com | Khuyến mại hot nhất từ lazada, tiki, adayroi, ...">
 @section('content')
 <div class="container">
     <div class="row">
@@ -37,10 +43,10 @@
 
 
             <a class="product-thumb product-thumb-horizontal" href="{{url('khuyen-mai', ['id'=>$deal->id])}}">
-                <header class="product-header" style="width: 50%">
+                <header class="product-header">
                     <img src="{{$deal->image_preview}}" alt="{{$deal->name}}" title="{{$deal->name}}" />
                 </header>
-                <div class="product-inner" style="width: 50%">
+                <div class="product-inner">
                     <h5 class="product-title">{{$deal->name}}</h5>
                     <div class="product-desciption">{!! \Illuminate\Support\Str::limit($deal->description, 80, ' ...') !!}</div>
                     <div class="product-meta" style="width: 30%"><span class="product-time"><i class="fa fa-clock-o"></i>
