@@ -49,6 +49,17 @@
     <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/blaze-orange.css') }}" title="blaze-orange" media="all" />
     <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/hot-pink.css') }}" title="hot-pink" media="all" />
     <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/toast.css') }}" title="hot-pink" media="all" />
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-55422921-5', 'auto');
+        ga('send', 'pageview');
+
+    </script>
     <!-- END Demo Examples -->
 
     @yield('facebook_meta')
