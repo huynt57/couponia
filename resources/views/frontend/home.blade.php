@@ -57,7 +57,7 @@
 
                             @else
 
-                                không hết hạn
+                                Không hết hạn
 
                             @endif
 

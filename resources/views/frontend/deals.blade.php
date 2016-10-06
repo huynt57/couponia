@@ -104,7 +104,7 @@ Canhgiamgia.com | Khuyến mại hot nhất từ lazada, tiki, adayroi, ...
 
                                     @else
 
-                                    không hết hạn
+                                    Không hết hạn
 
                                         @endif
 

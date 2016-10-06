@@ -20,7 +20,7 @@ class DealController extends Controller
     //
     public function getAllDeals(Request $request)
     {
-        $deals = DB::table('deals')->where('valid_to', '>=', Carbon::now()->toDateTimeString())->orWhere('valid_to', '');
+        $deals = DB::table('deals')->where('valid_to', '>=', Carbon::now()->toDateTimeString())->orWhereNull('valid_to');
 
         $time  = $request->input('time');
 
@@ -60,7 +60,7 @@ class DealController extends Controller
             return 'Category không tồn tại';
         }
 
-        $deals = Deal::where('category_id', $categoryId)->where('valid_to', '>=', Carbon::now()->toDateTimeString())->orWhere('valid_to', '')->paginate(config('constants.PAGINATE_NUMBER'));
+        $deals = Deal::where('category_id', $categoryId)->where('valid_to', '>=', Carbon::now()->toDateTimeString())->orWhereNull('valid_to')->paginate(config('constants.PAGINATE_NUMBER'));
 
         return view('frontend.deals', [
             'deals' => $deals
@@ -78,7 +78,7 @@ class DealController extends Controller
 
 
 
-        $deals = DB::table('deals')->where('valid_to', '>=', Carbon::now()->toDateTimeString())->orWhere('valid_to', '');
+        $deals = DB::table('deals')->where('valid_to', '>=', Carbon::now()->toDateTimeString())->orWhereNull('valid_to');
 
 
         if(!empty($category))
@@ -120,7 +120,7 @@ class DealController extends Controller
     public function getDealsBySource($slug, $source, Request $request)
     {
 
-        $deals = Deal::where('source', $source)->where('valid_to', '>=', Carbon::now()->toDateTimeString())->orWhere('valid_to', '');
+        $deals = Deal::where('source', $source)->where('valid_to', '>=', Carbon::now()->toDateTimeString())->orWhereNull('valid_to');
 
         $time  = $request->input('time');
 
@@ -199,7 +199,7 @@ class DealController extends Controller
             $deals = Deal::searchByQuery($params ,null, null,
                 config('constants.PAGINATE_NUMBER'),
                 config('constants.PAGINATE_NUMBER') * ($page-1)+1,
-                ['id' => 'desc'])->where('valid_to', '>=', Carbon::now()->toDateTimeString())->orWhere('valid_to', '');
+                ['id' => 'desc'])->where('valid_to', '>=', Carbon::now()->toDateTimeString())->orWhereNull('valid_to');
 
 
             if (!empty($time)) {
