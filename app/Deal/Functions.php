@@ -80,7 +80,7 @@ class Functions
 
     public static function getRandomDeals()
     {
-        $deals = Deal::inRandomOrder()->limit(2)->get();
+        $deals = Deal::inRandomOrder()->where('valid_to', '>=', Carbon::now()->toDateTimeString())->orWhere('valid_to', '')->limit(2)->get();
         return $deals;
     }
 
