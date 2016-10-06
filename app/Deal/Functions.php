@@ -15,6 +15,7 @@ use App\Product;
 use Carbon\Carbon;
 use Excel;
 use DB;
+use phpDocumentor\Reflection\Types\Null_;
 
 
 class Functions
@@ -168,7 +169,7 @@ class Functions
                         'account_id' => 1,
                         'description' => !empty($value['mo_ta']) ? $value['mo_ta'] : '',
                         'valid_from' => !empty($value['start']) ? Carbon::createFromFormat('d/m/Y', $value['start'])->toDateTimeString() : Carbon::now()->toDateTimeString(),
-                        'valid_to' => !empty($value['end']) ? Carbon::createFromFormat('d/m/Y', $value['end'])->toDateTimeString() : '',
+                        'valid_to' => !empty($value['end']) ? Carbon::createFromFormat('d/m/Y', $value['end'])->toDateTimeString() : Null,
                         'original_price'=>'',
                         'new_price'=>'',
                         'lat' => '',
