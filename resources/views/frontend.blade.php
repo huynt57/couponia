@@ -425,7 +425,7 @@
             return currentUrl;
         }
 
-
+D
 
         var currentUrl = '{{ Request::fullUrl() }}';
 
