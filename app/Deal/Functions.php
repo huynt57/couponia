@@ -168,7 +168,7 @@ class Functions
                         'account_id' => 1,
                         'description' => !empty($value['mo_ta']) ? $value['mo_ta'] : '',
                         'valid_from' => !empty($value['start']) ? Carbon::createFromFormat('d/m/Y', $value['start'])->toDateTimeString() : Carbon::now()->toDateTimeString(),
-                        'valid_to' => !empty($value['end']) ? Carbon::createFromFormat('d/m/Y', $value['end'])->toDateTimeString() : Carbon::now()->toDateTimeString(),
+                        'valid_to' => !empty($value['end']) ? Carbon::createFromFormat('d/m/Y', $value['end'])->toDateTimeString() : '',
                         'original_price'=>'',
                         'new_price'=>'',
                         'lat' => '',
