@@ -28,26 +28,40 @@
     <!-- Your custom styles (blank file) -->
     <link rel="stylesheet" href="{{ url ('coupon/css/mystyles.css') }}">
 
-    <link rel="stylesheet" href="{{ url ('coupon/css/switcher.css') }}">
+    {{--<link rel="stylesheet" href="{{ url ('coupon/css/switcher.css') }}">--}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ url('coupon/img/favicon/apple-icon-57x57.png') }}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ url('coupon/img/favicon/apple-icon-60x60.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ url('coupon/img/favicon/apple-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ url('coupon/img/favicon/apple-icon-76x76.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ url('coupon/img/favicon/apple-icon-114x114.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ url('coupon/img/favicon/apple-icon-120x120.png') }}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ url('coupon/img/favicon/apple-icon-144x144.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ url('coupon/img/favicon/apple-icon-152x152.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url('coupon/img/favicon/apple-icon-180x180.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{ url('coupon/img/favicon/android-icon-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url('coupon/img/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ url('coupon/img/favicon/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url('coupon/img/favicon/favicon-16x16.png') }}">
     <!-- Demo Examples -->
-    <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/apple.css') }}" title="apple" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/pink.css') }}" title="pink" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/teal.css') }}" title="teal" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/gold.css') }}" title="gold" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/downy.css') }}" title="downy" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/atlantis.css') }}" title="atlantis" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/red.css') }}" title="red" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/violet.css') }}" title="violet" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/pomegranate.css') }}" title="pomegranate" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/violet-red.css') }}" title="violet-red" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/mexican-red.css') }}" title="mexican-red" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/victoria.css') }}" title="victoria" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/orient.css') }}" title="orient" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/jgger.css') }}" title="jgger" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/de-york.css') }}" title="de-york" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/blaze-orange.css') }}" title="blaze-orange" media="all" />
-    <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/hot-pink.css') }}" title="hot-pink" media="all" />
+    {{--<link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes{{ url('coupon/img/favicon/apple.css') }}" title="apple" media="all" />--}}
+    {{--<link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/pink.css') }}" title="pink" media="all" />--}}
+    {{--<link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/teal.css') }}" title="teal" media="all" />--}}
+    {{--<link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/gold.css') }}" title="gold" media="all" />--}}
+    {{--<link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/downy.css') }}" title="downy" media="all" />--}}
+    {{--<link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/atlantis.css') }}" title="atlantis" media="all" />--}}
+    {{--<link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/red.css') }}" title="red" media="all" />--}}
+    {{--<link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/violet.css') }}" title="violet" media="all" />--}}
+    {{--<link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/pomegranate.css') }}" title="pomegranate" media="all" />--}}
+    {{--<link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/violet-red.css') }}" title="violet-red" media="all" />--}}
+    {{--<link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/mexican-red.css') }}" title="mexican-red" media="all" />--}}
+    {{--<link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/victoria.css') }}" title="victoria" media="all" />--}}
+    {{--<link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/orient.css') }}" title="orient" media="all" />--}}
+    {{--<link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/jgger.css') }}" title="jgger" media="all" />--}}
+    {{--<link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/de-york.css') }}" title="de-york" media="all" />--}}
+    {{--<link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/blaze-orange.css') }}" title="blaze-orange" media="all" />--}}
+    {{--<link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/schemes/hot-pink.css') }}" title="hot-pink" media="all" />--}}
     <link rel="alternate stylesheet" type="text/css" href="{{ url ('coupon/css/toast.css') }}" title="hot-pink" media="all" />
 
     <script>
@@ -91,7 +105,7 @@
 ////////////////////////////////////-->
     <div class="top-main-area text-center">
         <div class="container">
-            <a href="index.html" class="logo mt5">
+            <a href="{{url('/')}}" class="logo mt5">
                 <img src="{{url('coupon/logo.png') }}" alt="Canhgiamgia.com" title="Canhgiamgia.com" style="height: 150px;" />
             </a>
         </div>
