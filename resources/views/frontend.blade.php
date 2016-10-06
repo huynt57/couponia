@@ -7,8 +7,8 @@
     <title>@yield('title')</title>
     <!-- meta info -->
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <meta name="keywords" content="Koupon HTML5 Template" />
-    <meta name="description" content="Koupon - Premiun HTML5 Template for Coupons Website">
+    <meta name="keywords" content="khuyến mãi, lazada, tiki, adayroi" />
+    <meta name="description" content="Canhgiamgia.com - Khuyến mại hot nhất từ Lazada, Adayroi, Tiki, ...">
     <meta name="author" content="Tsoy">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google fonts -->
@@ -273,7 +273,7 @@
             <div class="container">
                 <div class="row row-wrap">
                     <div class="col-md-4">
-                        <a href="index.html">
+                        <a href="{{url('/')}}">
                             <img src="{{url('coupon/logo.png') }}" alt="logo" title="logo" class="logo">
                         </a>
                         <ul class="list list-social">
@@ -425,7 +425,7 @@
             return currentUrl;
         }
 
-D
+
 
         var currentUrl = '{{ Request::fullUrl() }}';
 

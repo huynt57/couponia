@@ -77,7 +77,11 @@ Canhgiamgia.com | {{$deal->name}}
                     <div class="product-info box">
 
                         <h3>{{$deal->name}}</h3>
+                        @if(!empty($deal->valid_to))
                         <h3><i class="fa fa-clock-o"></i> còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays()}} ngày</h3>
+                        @else
+                            <h3><i class="fa fa-clock-o"></i> Không hết hạn</h3>
+                         @endif
                         {{--<p class="product-info-price">$150</p>--}}
                         {{--<p class="text-smaller text-muted">{!! $deal->description !!}</p>--}}
 
@@ -142,8 +146,12 @@ Canhgiamgia.com | {{$deal->name}}
                             <div class="product-inner">
                                 <h5 class="product-title">{{$deal->name}}</h5>
                                 <p class="product-desciption">{!! \Illuminate\Support\Str::limit($deal->description, 80, ' ...') !!}</p>
-                                <div class="product-meta"><span class="product-time"><i class="fa fa-clock-o"></i> còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays()}} ngày</span>
-
+                                <div class="product-meta"><span class="product-time">
+                                        @if(!empty($deal->valid_to))
+                                        <i class="fa fa-clock-o"></i> còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays()}} ngày</span>
+                                        @else
+                                        <i class="fa fa-clock-o"></i> Không hết hạn</span>
+                                            @endif
 
                                     <ul class="product-price-list">
                                         @if(!empty($deal->new_price))

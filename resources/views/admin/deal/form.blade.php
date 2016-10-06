@@ -69,6 +69,11 @@
                     {!! Form::select('source', $providers, null, ['class' => 'form-control']) !!}
                 </div>
 
+                <div class="form-group">
+                    {!! Form::label('image_preview', 'Image') !!}
+                    {!! Form::text('image_preview', null, ['class' => 'form-control']) !!}
+                </div>
+
 
 
             <div class="form-group">

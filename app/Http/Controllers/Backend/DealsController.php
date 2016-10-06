@@ -10,6 +10,7 @@ use App\Deal;
 use App\Provider;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Requests\DealRequest;
+use Carbon\Carbon;
 
 class DealsController extends AdminController
 {
@@ -54,6 +55,9 @@ class DealsController extends AdminController
         $data['image_preview'] =  ($request->file('image') && $request->file('image')->isValid()) ? $this->saveImage($request->file('image')) : '';
         $data['status'] = ($request->input('status') == 'on') ? true : false;
 
+        $data['valid_from'] = !empty($request->input('valid_from')) ? Carbon::createFromFormat('d/m/Y', $request->input('valid_from') )->toDateTimeString() : Null;
+        $data['valid_to'] = !empty($request->input('valid_to')) ? Carbon::createFromFormat('d/m/Y', $request->input('valid_to') )->toDateTimeString() : Null;
+
         try {
             Deal::create($data);
         } catch(\Exception $ex)
@@ -78,6 +82,8 @@ class DealsController extends AdminController
         if ($request->file('image') && $request->file('image')->isValid()) {
             $data['image_preview'] = $this->saveImage($request->file('image'), $provider->image);
         }
+        $data['valid_from'] = !empty($request->input('valid_from')) ? Carbon::createFromFormat('d/m/Y', $request->input('valid_from') )->toDateTimeString() : Null;
+        $data['valid_to'] = !empty($request->input('valid_to')) ? Carbon::createFromFormat('d/m/Y', $request->input('valid_to') )->toDateTimeString() : Null;
 
         $data['status'] = ($request->input('status') == 'on') ? true : false;
         $provider->update($data);
