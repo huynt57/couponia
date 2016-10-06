@@ -64,8 +64,8 @@ class DealsController extends AdminController
         {
             return redirect('admin/deals');
         }
-        flash('Create Provider success!', 'success');
-        return redirect('admin/providers');
+        flash('Create Deal success!', 'success');
+        return redirect('admin/deals');
     }
 
     public function edit($id)
@@ -78,15 +78,15 @@ class DealsController extends AdminController
     public function update($id, DealRequest $request)
     {
         $data = $request->all();
-        $provider = Provider::find($id);
+        $deal = Deal::find($id);
         if ($request->file('image') && $request->file('image')->isValid()) {
-            $data['image_preview'] = $this->saveImage($request->file('image'), $provider->image);
+            $data['image_preview'] = $this->saveImage($request->file('image'), $deal->image);
         }
-        $data['valid_from'] = !empty($request->input('valid_from')) ? Carbon::createFromFormat('d/m/Y', $request->input('valid_from') )->toDateTimeString() : Null;
-        $data['valid_to'] = !empty($request->input('valid_to')) ? Carbon::createFromFormat('d/m/Y', $request->input('valid_to') )->toDateTimeString() : Null;
+        $data['valid_from'] = !empty($request->input('valid_from')) ? Carbon::createFromFormat('Y-m-d H:i:s', $request->input('valid_from') )->toDateTimeString() : Null;
+        $data['valid_to'] = !empty($request->input('valid_to')) ? Carbon::createFromFormat('Y-m-d H:i:s', $request->input('valid_to') )->toDateTimeString() : Null;
 
         $data['status'] = ($request->input('status') == 'on') ? true : false;
-        $provider->update($data);
+        $deal->update($data);
         flash('Update Deal success!', 'success');
         return redirect('admin/deals');
     }
