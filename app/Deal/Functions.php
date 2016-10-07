@@ -15,7 +15,7 @@ use App\Product;
 use Carbon\Carbon;
 use Excel;
 use DB;
-use phpDocumentor\Reflection\Types\Null_;
+
 
 
 class Functions
@@ -159,6 +159,7 @@ class Functions
                             'alias' => !empty($value['offerid']) ? $value['offerid'] : 'no_name'
 
                         ]);
+
                     } catch (Exception $ex) {
                         dd($ex->getMessage());
                     }
@@ -232,6 +233,7 @@ class Functions
                             'category_name' => !empty($value['nganh_hang']) ? $value['nganh_hang'] : '',
                             'alias' => !empty($value['offer_id']) ? $value['offer_id'] : 'no_name'
                         ]);
+
                     } catch (Exception $ex) {
                         dd($ex->getMessage());
                     }

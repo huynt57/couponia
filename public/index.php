@@ -6,7 +6,7 @@
  * @package  Laravel
  * @author   Taylor Otwell <taylor@laravel.com>
  */
-
+include_once('compressor.php');
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
@@ -20,6 +20,7 @@
 */
 
 require __DIR__.'/../bootstrap/autoload.php';
+
 
 /*
 |--------------------------------------------------------------------------

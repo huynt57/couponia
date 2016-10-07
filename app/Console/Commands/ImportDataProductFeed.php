@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Deal\Functions;
 use Illuminate\Console\Command;
 
+
 class ImportDataProductFeed extends Command
 {
     /**

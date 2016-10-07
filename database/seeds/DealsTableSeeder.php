@@ -169,6 +169,14 @@ class DealsTableSeeder extends Seeder
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => 'https://masoffer.r.worldssl.net/stg/images/2016/09/13/Logo-409x3153AMoY.png'
         ]);
 
+        DB::table('providers')->insert([
+            'name' => 'Zanado.vn',
+            'alias' => 'zanado',
+            'status' => 1,
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(), 'image_preview' => 'https://pub.masoffer.com/images/offer/zanado_icon.png'
+        ]);
+
 
 
 
