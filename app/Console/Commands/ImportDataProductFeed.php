@@ -40,7 +40,10 @@ class ImportDataProductFeed extends Command
     {
         //
         $this->line('Started');
-        Functions::importDataFeedProductCSV('data/mo_datafeed_tiki_20160918.csv');
+        $filesInFolder = \File::allFiles('data/products');
+        foreach($filesInFolder as $path) {
+            Functions::importDataFeedProductCSV('data/products/'.pathinfo($path)['basename']);
+        }
         $this->line('Done');
     }
 }

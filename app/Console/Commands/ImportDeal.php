@@ -41,7 +41,13 @@ class ImportDeal extends Command
     {
         //
         $this->line('Started');
-        Functions::importDealCSV('data/promotions__2016-09-18.xls');
+        $filesInFolder = \File::allFiles('data/deals');
+        foreach($filesInFolder as $path)
+        {
+            Functions::importDealCSV('data/deals/'.pathinfo($path)['basename']);
+        }
+
+
         $this->line('Done');
     }
 }
