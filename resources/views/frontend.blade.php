@@ -381,6 +381,10 @@
     <script src="{{ url ('coupon/js/toast.js') }}"></script>
 
     <script type="text/javascript">
+        (function(d,s,id){var z=d.createElement(s);z.type="text/javascript";z.id=id;z.async=true;z.src="//static.zotabox.com/0/4/046cea2a75ec5db2c37fc227f3021f54/widgets.js";var sz=d.getElementsByTagName(s)[0];sz.parentNode.insertBefore(z,sz)}(document,"script","zb-embed-code"));
+    </script>
+
+    <script type="text/javascript">
         $.ajaxSetup({
             headers: { 'X-CSRF-Token' : $('meta[name=csrf-token]').attr('content') }
         });

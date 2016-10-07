@@ -48,6 +48,10 @@ class ImportDeal extends Command
             Functions::importDealCSV('data/deals/'.pathinfo($path)['basename']);
         }
 
+                Deal::deleteIndex();
+            Deal::createIndex($shards = null, $replicas = null);
+        Deal::addAllToIndex();
+
 
         $this->line('Done');
     }
