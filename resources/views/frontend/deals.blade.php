@@ -96,7 +96,7 @@ Canhgiamgia.com | Khuyến mại hot nhất từ lazada, tiki, adayroi, ...
                         <div class="product-inner">
                             <h5 class="product-title">{{$deal->name}}</h5>
                             <div class="product-desciption">{!! \Illuminate\Support\Str::limit($deal->description, 80, ' ...') !!}</div>
-                            <div class="product-meta" style="width: 30%"><span class="product-time"><i class="fa fa-clock-o"></i>
+                            <div class="product-meta" style="width: 30%"><span class="product-time">
 
                                     @if(!empty($deal->valid_to))
 
