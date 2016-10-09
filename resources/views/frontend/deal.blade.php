@@ -78,10 +78,19 @@ Canhgiamgia.com | {{$deal->name}}
 
                         <h3>{{$deal->name}}</h3>
                         @if(!empty($deal->valid_to))
-                        <h3><i class="fa fa-clock-o"></i> còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays()}} ngày</h3>
+
+
+                            @if(\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays() >= 1)
+
+                              <h3>  <i class="fa fa-clock-o"></i> còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays()}} ngày</h3>
+
+                            @else
+                                <h3>   <i class="fa fa-clock-o"></i> còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInHours()}} giờ</h3>
+                            @endif
+
                         @else
-                            <h3><i class="fa fa-clock-o"></i> Không hết hạn</h3>
-                         @endif
+                            <i class="fa fa-clock-o"></i> Không hết hạn</span>
+                        @endif
                         {{--<p class="product-info-price">$150</p>--}}
                         {{--<p class="text-smaller text-muted">{!! $deal->description !!}</p>--}}
 
@@ -148,10 +157,19 @@ Canhgiamgia.com | {{$deal->name}}
                                 <p class="product-desciption">{!! \Illuminate\Support\Str::limit($deal->description, 80, ' ...') !!}</p>
                                 <div class="product-meta"><span class="product-time">
                                         @if(!empty($deal->valid_to))
-                                        <i class="fa fa-clock-o"></i> còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays()}} ngày</span>
+
+
+                                            @if(\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays() >= 1)
+
+                                                 <i class="fa fa-clock-o"></i> còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays()}} ngày</span>
+
+                                            @else
+                                                 <i class="fa fa-clock-o"></i> còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInHours()}} giờ</span>
+                                            @endif
+
                                         @else
                                         <i class="fa fa-clock-o"></i> Không hết hạn</span>
-                                            @endif
+                                        @endif
 
                                     <ul class="product-price-list">
                                         @if(!empty($deal->new_price))
