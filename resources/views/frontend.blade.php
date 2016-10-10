@@ -85,15 +85,23 @@
 
 </script>
 
-<script>(function (d, s, id) {
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '1772483996344552',
+            xfbml      : true,
+            version    : 'v2.8'
+        });
+    };
+
+    (function(d, s, id){
         var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id))
-            return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.4&appId=1428478800723370";
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 
 <body>
 
@@ -379,6 +387,10 @@
     <script src="{{ url ('coupon/js/nicescroll.js') }}"></script>
     <script src="{{ url ('coupon/js/clipboard.js') }}"></script>
     <script src="{{ url ('coupon/js/toast.js') }}"></script>
+
+    <script type="text/javascript">
+        (function(d,s,id){var z=d.createElement(s);z.type="text/javascript";z.id=id;z.async=true;z.src="//static.zotabox.com/0/4/046cea2a75ec5db2c37fc227f3021f54/widgets.js";var sz=d.getElementsByTagName(s)[0];sz.parentNode.insertBefore(z,sz)}(document,"script","zb-embed-code"));
+    </script>
 
     <script type="text/javascript">
         $.ajaxSetup({

@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Excel;
+use App\Deal;
 
 use App\Deal\Functions;
 
@@ -47,6 +48,10 @@ class ImportDeal extends Command
         {
             Functions::importDealCSV('data/deals/'.pathinfo($path)['basename']);
         }
+
+        Deal::deleteIndex();
+        Deal::createIndex($shards = null, $replicas = null);
+        Deal::addAllToIndex();
 
 
         $this->line('Done');

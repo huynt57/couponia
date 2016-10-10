@@ -96,19 +96,24 @@ Canhgiamgia.com | Khuyến mại hot nhất từ lazada, tiki, adayroi, ...
                         <div class="product-inner">
                             <h5 class="product-title">{{$deal->name}}</h5>
                             <div class="product-desciption">{!! \Illuminate\Support\Str::limit($deal->description, 80, ' ...') !!}</div>
-                            <div class="product-meta" style="width: 30%"><span class="product-time"><i class="fa fa-clock-o"></i>
+                            <div class="product-meta" style="width: 30%"><span class="product-time">
 
                                     @if(!empty($deal->valid_to))
 
-                                    còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays()}} ngày
 
-                                    @else
+                                        @if(\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays() >= 1)
 
-                                    Không hết hạn
+                                            <i class="fa fa-clock-o"></i> còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays()}} ngày</span>
 
-                                        @endif
+                                @else
+                                    <i class="fa fa-clock-o"></i> còn {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInHours()}} giờ</span>
+                                @endif
 
-                                </span>
+                                @else
+                                    <i class="fa fa-clock-o"></i> Không hết hạn</span>
+                                    @endif
+
+
                                 <ul class="product-price-list">
                                     @if(!empty($deal->new_price))
                                         <li><span class="product-price">{{number_format($deal->new_price, 0, '.', '.')}} VNĐ</span>
