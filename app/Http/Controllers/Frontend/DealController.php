@@ -120,7 +120,10 @@ class DealController extends Controller
     public function getDealsBySource($slug, $source, Request $request)
     {
 
-        $deals = DB::table('deals')->where('source', $source)->where('valid_to', '>=', Carbon::now()->toDateTimeString())->orWhereNull('valid_to')->orderBy('created_at', 'desc');
+        $deals = DB::table('deals')->where(function($query) {
+          $query->where('valid_to', '>=', Carbon::now()->toDateTimeString());
+            $query->orWhereNull('valid_to');
+        })->where('source', $source)->orderBy('created_at', 'desc');
 
         $time  = $request->input('time');
 

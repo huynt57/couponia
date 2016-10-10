@@ -47,7 +47,10 @@ class Functions
     public static function countDealByProvider($provider)
     {
         if (!cache()->has('count-provider-' . $provider)) {
-            $cnt = Deal::where('source', $provider)->count();
+            $cnt = DB::table('deals')->where(function($query) {
+                $query->where('valid_to', '>=', Carbon::now()->toDateTimeString());
+                $query->orWhereNull('valid_to');
+            })->where('source', $provider)->count();
             cache()->put('count-provider-' . $provider, $cnt, 20);
             return $cnt;
         }
