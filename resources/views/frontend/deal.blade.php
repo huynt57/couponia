@@ -89,7 +89,7 @@ Canhgiamgia.com | {{$deal->name}}
                             @endif
 
                         @else
-                            <i class="fa fa-clock-o"></i> Không hết hạn</span>
+                            <h3><i class="fa fa-clock-o"></i> Không hết hạn</h3>
                         @endif
                         {{--<p class="product-info-price">$150</p>--}}
                         {{--<p class="text-smaller text-muted">{!! $deal->description !!}</p>--}}
