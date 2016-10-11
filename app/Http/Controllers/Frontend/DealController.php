@@ -32,7 +32,7 @@ class DealController extends Controller
                     $deals = $deals->orderBy('created_at', 'desc');
                     break;
                 case 'nearly-end':
-                    $deals = $deals->where('valid_to', '<=', Carbon::now()->addDay(3)->toDateTimeString())->orderBy('valid_to', 'desc');
+                    $deals = $deals->where('valid_to', '<=', Carbon::now()->addDay(5)->toDateTimeString())->orderBy('valid_to', 'asc');
                     break;
             }
         }
@@ -99,7 +99,7 @@ class DealController extends Controller
                     $deals = $deals->orderBy('created_at', 'desc');
                     break;
                 case 'nearly-end':
-                    $deals = $deals->where('valid_to', '<=', Carbon::now()->addDay(3)->toDateTimeString())->orderBy('valid_to', 'desc');
+                    $deals = $deals->where('valid_to', '<=', Carbon::now()->addDay(5)->toDateTimeString())->orderBy('valid_to', 'asc');
                     break;
             }
         }
@@ -135,7 +135,7 @@ class DealController extends Controller
                     $deals = $deals->orderBy('created_at', 'desc');
                     break;
                 case 'nearly-end':
-                    $deals = $deals->where('valid_to', '<=', Carbon::now()->addDay(3)->toDateTimeString())->orderBy('valid_to', 'desc');
+                    $deals = $deals->where('valid_to', '<=', Carbon::now()->addDay(5)->toDateTimeString())->orderBy('valid_to', 'asc');
                     break;
             }
         }
@@ -211,7 +211,7 @@ class DealController extends Controller
                         $deals = $deals->sortByDesc('created_at');
                         break;
                     case 'nearly-end':
-                        $deals = $deals->where('valid_to', '<=', Carbon::now()->addDay(3)->toDateTimeString())->sortByDesc('valid_to');
+                        $deals = $deals->where('valid_to', '<=', Carbon::now()->addDay(5)->toDateTimeString())->sortByDesc('valid_to');
                         break;
                 }
             }
