@@ -124,7 +124,7 @@ Canhgiamgia.com | {{$deal->name}}
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade in" id="tab-1">
-                       {{ $deal->description }}
+                       {!! trim($deal->description) !!}
                     </div>
                     <div class="tab-pane fade in active" id="tab-2">
                         @if(!empty($deal->condition))

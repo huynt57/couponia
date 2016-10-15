@@ -52,4 +52,6 @@ Route::get('tin-tuc/{id}', 'Frontend\NewsController@getNewsById');
 Route::post('dang-ky-email', 'Frontend\MainController@registerNewsEmail');
 
 
+Route::get('crawl', 'Frontend\NewsController@crawl');
+
 

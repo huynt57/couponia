@@ -41,7 +41,7 @@ class Crawl extends Command
         //
         $this->line('Started');
         Functions::crawlVnExpress();
-        Functions::crawlDantri();
+       // Functions::crawlDantri();
         $this->line('Done');
     }
 }

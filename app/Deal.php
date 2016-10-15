@@ -30,7 +30,8 @@ class Deal extends Model
         'category_name',
         'condition',
         'source',
-        'alias'
+        'alias',
+        'short_desc'
     ];
 
     protected $mappingProperties = array(

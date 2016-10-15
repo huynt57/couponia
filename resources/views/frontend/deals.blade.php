@@ -95,7 +95,16 @@ Canhgiamgia.com | Khuyến mại hot nhất từ lazada, tiki, adayroi, ...
                         </header>
                         <div class="product-inner">
                             <h5 class="product-title">{{$deal->name}}</h5>
-                            <div class="product-desciption">{!! \Illuminate\Support\Str::limit($deal->description, 80, ' ...') !!}</div>
+                            <div class="product-desciption">
+                                @if(empty($deal->short_desc))
+
+                                {{ \Illuminate\Support\Str::limit(trim($deal->description), 80, ' ...') }}
+
+                                    @else
+                                {{$deal->short_desc}}
+                                    @endif
+
+                            </div>
                             <div class="product-meta" style="width: 30%"><span class="product-time">
 
                                     @if(!empty($deal->valid_to))

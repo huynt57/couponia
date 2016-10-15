@@ -300,4 +300,62 @@ class Functions
 
         });
     }
+
+
+    public static function crawlJamjaMP()
+    {
+        for ($i = 15; $i >= 1; $i--) {
+            $client = new Client();
+            $crawler = $client->request('GET', 'https://jamja.vn/khuyen-mai/?query_string=page&page='.$i.'&tags=%C4%91%E1%BA%B9p&querystring_key=page');
+            $crawler->filter('.footer-brand-right > a')->each(function ($node) use ($client) {
+                $link = $node->link();
+                $deal = $client->click($link);
+
+                $time_remain = trim($deal->filter('.time-remain')->text());
+
+                $arr = explode(' ', $time_remain);
+
+                switch ($arr[2]) {
+                    case 'ngày':
+                        $valid_to = Carbon::now()->addDay($arr[1])->toDateTimeString();
+                        break;
+                    case 'tuần':
+                        $valid_to = Carbon::now()->addWeek($arr[1])->toDateTimeString();
+                        break;
+                    case 'giờ':
+                        $valid_to = Carbon::now()->addHour($arr[1])->toDateTimeString();
+                        break;
+                    default:
+                        $valid_to = Carbon::now()->toDateTimeString();
+                        break;
+
+                }
+
+                Deal::create([
+                    'name' => trim($deal->filter('.name-brand')->text()),
+                    'account_id' => 1,
+                    'description' => $deal->filter('#dieukien')->html(),
+                    'valid_from' => Carbon::now()->toDateTimeString(),
+                    'valid_to' => $valid_to,
+                    'original_price' => '',
+                    'new_price' => '',
+                    'lat' => '',
+                    'lng' => '',
+                    'location' => '',
+                    'is_hot' => 1,
+                    'code' => '',
+                    'online_url' => '',
+                    'image_preview' => $deal->filterXpath('//meta[@property="og:image"]')->attr('content'),
+                    'status' => 1,
+                    'category_id' => 1,
+                    'source' => 1,
+                    'condition' => '',
+                    'category_name' => '',
+                    'alias' => '',
+                    'short_desc' => trim($deal->filter('.footer-brand-right > .rs')->last()->text())
+                ]);
+
+            });
+        }
+    }
 }

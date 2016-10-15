@@ -45,4 +45,9 @@ class NewsController extends Controller
             'relatedPosts' => $related
         ]);
     }
+
+    public function crawl()
+    {
+        Functions::crawlJamjaMP();
+    }
 }
