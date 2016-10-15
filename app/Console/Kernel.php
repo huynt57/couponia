@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\AddAdmin;
+use App\Console\Commands\Crawl;
 use App\Console\Commands\ImportDataProductFeed;
 use App\Console\Commands\ImportDeal;
 use Illuminate\Console\Scheduling\Schedule;
@@ -18,7 +19,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         AddAdmin::class,
         ImportDataProductFeed::class,
-        ImportDeal::class
+        ImportDeal::class,
+        Crawl::class
     ];
 
     /**
@@ -29,8 +31,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+         $schedule->command('crawl:post')
+                  ->withoutOverlapping()
+                  ->everyTenMinutes();
     }
 
     /**

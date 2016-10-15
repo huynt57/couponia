@@ -8,6 +8,7 @@ namespace App\Deal;
 
 use App\Account;
 use App\Category;
+use App\Post;
 use App\Provider;
 use App\Deal;
 
@@ -15,7 +16,7 @@ use App\Product;
 use Carbon\Carbon;
 use Excel;
 use DB;
-
+use Goutte\Client;
 
 
 class Functions
@@ -83,9 +84,14 @@ class Functions
         return $deals;
     }
 
-    public static function getRandomProducts()
+    public static function getRandomNews()
     {
-
+        if (!cache()->has('posts')) {
+            $posts = DB::table('posts')->inRandomOrder()->limit(5)->get()->toArray();
+            cache()->put('posts', $posts, 100);
+            return $posts;
+        }
+        return cache()->get('posts');
     }
 
     public static function getProviders()
@@ -242,6 +248,56 @@ class Functions
                     }
                 }
             }
+        });
+    }
+
+    public static function crawlVnExpress()
+    {
+        $client = new Client();
+        $crawler = $client->request('GET', 'http://kinhdoanh.vnexpress.net/tin-tuc/hang-hoa/khuyen-mai');
+        $crawler->filter('h3.title_news > a')->each(function ($node) use ($client) {
+            $link = $node->link();
+            $post = $client->click($link);
+
+
+            $check = DB::table('posts')->where('title', $post->filter('h1')->text())->count();
+
+            if($check == 0) {
+
+                Post::create([
+                    'title' => $post->filter('h1')->text(),
+                    'desc' => $post->filter('.short_intro')->text(),
+                    'content' => $post->filter('.fck_detail')->html(),
+                    'category_id' => 1,
+                    'image' => $post->filterXpath('//meta[@property="og:image"]')->attr('content')
+                ]);
+            }
+
+        });
+    }
+
+    public static function crawlDantri()
+    {
+        $client = new Client();
+        $crawler = $client->request('GET', 'http://dantri.com.vn/khuyen-mai.tag');
+        $crawler->filter('.icon-detail')->each(function ($node) use ($client) {
+            $link = $node->link();
+            $post = $client->click($link);
+
+            $check = DB::table('posts')->where('title', $post->filter('h1')->text())->count();
+
+            if($check == 0) {
+
+                Post::create([
+                    'title' => $post->filter('h1')->text(),
+                    'desc' => $post->filter('h2')->text(),
+                    'content' => $post->filter('.detail-content')->html(),
+                    'category_id' => 1,
+                    //'image' => $post->filterXpath('//meta[@property="og:image"]')->attr('content')
+                    'image' => $post->filter('.detail-content img')->image()->getUri()
+                ]);
+            }
+
         });
     }
 }

@@ -6,7 +6,7 @@ Canhgiamgia.com | Khuyến mại hot nhất từ lazada, tiki, adayroi, ...
     <meta property="og:url" content="http://canhgiamgia.com/khuyen-mai">
     <meta property="og:image" content="{{public_path('coupon/logo.png')}}">
     <meta property="og:description" content="Canhgiamgia.com | Khuyến mại từ Lazada, Tiki, Adayroi, ...">
-    <meta property="og:title" content="Canhgiamgia.com | Sản phẩm khuyến mại từ Lazada, Tiki, Adayroi, ...">
+    <meta property="og:title" content="Canhgiamgia.com | Khuyến mại mới nhất từ Lazada, Tiki, Adayroi, ...">
 @endsection
 
 

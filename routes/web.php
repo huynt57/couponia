@@ -46,11 +46,10 @@ Route::get('san-pham/nha-phan-phoi/{slug}/{source}', 'Frontend\ProductController
 
 Route::get('tim-kiem/khuyen-mai', 'Frontend\DealController@search');
 Route::get('tim-kiem/san-pham', 'Frontend\ProductController@search');
+Route::get('tin-tuc', 'Frontend\NewsController@getNews');
+Route::get('tin-tuc/{id}', 'Frontend\NewsController@getNewsById');
 
 Route::post('dang-ky-email', 'Frontend\MainController@registerNewsEmail');
 
 
-
-
-Route::get('crawl', 'Frontend\DealController@crawl');
 
