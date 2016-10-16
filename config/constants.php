@@ -6,5 +6,7 @@
  * Time: 11:17 AM
  */
 return [
-    'PAGINATE_NUMBER' => 12
+    'PAGINATE_NUMBER' => 12,
+    'JAMJA_MAC' => 2,
+    'JAMJA_MP' => 3
 ];

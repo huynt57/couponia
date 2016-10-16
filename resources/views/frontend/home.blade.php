@@ -90,7 +90,15 @@
                             @endif
                         </ul>
                     </div>
-                    <p class="product-location"><i class="fa fa-map-marker"></i> {{\App\Provider::find($deal->source)->name }}</p>
+                    <p class="product-location"><i class="fa fa-map-marker"></i>  @if(!empty($deal->online_url))
+
+                            {{\App\Provider::find($deal->source)->name }}
+
+                        @else
+
+                            {{$deal->alias}}
+
+                        @endif</p>
                 </div>
             </a>
         @endforeach

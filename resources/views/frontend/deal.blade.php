@@ -6,7 +6,12 @@ Canhgiamgia.com | {{$deal->name}}
 @section('facebook_meta')
     <meta property="og:url" content="{{$deal->name}}">
     <meta property="og:image" content="{{$deal->image_preview}}">
+    @if(!empty($deal->online_url))
     <meta property="og:description" content="{{$deal->description}}">
+    @else
+        <meta property="og:description" content="{{$deal->short_desc}}">
+        @endif
+
     <meta property="og:title" content="{{$deal->name}}">
 @endsection
 
@@ -116,17 +121,17 @@ Canhgiamgia.com | {{$deal->name}}
 
             <div class="tabbable">
                 <ul class="nav nav-tabs" id="myTab">
-                    <li class="active"><a href="#tab-2" data-toggle="tab"><i class="fa fa-pencil"></i>Điều kiện</a>
+                    <li class="@if(!empty($deal->condition)) active @endif"><a href="#tab-2" data-toggle="tab"><i class="fa fa-pencil"></i>Điều kiện</a>
                     </li>
-                    <li><a href="#tab-1" data-toggle="tab"><i class="fa fa-pencil"></i>Miêu tả</a>
+                    <li class="@if(empty($deal->condition)) active @endif"><a href="#tab-1" data-toggle="tab"><i class="fa fa-pencil"></i>Miêu tả</a>
                     </li>
 
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane fade in" id="tab-1">
+                    <div class="tab-pane fade in @if(empty($deal->condition)) active @endif" id="tab-1">
                        {!! trim($deal->description) !!}
                     </div>
-                    <div class="tab-pane fade in active" id="tab-2">
+                    <div class="tab-pane fade in @if(!empty($deal->condition)) active @endif" id="tab-2">
                         @if(!empty($deal->condition))
                         {{$deal->condition}}
                         @else

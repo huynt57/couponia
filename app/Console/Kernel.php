@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Console\Commands\AddAdmin;
 use App\Console\Commands\Crawl;
+use App\Console\Commands\CrawlJamJa;
 use App\Console\Commands\ImportDataProductFeed;
 use App\Console\Commands\ImportDeal;
 use Illuminate\Console\Scheduling\Schedule;
@@ -20,7 +21,8 @@ class Kernel extends ConsoleKernel
         AddAdmin::class,
         ImportDataProductFeed::class,
         ImportDeal::class,
-        Crawl::class
+        Crawl::class,
+        CrawlJamJa::class
     ];
 
     /**
@@ -34,6 +36,10 @@ class Kernel extends ConsoleKernel
          $schedule->command('crawl:post')
                   ->withoutOverlapping()
                   ->everyTenMinutes();
+
+        $schedule->command('crawl:jamja')
+            ->withoutOverlapping()
+            ->hourly();
     }
 
     /**

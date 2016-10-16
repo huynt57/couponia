@@ -140,7 +140,7 @@
     <header class="main">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <!-- MAIN NAVIGATION -->
                     <div class="flexnav-menu-button" id="flexnav-menu-button">Menu</div>
                     <nav>
@@ -150,6 +150,10 @@
                             </li>
                             <li><a href="{{url('khuyen-mai')}}">Khuyến mại</a>
 
+                            </li>
+                            <li><a href="{{url('thoi-trang')}}">Thời trang</a>
+                            </li>
+                            <li><a href="{{url('lam-dep')}}">Làm đẹp</a>
                             </li>
                             <li><a href="{{url('san-pham')}}">Sản phẩm khuyến mãi</a>
 

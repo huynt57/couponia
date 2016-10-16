@@ -20,7 +20,12 @@ class DealController extends Controller
     //
     public function getAllDeals(Request $request)
     {
-        $deals = DB::table('deals')->where('valid_to', '>=', Carbon::now()->toDateTimeString())->orWhereNull('valid_to')->orderBy('created_at', 'desc');
+        $deals = DB::table('deals')->whereNotIn('category_id', [
+            config('constants.JAMJA_MAC'), config('constants.JAMJA_MP')
+        ])->where(function($q) {
+            $q->where('valid_to', '>=', Carbon::now()->toDateTimeString());
+            $q->orWhereNull('valid_to');
+        })->orderBy('created_at', 'desc');
 
         $time  = $request->input('time');
 
@@ -42,6 +47,62 @@ class DealController extends Controller
         $deals = $deals->paginate(config('constants.PAGINATE_NUMBER'));
 
         return view('frontend.deals', [
+            'deals' => $deals
+        ]);
+    }
+
+    public function getDealsMac(Request $request)
+    {
+        $deals = DB::table('deals')->where('category_id', config('constants.JAMJA_MAC'))->where('valid_to', '>=', Carbon::now()->toDateTimeString())->orWhereNull('valid_to')->orderBy('created_at', 'desc');
+
+        $time  = $request->input('time');
+
+        if(!empty($time))
+        {
+            switch ($time)
+            {
+                case 'latest':
+                    $deals = $deals->orderBy('created_at', 'desc');
+                    break;
+                case 'nearly-end':
+                    $deals = $deals->where('valid_to', '<=', Carbon::now()->addDay(5)->toDateTimeString())->orderBy('valid_to', 'asc');
+                    break;
+            }
+        }
+
+
+
+        $deals = $deals->paginate(config('constants.PAGINATE_NUMBER') * 2);
+
+        return view('frontend.deals_mac', [
+            'deals' => $deals
+        ]);
+    }
+
+    public function getDealsMP(Request $request)
+    {
+        $deals = DB::table('deals')->where('category_id', config('constants.JAMJA_MP'))->where('valid_to', '>=', Carbon::now()->toDateTimeString())->orWhereNull('valid_to')->orderBy('created_at', 'desc');
+
+        $time  = $request->input('time');
+
+        if(!empty($time))
+        {
+            switch ($time)
+            {
+                case 'latest':
+                    $deals = $deals->orderBy('created_at', 'desc');
+                    break;
+                case 'nearly-end':
+                    $deals = $deals->where('valid_to', '<=', Carbon::now()->addDay(5)->toDateTimeString())->orderBy('valid_to', 'asc');
+                    break;
+            }
+        }
+
+
+
+        $deals = $deals->paginate(config('constants.PAGINATE_NUMBER'));
+
+        return view('frontend.deals_mp', [
             'deals' => $deals
         ]);
     }
@@ -145,6 +206,47 @@ class DealController extends Controller
         return view('frontend.deals', [
             'deals' => $deals
         ]);
+    }
+
+    public function getDealsByAlias($alias, $category_id, Request $request)
+    {
+
+
+
+        $deals = DB::table('deals')->where(function($query) {
+            $query->where('valid_to', '>=', Carbon::now()->toDateTimeString());
+            $query->orWhereNull('valid_to');
+        })->where('slug', $alias)->orderBy('created_at', 'desc');
+
+        $time  = $request->input('time');
+
+        if(!empty($time))
+        {
+            switch ($time)
+            {
+                case 'latest':
+                    $deals = $deals->orderBy('created_at', 'desc');
+                    break;
+                case 'nearly-end':
+                    $deals = $deals->where('valid_to', '<=', Carbon::now()->addDay(5)->toDateTimeString())->orderBy('valid_to', 'asc');
+                    break;
+            }
+        }
+
+        $deals = $deals->paginate(config('constants.PAGINATE_NUMBER'));
+
+        if($category_id == config('constants.JAMJA_MAC')) {
+            return view('frontend.deals_mac', [
+                'deals' => $deals,
+
+            ]);
+        } else if ($category_id == config('constants.JAMJA_MP'))
+            {
+                return view('frontend.deals_mp', [
+                    'deals' => $deals,
+
+                ]);
+            }
     }
 
 

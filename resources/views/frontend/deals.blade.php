@@ -4,7 +4,7 @@ Canhgiamgia.com | Khuyến mại hot nhất từ lazada, tiki, adayroi, ...
 @endsection
 @section('facebook_meta')
     <meta property="og:url" content="http://canhgiamgia.com/khuyen-mai">
-    <meta property="og:image" content="{{public_path('coupon/logo.png')}}">
+    <meta property="og:image" content="{{url('coupon/logo.png')}}">
     <meta property="og:description" content="Canhgiamgia.com | Khuyến mại từ Lazada, Tiki, Adayroi, ...">
     <meta property="og:title" content="Canhgiamgia.com | Khuyến mại mới nhất từ Lazada, Tiki, Adayroi, ...">
 @endsection
@@ -25,6 +25,8 @@ Canhgiamgia.com | Khuyến mại hot nhất từ lazada, tiki, adayroi, ...
                         </li>
                     </ul>
                 @endif
+
+                @if(url()->current() == url('khuyen-mai'))
                 <ul class="nav nav-tabs nav-stacked nav-coupon-category nav-coupon-category-left">
                         <?php $providers = \App\Deal\Functions::getProviders();?>
 
@@ -34,6 +36,7 @@ Canhgiamgia.com | Khuyến mại hot nhất từ lazada, tiki, adayroi, ...
                         @endforeach
 
                 </ul>
+                @endif
                 <div class="sidebar-box">
                     <h5>Phân loại theo thời gian</h5>
                     <ul class="checkbox-list">
@@ -138,7 +141,19 @@ Canhgiamgia.com | Khuyến mại hot nhất từ lazada, tiki, adayroi, ...
                                     @endif
                                 </ul>
                             </div>
-                            <p class="product-location"><i class="fa fa-map-marker"></i> {{\App\Provider::find($deal->source)->name }}</p>
+                            <p class="product-location"><i class="fa fa-map-marker"></i>
+
+                                @if(!empty($deal->online_url))
+
+                                {{\App\Provider::find($deal->source)->name }}
+
+                                    @else
+
+                                {{$deal->alias}}
+
+                                    @endif
+
+                            </p>
                         </div>
                     </a>
                 @endforeach

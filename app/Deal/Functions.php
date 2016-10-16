@@ -58,6 +58,19 @@ class Functions
         return cache()->get('count-provider-' . $provider);
     }
 
+    public static function countDealBySource($source)
+    {
+        if (!cache()->has('count-source-' . $source)) {
+            $cnt = DB::table('deals')->where(function($query) {
+                $query->where('valid_to', '>=', Carbon::now()->toDateTimeString());
+                $query->orWhereNull('valid_to');
+            })->where('alias', $source)->count();
+            cache()->put('count-provider-' . $source, $cnt, 20);
+            return $cnt;
+        }
+        return cache()->get('count-provider-' . $source);
+    }
+
     public static function countProductByProvider($provider)
     {
         if (!cache()->has('count-product-' . $provider)) {
@@ -102,6 +115,16 @@ class Functions
             return $providers;
         }
         return cache()->get('providers');
+    }
+
+    public static function getSources($category)
+    {
+        if (!cache()->has('sources-'.$category)) {
+            $sources = DB::table('deals')->select('alias')->where('category_id', $category)->distinct()->get();
+            cache()->put('sources-'.$category, $sources, 3000);
+            return $sources;
+        }
+        return cache()->get('sources-'.$category);
     }
 
     public static function getLatestDeals()
@@ -260,7 +283,7 @@ class Functions
             $post = $client->click($link);
 
 
-            $check = DB::table('posts')->where('title', $post->filter('h1')->text())->count();
+            $check = Post::where('title', $post->filter('h1')->text())->count();
 
             if($check == 0) {
 
@@ -284,7 +307,7 @@ class Functions
             $link = $node->link();
             $post = $client->click($link);
 
-            $check = DB::table('posts')->where('title', $post->filter('h1')->text())->count();
+            $check = Post::where('title', $post->filter('h1')->text())->count();
 
             if($check == 0) {
 
@@ -311,51 +334,130 @@ class Functions
                 $link = $node->link();
                 $deal = $client->click($link);
 
-                $time_remain = trim($deal->filter('.time-remain')->text());
+                $short_desc = trim($deal->filter('.footer-brand-right > .rs')->last()->text());
 
-                $arr = explode(' ', $time_remain);
+                $check = Deal::where('short_desc', $short_desc)->count();
 
-                switch ($arr[2]) {
-                    case 'ngày':
-                        $valid_to = Carbon::now()->addDay($arr[1])->toDateTimeString();
-                        break;
-                    case 'tuần':
-                        $valid_to = Carbon::now()->addWeek($arr[1])->toDateTimeString();
-                        break;
-                    case 'giờ':
-                        $valid_to = Carbon::now()->addHour($arr[1])->toDateTimeString();
-                        break;
-                    default:
-                        $valid_to = Carbon::now()->toDateTimeString();
-                        break;
+                if($check == 0) {
 
+                    $time_remain = trim($deal->filter('.time-remain')->text());
+
+                    $arr = explode(' ', $time_remain);
+
+                    switch ($arr[2]) {
+                        case 'ngày':
+                            $valid_to = Carbon::now()->addDay($arr[1])->toDateTimeString();
+                            break;
+                        case 'tuần':
+                            $valid_to = Carbon::now()->addWeek($arr[1])->toDateTimeString();
+                            break;
+                        case 'giờ':
+                            $valid_to = Carbon::now()->addHour($arr[1])->toDateTimeString();
+                            break;
+                        default:
+                            $valid_to = Carbon::now()->toDateTimeString();
+                            break;
+
+                    }
+
+
+                    Deal::create([
+                        'name' => trim($deal->filter('.name-brand')->text()),
+                        'account_id' => 1,
+                        'description' => $deal->filter('#dieukien')->html(),
+                        'valid_from' => Carbon::now()->toDateTimeString(),
+                        'valid_to' => $valid_to,
+                        'original_price' => '',
+                        'new_price' => '',
+                        'lat' => '',
+                        'lng' => '',
+                        'location' => '',
+                        'is_hot' => 1,
+                        'code' => '',
+                        'online_url' => '',
+                        'image_preview' => $deal->filterXpath('//meta[@property="og:image"]')->attr('content'),
+                        'status' => 1,
+                        'category_id' => config('constants.JAMJA_MP'),
+                        'source' => 1,
+                        'condition' => '',
+                        'category_name' => '',
+                        'alias' => trim($deal->filter('.name-brand')->text()),
+                        'short_desc' => trim($deal->filter('.footer-brand-right > .rs')->last()->text()),
+                        'slug' => str_slug(trim($deal->filter('.name-brand')->text())),
+                    ]);
                 }
-
-                Deal::create([
-                    'name' => trim($deal->filter('.name-brand')->text()),
-                    'account_id' => 1,
-                    'description' => $deal->filter('#dieukien')->html(),
-                    'valid_from' => Carbon::now()->toDateTimeString(),
-                    'valid_to' => $valid_to,
-                    'original_price' => '',
-                    'new_price' => '',
-                    'lat' => '',
-                    'lng' => '',
-                    'location' => '',
-                    'is_hot' => 1,
-                    'code' => '',
-                    'online_url' => '',
-                    'image_preview' => $deal->filterXpath('//meta[@property="og:image"]')->attr('content'),
-                    'status' => 1,
-                    'category_id' => 1,
-                    'source' => 1,
-                    'condition' => '',
-                    'category_name' => '',
-                    'alias' => '',
-                    'short_desc' => trim($deal->filter('.footer-brand-right > .rs')->last()->text())
-                ]);
-
             });
+
+        }
+    }
+
+
+    public static function crawlJamjaMac()
+    {
+        for ($i = 15; $i >= 1; $i--) {
+            $client = new Client();
+            $crawler = $client->request('GET', 'https://jamja.vn/khuyen-mai/?page='.$i.'&tags=m%E1%BA%B7c&querystring_key=page');
+            $crawler->filter('.footer-brand-right > a')->each(function ($node) use ($client) {
+                $link = $node->link();
+                $deal = $client->click($link);
+
+                $short_desc = trim($deal->filter('.footer-brand-right > .rs')->last()->text());
+
+                $check = Deal::where('short_desc', $short_desc)->count();
+
+                if($check == 0) {
+
+                    $time_remain = trim($deal->filter('.time-remain')->text());
+
+                    $arr = explode(' ', $time_remain);
+
+                    switch ($arr[2]) {
+                        case 'ngày':
+                            $valid_to = Carbon::now()->addDay($arr[1])->toDateTimeString();
+                            break;
+                        case 'tuần':
+                            $valid_to = Carbon::now()->addWeek($arr[1])->toDateTimeString();
+                            break;
+                        case 'giờ':
+                            $valid_to = Carbon::now()->addHour($arr[1])->toDateTimeString();
+                            break;
+                        default:
+                            $valid_to = Carbon::now()->toDateTimeString();
+                            break;
+
+                    }
+
+
+                    Deal::create([
+                        'name' => trim($deal->filter('.name-brand')->text()),
+                        'account_id' => 1,
+                        'description' => $deal->filter('#dieukien')->html(),
+                        'valid_from' => Carbon::now()->toDateTimeString(),
+                        'valid_to' => $valid_to,
+                        'original_price' => '',
+                        'new_price' => '',
+                        'lat' => '',
+                        'lng' => '',
+                        'location' => '',
+                        'is_hot' => 1,
+                        'code' => '',
+                        'online_url' => '',
+                        'image_preview' => $deal->filterXpath('//meta[@property="og:image"]')->attr('content'),
+                        'status' => 1,
+                        'category_id' => config('constants.JAMJA_MAC'),
+                        'source' => 1,
+                        'condition' => '',
+                        'category_name' => '',
+                        'alias' => trim($deal->filter('.name-brand')->text()),
+                        'short_desc' => trim($deal->filter('.footer-brand-right > .rs')->last()->text()),
+                        'slug' => str_slug(trim($deal->filter('.name-brand')->text())),
+                    ]);
+                }
+            });
+
         }
     }
 }
+
+//
+

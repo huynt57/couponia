@@ -49,5 +49,6 @@ class NewsController extends Controller
     public function crawl()
     {
         Functions::crawlJamjaMP();
+        Functions::crawlJamjaMac();
     }
 }

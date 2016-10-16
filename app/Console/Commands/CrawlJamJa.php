@@ -4,15 +4,16 @@ namespace App\Console\Commands;
 
 use App\Deal\Functions;
 use Illuminate\Console\Command;
+use App\Deal;
 
-class Crawl extends Command
+class CrawlJamJa extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'crawl:post';
+    protected $signature = 'crawl:jamja';
 
     /**
      * The console command description.
@@ -40,8 +41,11 @@ class Crawl extends Command
     {
         //
         $this->line('Started');
-        Functions::crawlVnExpress();
-        Functions::crawlDantri();
+        Functions::crawlJamjaMP();
+        Functions::crawlJamjaMac();
+        Deal::deleteIndex();
+        Deal::createIndex($shards = null, $replicas = null);
+        Deal::addAllToIndex();
         $this->line('Done');
     }
 }
