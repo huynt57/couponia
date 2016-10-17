@@ -99,7 +99,7 @@ Canhgiamgia.com | Khuyến mại hot nhất từ lazada, tiki, adayroi, ...
                         <div class="product-inner">
                             <h5 class="product-title">{{$deal->name}}</h5>
                             <div class="product-desciption">
-                                @if(empty($deal->short_desc))
+                               @if(empty($deal->short_desc))
 
                                 {{ \Illuminate\Support\Str::limit(trim($deal->description), 80, ' ...') }}
 
@@ -143,7 +143,7 @@ Canhgiamgia.com | Khuyến mại hot nhất từ lazada, tiki, adayroi, ...
                             </div>
                             <p class="product-location"><i class="fa fa-map-marker"></i>
 
-                                @if(!empty($deal->online_url))
+                                @if(empty($deal->slug))
 
                                 {{\App\Provider::find($deal->source)->name }}
 

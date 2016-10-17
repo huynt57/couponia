@@ -58,12 +58,12 @@
                     <ul class="thumb-list">
                         @foreach($relatedPosts as $post)
                         <li>
-                            <a href="#">
+                            <a href="{{url('tin-tuc', ['id' => $post->id])}}">
                                 <img src="{{$post->image}}" alt="{{$post->title}}" title="{{$post->title}}" />
                             </a>
                             <div class="thumb-list-item-caption">
                                 <p class="thumb-list-item-meta">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $post->created_at)->toDateString()}}</p>
-                                <h5 class="thumb-list-item-title"><a href="#">{{$post->title}}</a></h5>
+                                <h5 class="thumb-list-item-title"><a href="{{url('tin-tuc', ['id' => $post->id])}}">{{$post->title}}</a></h5>
                                 <p class="thumb-list-item-desciption">{{\Illuminate\Support\Str::words($post->desc, 20) }}</p>
                             </div>
                         </li>

@@ -4,9 +4,9 @@
 Canhgiamgia.com | {{$deal->name}}
 @endsection
 @section('facebook_meta')
-    <meta property="og:url" content="{{$deal->name}}">
+    <meta property="og:url" content="{{url()->current()}}">
     <meta property="og:image" content="{{$deal->image_preview}}">
-    @if(!empty($deal->online_url))
+    @if(empty($deal->slug))
     <meta property="og:description" content="{{$deal->description}}">
     @else
         <meta property="og:description" content="{{$deal->short_desc}}">
@@ -72,7 +72,15 @@ Canhgiamgia.com | {{$deal->name}}
                 <div class="col-md-5">
                     <div class="product-info box">
 
-                        <h3>{{\App\Provider::find($deal->source)->name }}</h3>
+                        <h3>@if(empty($deal->slug))
+
+                                {{\App\Provider::find($deal->source)->name }}
+
+                            @else
+
+                                {{$deal->alias}}
+
+                            @endif</h3>
 
                         {{--<p class="product-info-price">$150</p>--}}
                         {{--<p class="text-smaller text-muted">{!! $deal->description !!}</p>--}}
@@ -81,8 +89,16 @@ Canhgiamgia.com | {{$deal->name}}
                     </div>
                     <div class="product-info box">
 
-                        <h3>{{$deal->name}}</h3>
-                        @if(!empty($deal->valid_to))
+                      <h3>  @if(empty($deal->slug))
+
+                           {{$deal->name}}
+
+                        @else
+
+                            {{$deal->short_desc}}
+
+                        @endif      </h3>
+                            @if(!empty($deal->valid_to))
 
 
                             @if(\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $deal->valid_to)->diffInDays() >= 1)
@@ -159,7 +175,14 @@ Canhgiamgia.com | {{$deal->name}}
                             </header>
                             <div class="product-inner">
                                 <h5 class="product-title">{{$deal->name}}</h5>
-                                <p class="product-desciption">{!! \Illuminate\Support\Str::limit($deal->description, 80, ' ...') !!}</p>
+                                <p class="product-desciption">@if(empty($deal->short_desc))
+
+                                        {{ \Illuminate\Support\Str::limit(trim($deal->description), 80, ' ...') }}
+
+                                    @else
+                                        {{$deal->short_desc}}
+                                    @endif
+                                </p>
                                 <div class="product-meta"><span class="product-time">
                                         @if(!empty($deal->valid_to))
 
@@ -191,7 +214,15 @@ Canhgiamgia.com | {{$deal->name}}
                                         @endif
                                     </ul>
                                 </div>
-                                <p class="product-location"><i class="fa fa-map-marker"></i> {{\App\Provider::find($deal->source)->name }}</p>
+                                <p class="product-location"><i class="fa fa-map-marker"></i>@if(empty($deal->slug))
+
+                                        {{\App\Provider::find($deal->source)->name }}
+
+                                    @else
+
+                                        {{$deal->alias}}
+
+                                    @endif</p>
                             </div>
                         </div>
                     </a>

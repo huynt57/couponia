@@ -140,7 +140,7 @@
                             </div>
                             <p class="product-location"><i class="fa fa-map-marker"></i>
 
-                                @if(!empty($deal->online_url))
+                                @if(empty($deal->slug))
 
                                     {{\App\Provider::find($deal->source)->name }}
 
