@@ -278,12 +278,11 @@ class Functions
     {
         $client = new Client();
         $crawler = $client->request('GET', 'http://kinhdoanh.vnexpress.net/tin-tuc/hang-hoa/khuyen-mai');
-        $crawler->filter('h3.title_news > a')->each(function ($node) use ($client) {
+        $crawler->filter('.block_mid_new h3.title_news > a')->each(function ($node) use ($client) {
             $link = $node->link();
             $post = $client->click($link);
-
-
-            $check = Post::where('title', $post->filter('h1')->text())->count();
+          //  dd($post->html());
+            $check = DB::table('posts')->where('title', $post->filter('h1')->text())->count();
 
             if($check == 0) {
 
@@ -307,7 +306,7 @@ class Functions
             $link = $node->link();
             $post = $client->click($link);
 
-            $check = Post::where('title', $post->filter('h1')->text())->count();
+            $check = DB::table('posts')->where('title', $post->filter('h1')->text())->count();
 
             if($check == 0) {
 
@@ -338,53 +337,56 @@ class Functions
 
                 $check = Deal::where('short_desc', $short_desc)->count();
 
+                $time_remain = trim($deal->filter('.time-remain')->text());
+
+                $arr = explode(' ', $time_remain);
+
+                switch ($arr[2]) {
+                    case 'ngày':
+                        $valid_to = Carbon::now()->addDay($arr[1])->toDateTimeString();
+                        break;
+                    case 'tuần':
+                        $valid_to = Carbon::now()->addWeek($arr[1])->toDateTimeString();
+                        break;
+                    case 'giờ':
+                        $valid_to = Carbon::now()->addHour($arr[1])->toDateTimeString();
+                        break;
+                    default:
+                        $valid_to = Carbon::now()->toDateTimeString();
+                        break;
+
+                }
+
+                $data = [
+                    'name' => trim($deal->filter('.name-brand')->text()),
+                    'account_id' => 1,
+                    'description' => $deal->filter('#dieukien')->html(),
+                    'valid_from' => Carbon::now()->toDateTimeString(),
+                    'valid_to' => $valid_to,
+                    'original_price' => '',
+                    'new_price' => '',
+                    'lat' => '',
+                    'lng' => '',
+                    'location' => '',
+                    'is_hot' => 1,
+                    'code' => '',
+                    'online_url' => $deal->filter('[rel="nofollow"]')->count() ? $deal->filter('[rel="nofollow"]')->attr('href'): '',
+                    'image_preview' => $deal->filterXpath('//meta[@property="og:image"]')->count() ? $deal->filterXpath('//meta[@property="og:image"]')->attr('content'):'',
+                    'status' => 1,
+                    'category_id' => config('constants.JAMJA_MP'),
+                    'source' => 1,
+                    'condition' => '',
+                    'category_name' => '',
+                    'alias' => trim($deal->filter('.name-brand')->text()),
+                    'short_desc' => trim($deal->filter('.footer-brand-right > .rs')->last()->text()),
+                    'slug' => str_slug(trim($deal->filter('.name-brand')->text())),
+                ];
+
                 if($check == 0) {
 
-                    $time_remain = trim($deal->filter('.time-remain')->text());
-
-                    $arr = explode(' ', $time_remain);
-
-                    switch ($arr[2]) {
-                        case 'ngày':
-                            $valid_to = Carbon::now()->addDay($arr[1])->toDateTimeString();
-                            break;
-                        case 'tuần':
-                            $valid_to = Carbon::now()->addWeek($arr[1])->toDateTimeString();
-                            break;
-                        case 'giờ':
-                            $valid_to = Carbon::now()->addHour($arr[1])->toDateTimeString();
-                            break;
-                        default:
-                            $valid_to = Carbon::now()->toDateTimeString();
-                            break;
-
-                    }
-
-
-                    Deal::create([
-                        'name' => trim($deal->filter('.name-brand')->text()),
-                        'account_id' => 1,
-                        'description' => $deal->filter('#dieukien')->html(),
-                        'valid_from' => Carbon::now()->toDateTimeString(),
-                        'valid_to' => $valid_to,
-                        'original_price' => '',
-                        'new_price' => '',
-                        'lat' => '',
-                        'lng' => '',
-                        'location' => '',
-                        'is_hot' => 1,
-                        'code' => '',
-                        'online_url' => '',
-                        'image_preview' => $deal->filterXpath('//meta[@property="og:image"]')->attr('content'),
-                        'status' => 1,
-                        'category_id' => config('constants.JAMJA_MP'),
-                        'source' => 1,
-                        'condition' => '',
-                        'category_name' => '',
-                        'alias' => trim($deal->filter('.name-brand')->text()),
-                        'short_desc' => trim($deal->filter('.footer-brand-right > .rs')->last()->text()),
-                        'slug' => str_slug(trim($deal->filter('.name-brand')->text())),
-                    ]);
+                    Deal::create($data);
+                } else {
+                    Deal::where('short_desc', $short_desc)->update($data);
                 }
             });
 
@@ -405,56 +407,59 @@ class Functions
 
                 $check = Deal::where('short_desc', $short_desc)->count();
 
+                $time_remain = trim($deal->filter('.time-remain')->text());
+
+                $arr = explode(' ', $time_remain);
+
+                switch ($arr[2]) {
+                    case 'ngày':
+                        $valid_to = Carbon::now()->addDay($arr[1])->toDateTimeString();
+                        break;
+                    case 'tuần':
+                        $valid_to = Carbon::now()->addWeek($arr[1])->toDateTimeString();
+                        break;
+                    case 'giờ':
+                        $valid_to = Carbon::now()->addHour($arr[1])->toDateTimeString();
+                        break;
+                    default:
+                        $valid_to = Carbon::now()->toDateTimeString();
+                        break;
+
+                }
+
+                $data = [
+                    'name' => trim($deal->filter('.name-brand')->text()),
+                    'account_id' => 1,
+                    'description' => $deal->filter('#dieukien')->html(),
+                    'valid_from' => Carbon::now()->toDateTimeString(),
+                    'valid_to' => $valid_to,
+                    'original_price' => '',
+                    'new_price' => '',
+                    'lat' => '',
+                    'lng' => '',
+                    'location' => '',
+                    'is_hot' => 1,
+                    'code' => '',
+                    'online_url' => $deal->filter('[rel="nofollow"]')->count() ? $deal->filter('[rel="nofollow"]')->attr('href'): '',
+
+                    'image_preview' => $deal->filterXpath('//meta[@property="og:image"]')->count() ? $deal->filterXpath('//meta[@property="og:image"]')->attr('content'):'',
+                    'status' => 1,
+                    'category_id' => config('constants.JAMJA_MAC'),
+                    'source' => 1,
+                    'condition' => '',
+                    'category_name' => '',
+                    'alias' => trim($deal->filter('.name-brand')->text()),
+                    'short_desc' => trim($deal->filter('.footer-brand-right > .rs')->last()->text()),
+                    'slug' => str_slug(trim($deal->filter('.name-brand')->text())),
+                ];
+
                 if($check == 0) {
 
-                    $time_remain = trim($deal->filter('.time-remain')->text());
-
-                    $arr = explode(' ', $time_remain);
-
-                    switch ($arr[2]) {
-                        case 'ngày':
-                            $valid_to = Carbon::now()->addDay($arr[1])->toDateTimeString();
-                            break;
-                        case 'tuần':
-                            $valid_to = Carbon::now()->addWeek($arr[1])->toDateTimeString();
-                            break;
-                        case 'giờ':
-                            $valid_to = Carbon::now()->addHour($arr[1])->toDateTimeString();
-                            break;
-                        default:
-                            $valid_to = Carbon::now()->toDateTimeString();
-                            break;
-
-                    }
-
-
-                    Deal::create([
-                        'name' => trim($deal->filter('.name-brand')->text()),
-                        'account_id' => 1,
-                        'description' => $deal->filter('#dieukien')->html(),
-                        'valid_from' => Carbon::now()->toDateTimeString(),
-                        'valid_to' => $valid_to,
-                        'original_price' => '',
-                        'new_price' => '',
-                        'lat' => '',
-                        'lng' => '',
-                        'location' => '',
-                        'is_hot' => 1,
-                        'code' => '',
-                        'online_url' => '',
-                        'image_preview' => $deal->filterXpath('//meta[@property="og:image"]')->attr('content'),
-                        'status' => 1,
-                        'category_id' => config('constants.JAMJA_MAC'),
-                        'source' => 1,
-                        'condition' => '',
-                        'category_name' => '',
-                        'alias' => trim($deal->filter('.name-brand')->text()),
-                        'short_desc' => trim($deal->filter('.footer-brand-right > .rs')->last()->text()),
-                        'slug' => str_slug(trim($deal->filter('.name-brand')->text())),
-                    ]);
+                    Deal::create($data);
+                } else {
+                    Deal::where('short_desc', $short_desc)->update($data);
                 }
             });
-
         }
     }
 }

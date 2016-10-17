@@ -16,7 +16,7 @@ class NewsController extends Controller
 
     public function getNews()
     {
-        $posts = DB::table('posts')->orderBy('created_at','desc')->paginate(config('constants.PAGINATE_NUMBER'));
+        $posts = DB::table('posts')->paginate(config('constants.PAGINATE_NUMBER'));
         return view('frontend.news', [
             'posts' => $posts
         ]);
@@ -48,7 +48,8 @@ class NewsController extends Controller
 
     public function crawl()
     {
-        Functions::crawlJamjaMP();
-        Functions::crawlJamjaMac();
+//        Functions::crawlJamjaMP();
+//        Functions::crawlJamjaMac();
+        Functions::crawlVnExpress();
     }
 }

@@ -53,7 +53,13 @@ class DealController extends Controller
 
     public function getDealsMac(Request $request)
     {
-        $deals = DB::table('deals')->where('category_id', config('constants.JAMJA_MAC'))->where('valid_to', '>=', Carbon::now()->toDateTimeString())->orWhereNull('valid_to')->orderBy('created_at', 'desc');
+      //  $deals = DB::table('deals')->where('category_id', config('constants.JAMJA_MAC'))->where('valid_to', '>=', Carbon::now()->toDateTimeString())->orWhereNull('valid_to')->orderBy('created_at', 'desc');
+
+        $deals = DB::table('deals')->where('category_id', config('constants.JAMJA_MAC'))->where(function($q) {
+            $q->where('valid_to', '>=', Carbon::now()->toDateTimeString());
+            $q->orWhereNull('valid_to');
+        })->orderBy('created_at', 'desc');
+
 
         $time  = $request->input('time');
 
@@ -81,7 +87,13 @@ class DealController extends Controller
 
     public function getDealsMP(Request $request)
     {
-        $deals = DB::table('deals')->where('category_id', config('constants.JAMJA_MP'))->where('valid_to', '>=', Carbon::now()->toDateTimeString())->orWhereNull('valid_to')->orderBy('created_at', 'desc');
+      //  $deals = DB::table('deals')->where('category_id', config('constants.JAMJA_MP'))->where('valid_to', '>=', Carbon::now()->toDateTimeString())->orWhereNull('valid_to')->orderBy('created_at', 'desc');
+
+        $deals = DB::table('deals')->where('category_id', config('constants.JAMJA_MP'))->where(function($q) {
+            $q->where('valid_to', '>=', Carbon::now()->toDateTimeString());
+            $q->orWhereNull('valid_to');
+        })->orderBy('created_at');
+
 
         $time  = $request->input('time');
 
@@ -257,7 +269,7 @@ class DealController extends Controller
             return 'Khuyến mãi không tồn tại';
         }
 
-        $checkDeal = Deal::find($id)->count();
+        $checkDeal = Deal::where('id', $id)->count();
 
         if($checkDeal == 0)
         {
