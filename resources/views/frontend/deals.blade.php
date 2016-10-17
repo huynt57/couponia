@@ -26,7 +26,7 @@ Canhgiamgia.com | Khuyến mại hot nhất từ lazada, tiki, adayroi, ...
                     </ul>
                 @endif
 
-                @if(url()->current() == url('khuyen-mai'))
+                @if(url()->current() == url('khuyen-mai') || str_contains(url()->current(), 'nha-phan-phoi'))
                 <ul class="nav nav-tabs nav-stacked nav-coupon-category nav-coupon-category-left">
                         <?php $providers = \App\Deal\Functions::getProviders();?>
 
