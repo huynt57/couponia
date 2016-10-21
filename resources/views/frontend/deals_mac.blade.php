@@ -9,6 +9,13 @@
     <meta property="og:title" content="Canhgiamgia.com | Khuyến mại thời trang mới nhất từ các shop">
 @endsection
 
+@section('google_meta')
+
+    <meta name="keywords" content="khuyến mãi, lazada, tiki, adayroi, thời trang, làm đẹp, giảm giá" />
+    <meta name="description" content="Canhgiamgia.com | Khuyến mại từ Lazada, Tiki, Adayroi, ...">
+    <meta name="author" content="canhgiamgia.com">
+@endsection
+
 
 @section('content')
     <div class="container">

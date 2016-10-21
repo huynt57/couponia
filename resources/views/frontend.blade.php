@@ -7,9 +7,8 @@
     <title>@yield('title')</title>
     <!-- meta info -->
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <meta name="keywords" content="khuyến mãi, lazada, tiki, adayroi" />
-    <meta name="description" content="Canhgiamgia.com - Khuyến mại hot nhất từ Lazada, Adayroi, Tiki, ...">
-    <meta name="author" content="Tsoy">
+    @yield('google_meta')
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>

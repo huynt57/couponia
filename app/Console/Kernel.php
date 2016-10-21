@@ -39,7 +39,7 @@ class Kernel extends ConsoleKernel
 
          $schedule->command('crawl:jamja')
             ->withoutOverlapping()
-            ->hourly();
+            ->everyTenMinutes();
     }
 
     /**

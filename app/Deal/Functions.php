@@ -61,10 +61,7 @@ class Functions
     public static function countDealBySource($source)
     {
         if (!cache()->has('count-source-' . $source)) {
-            $cnt = DB::table('deals')->where(function($query) {
-                $query->where('valid_to', '>=', Carbon::now()->toDateTimeString());
-                $query->orWhereNull('valid_to');
-            })->where('alias', $source)->count();
+            $cnt = DB::table('deals')->where('alias', $source)->count();
             cache()->put('count-provider-' . $source, $cnt, 20);
             return $cnt;
         }
@@ -326,20 +323,29 @@ class Functions
 
     public static function crawlJamjaMP()
     {
-        for ($i = 15; $i >= 1; $i--) {
+        $i = 15;
+        while($i > 0) {
+
             $client = new Client();
             $crawler = $client->request('GET', 'https://jamja.vn/khuyen-mai/?query_string=page&page='.$i.'&tags=%C4%91%E1%BA%B9p&querystring_key=page');
-            $crawler->filter('.footer-brand-right > a')->each(function ($node) use ($client) {
-                $link = $node->link();
-                $deal = $client->click($link);
+            $crawler->filter('.f-boxDealInner')->each(function ($node) use ($client) {
+                $link = $node->filter('.footer-brand-right > a')->attr('href');
+
+               // $deal = $client->click($link);
+
+                $deal = $client->request('GET', 'https://jamja.vn'.$link);
 
                 $short_desc = trim($deal->filter('.footer-brand-right > .rs')->last()->text());
 
                 $check = Deal::where('short_desc', $short_desc)->count();
 
-                $time_remain = trim($deal->filter('.time-remain')->text());
+                $time_remain = trim($node->filter('.time-remain')->text());
+
+               // dd($time_remain.' '.trim($deal->filter('.name-brand')->text()).' '.trim($deal->filter('.footer-brand-right > .rs')->last()->text()));
 
                 $arr = explode(' ', $time_remain);
+
+
 
                 switch ($arr[2]) {
                     case 'ngày':
@@ -390,26 +396,42 @@ class Functions
                 }
             });
 
+            $i--;
+
         }
     }
 
 
     public static function crawlJamjaMac()
     {
-        for ($i = 15; $i >= 1; $i--) {
+        $i = 15;
+        while($i > 0) {
+
             $client = new Client();
             $crawler = $client->request('GET', 'https://jamja.vn/khuyen-mai/?page='.$i.'&tags=m%E1%BA%B7c&querystring_key=page');
-            $crawler->filter('.footer-brand-right > a')->each(function ($node) use ($client) {
-                $link = $node->link();
-                $deal = $client->click($link);
+            $crawler->filter('.f-boxDealInner')->each(function ($node) use ($client) {
+                $link = $node->filter('.footer-brand-right > a')->attr('href');
 
-                $short_desc = trim($deal->filter('.footer-brand-right > .rs')->last()->text());
+                // $deal = $client->click($link);
+
+                $deal = $client->request('GET', 'https://jamja.vn'.$link);
+
+                if($deal->filter('.footer-brand-right > .rs')->last()->count())
+                {
+                    $short_desc = trim($deal->filter('.footer-brand-right > .rs')->last()->text());
+                } else {
+                    $short_desc = '';
+                }
 
                 $check = Deal::where('short_desc', $short_desc)->count();
 
-                $time_remain = trim($deal->filter('.time-remain')->text());
+                $time_remain = trim($node->filter('.time-remain')->text());
+
+                // dd($time_remain.' '.trim($deal->filter('.name-brand')->text()).' '.trim($deal->filter('.footer-brand-right > .rs')->last()->text()));
 
                 $arr = explode(' ', $time_remain);
+
+
 
                 switch ($arr[2]) {
                     case 'ngày':
@@ -441,7 +463,6 @@ class Functions
                     'is_hot' => 1,
                     'code' => '',
                     'online_url' => $deal->filter('[rel="nofollow"]')->count() ? $deal->filter('[rel="nofollow"]')->attr('href'): '',
-
                     'image_preview' => $deal->filterXpath('//meta[@property="og:image"]')->count() ? $deal->filterXpath('//meta[@property="og:image"]')->attr('content'):'',
                     'status' => 1,
                     'category_id' => config('constants.JAMJA_MAC'),
@@ -460,6 +481,8 @@ class Functions
                     Deal::where('short_desc', $short_desc)->update($data);
                 }
             });
+
+            $i--;
         }
     }
 }

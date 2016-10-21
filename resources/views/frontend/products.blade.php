@@ -8,6 +8,13 @@
     <meta property="og:image" content="{{public_path('coupon/logo.png')}}">
     <meta property="og:description" content="Canhgiamgia.com | Sản phẩm khuyến mại từ Lazada, Tiki, Adayroi, ...">
 @endsection
+
+@section('google_meta')
+
+    <meta name="keywords" content="khuyến mãi, lazada, tiki, adayroi, thời trang, làm đẹp, giảm giá" />
+    <meta name="description" content="Canhgiamgia.com | Sản phẩm khuyến mại từ Lazada, Tiki, Adayroi, ...">
+    <meta name="author" content="canhgiamgia.com">
+@endsection
 @section('content')
     <div class="container">
         <div class="row">

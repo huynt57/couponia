@@ -10,6 +10,13 @@
     <meta property="og:title" content="{{$post->title}}">
 @endsection
 
+@section('google_meta')
+
+    <meta name="keywords" content="khuyến mãi, lazada, tiki, adayroi, thời trang, làm đẹp, giảm giá" />
+    <meta name="description" content="{{$post->desc}}">
+    <meta name="author" content="canhgiamgia.com">
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">

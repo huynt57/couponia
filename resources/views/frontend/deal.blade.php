@@ -1,5 +1,6 @@
 
 @extends('frontend')
+
 @section('title')
 Canhgiamgia.com | {{$deal->name}}
 @endsection
@@ -13,6 +14,13 @@ Canhgiamgia.com | {{$deal->name}}
         @endif
 
     <meta property="og:title" content="{{$deal->name}}">
+@endsection
+
+@section('google_meta')
+
+    <meta name="keywords" content="khuyến mãi, lazada, tiki, adayroi, thời trang, làm đẹp, giảm giá" />
+    <meta name="description" content="{{$deal->description}}">
+    <meta name="author" content="canhgiamgia.com">
 @endsection
 
 @section('content')
